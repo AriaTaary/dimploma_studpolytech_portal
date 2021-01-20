@@ -1,0 +1,12 @@
+@media (max-width: 1400px){
+    .container{
+        padding: 0 40px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 850px){
+    .admin-main-page{
+        background-image: none;
+    }
+}

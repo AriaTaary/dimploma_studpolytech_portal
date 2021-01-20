@@ -1,0 +1,5 @@
+<template>
+  <div class="container">
+    Страница не найдена
+  </div>
+</template>
