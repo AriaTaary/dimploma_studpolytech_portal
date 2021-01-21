@@ -31,11 +31,6 @@ export default {
   mutations: {
     setAuthToken (state, token) {
       state.auth_token = token
-    },
-    resetState (state) {
-      state.auth_token = ''
-      state.user = {}
-      state.roles = {}
     }
   }
 }

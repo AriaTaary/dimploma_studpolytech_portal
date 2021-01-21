@@ -8,6 +8,13 @@ import userModule from './userModule'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
+  mutations: {
+    resetState () {
+      this.commit('setAuthToken', '')
+      this.commit('setUser', {})
+      this.commit('setRoles', {})
+    }
+  },
   modules: {
     authModule,
     userModule

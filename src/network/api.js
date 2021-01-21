@@ -36,7 +36,7 @@ export default {
 
     const requestHeaders = {
       'Access-Control-Allow-Origin': '*',
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       'If-Modified-Since': this.lastModified
@@ -96,12 +96,14 @@ export default {
   },
 
   async logout (authToken) {
-    return await this.execute(
-      this.apiRoutes.logout,
-      'post',
-      {},
-      false,
-      authToken
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.logout,
+        'post',
+        {},
+        false,
+        authToken
+      )
     )
   },
 
