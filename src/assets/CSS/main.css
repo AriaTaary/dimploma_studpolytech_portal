@@ -537,18 +537,18 @@ input:focus{
 }
 
 .button-not-main:hover{
-    color: #d5444bc5 !important; 
+    color: #d5444bc5 !important;
     border-radius: 5px;
 }
 
 .button-main:hover{
-    background-color: #d5444bc5 !important; 
+    background-color: #d5444bc5 !important;
     color: white;
     border-radius: 5px;
 }
 
 .button-main-active{
-    background-color: #d5444bc5 !important; 
+    background-color: #d5444bc5 !important;
     color: white;
     border-radius: 5px;
     cursor: default !important;
