@@ -234,6 +234,12 @@
 }
 
 
+.card-main-info-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .ratings{
     display: flex;
     flex-direction: row;

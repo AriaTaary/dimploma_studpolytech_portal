@@ -559,6 +559,11 @@ input:focus{
     cursor: pointer;
 }
 
+.mini-hover:hover{
+    color: #D5444C;
+    cursor: pointer;
+}
+
 .el-form-item{
     margin-bottom: 0 !important;
     /* width: 100%; */
