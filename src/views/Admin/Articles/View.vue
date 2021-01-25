@@ -74,23 +74,21 @@ export default {
   data: () => ({
     loading: true,
     search: '',
-    article: [
-      {
-        id: '1',
-        author: 'Автор',
-        title: 'Название',
-        cut: 'Превью',
-        text: 'Текст',
+    article: {
+        id: '',
+        author: '',
+        title: '',
+        cut: '',
+        text: '',
         created_at: '',
         categories: [
           {
-            id: '1',
-            name: '1'
+            id: '',
+            name: ''
           }
         ],
-        views: '3'
-      }
-    ]
+        views: ''
+    }
   }),
 
   async created () {

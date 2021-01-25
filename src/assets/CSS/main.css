@@ -11,6 +11,16 @@ a {
     text-decoration: none;
 }
 
+h1{
+    color: black;
+    font-size: 30px;
+}
+
+h2{
+    color: black;
+    font-size: 25px;
+}
+
 input:focus{
     border-color: #DCDFE6 !important;
 }
@@ -19,7 +29,7 @@ input:focus{
     text-decoration: none;
     color: #D5444C;
     position: relative;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 .link:hover{
@@ -55,7 +65,6 @@ input:focus{
 .menu{
     display: flex;
     align-items: center;
-    color: white;
 }
 
 .menu-list{
@@ -84,14 +93,14 @@ input:focus{
     color: rgb(255, 255, 255, 0.7);
 }
 
-.menu-link:hover::before{
+/* .menu-link:hover::before{
     position:absolute;
     bottom:0;
     left: 25%;
     width:50%;
     content:"";
     border-bottom: 1px solid rgb(255, 255, 255, 0.7);
-}
+} */
 
 .menu-link-auth, .button-menu-link-auth{
     background-color: white !important;
@@ -115,6 +124,10 @@ input:focus{
 
 .menu-link-auth:hover::before{
     border-bottom: none !important;
+}
+
+.button-exit{
+    margin-left: 40px !important;
 }
 
 .footer{
@@ -244,6 +257,7 @@ input:focus{
 .content-nav{
     display: flex;
     flex-direction: row;
+    width: 100%;
     margin: 30px 0 35px 0;
     justify-content: space-between;
 }
@@ -253,7 +267,7 @@ input:focus{
     flex-direction: row;
 }
 
-.content-title a{
+.content-title a, .content-title h1{
     color: black;
     font-size: 30px;
 }
@@ -455,8 +469,47 @@ input:focus{
     border-radius: 5px;
 }
 
+.button-main{
+    background-color: #D5444C !important;
+    border: none !important;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 10px !important;
+    cursor: pointer;
+    outline: none;
+}
+
+.button-not-main{
+    background-color: transparent !important;
+    border: none !important;
+    color: #D5444C ;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 0px !important;
+    cursor: pointer;
+    outline: none;
+}
+
+.button-not-main:hover{
+    color: #d5444bc5 !important; 
+    border-radius: 5px;
+}
+
+.button-main:hover{
+    background-color: #d5444bc5 !important; 
+    color: white;
+    border-radius: 5px;
+}
+
+.mini-hover:hover{
+    color: #D5444C;
+    cursor: pointer;
+}
+
 .el-form-item{
     margin-bottom: 0 !important;
+    /* width: 100%; */
 }
 
 .el-form-item__content{
@@ -552,7 +605,7 @@ input:focus{
 .admin-content{
     display: flex;
     flex-direction: column;
-    padding: 40px 10px 0 10px;
+    padding: 35px 10px 0 10px;
     box-sizing: border-box;
     background-color: white;
     border-radius: 10px;
@@ -730,8 +783,17 @@ table{
 .loading{
     display: flex;
     width: 100%;
+    min-height: 100%;
     justify-content: center;
     margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.mini_loading{
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    justify-content: center;
 }
 
 .welcome-title{

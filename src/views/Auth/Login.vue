@@ -40,6 +40,7 @@ export default {
       loading: true,
       user: {
         email: '',
+        username: '',
         password: '',
         remember: ''
       },
@@ -89,8 +90,8 @@ export default {
           const data = response.data
           const authToken = data.data.Authorization
           this.$store.commit('setAuthToken', authToken)
-          this.$store.dispatch('getUserData')
-          this.$router.push('personal')
+          await this.$store.dispatch('getUserData')
+          this.$router.push({name: 'Personal', params: { username: this.$store.getters.getUser.username } })
         }
       }
     }

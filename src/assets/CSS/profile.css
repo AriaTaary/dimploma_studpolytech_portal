@@ -1,0 +1,375 @@
+.menu-add{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.menu-list-add{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.menu-item-add{
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.menu-link-add{
+    color: rgb(0, 0, 0, 0.3);
+    padding: 20px 20px 10px 20px;
+}
+
+.menu-item-add-active .menu-link-add{
+    color: rgb(0, 0, 0, 1);
+    padding: 20px 20px 10px 20px;
+}
+
+.menu-item-add:last-child .menu-link-add{
+    padding-right: 0px;
+}
+
+.menu-item-add:first-child .menu-link-add{
+    padding-left: 0px;
+}
+
+.menu-link-add:hover{
+    color: rgb(0, 0, 0, 1);
+}
+
+.content-profile{
+    margin-bottom: 10px;
+}
+
+.profile-info{
+    margin-bottom: 40px;
+}
+
+.profile-main-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+}
+
+.profile-name-info{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-active-info{
+    display: flex;
+    background-color: rgb(0, 0, 0, 0.05);
+    height: 150px;
+    width: 35vw;
+    border-radius: 5px;
+    padding: 20px;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.profile-active-info-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile-active-info-item{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.profile-active-info-item:first-child{
+   margin-right: 20px;
+}
+
+.profile-active-info-item p{
+    color:rgb(0, 0, 0, 0.3);
+}
+
+.profile-active-info-item .main-item{
+    color: black;
+}
+
+.profile-photo{
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 40px;
+}
+
+.profile-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profile-add-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-add-info h2{
+    margin-bottom: 20px;
+}
+
+.profile-add-info p{
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.profile-add-info p:last-child{
+    margin-bottom: 0;
+}
+
+.row-group-profile .el-form-item{
+    width: 45vw;
+}
+
+.settings-profile{
+    max-height: 150px;
+    margin-top: 50px;
+}
+
+.settings-img-profile{
+    align-self: flex-end;
+    margin-right: 40px;
+}
+
+.settings-img-profile p{
+    color:rgb(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+
+.one-button-row-profile .el-form-item__content{
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.profile-main-categories{
+    padding-bottom: 20px !important;
+}
+
+.card-info{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.card-about-info, .card-categories{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.card-about-info .author{
+    color: #D5444C;
+}
+
+.card-about-info p, .card-categories p{
+    color: rgba(0, 0, 0, 0.3);
+    margin-right: 20px;
+}
+
+.card-main-info{
+    margin-top: 30px;
+}
+
+.card-main-info h2, .card-main-info p{
+    margin-bottom: 20px;
+}
+
+.card-main-info-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ratings{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.views, .likes, .bookmarks{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.views img, .likes img, .bookmarks img{
+    margin-right: 5px;
+}
+
+.views span, .likes span, .bookmarks span{
+    color: rgb(0, 0, 0, 0.3);
+}
+
+
+/* .card-main-info h2, .card-main-info p{
+    margin-bottom: 30px;
+} */
+
+/* .profile-card{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-card img{
+    max-width: 100px;
+} */
+
+
+.fav-title a{
+    margin-left: 30px;
+}
+
+.categories{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.category{
+    background-color: transparent !important;
+    color: #D5444C;
+    border-radius: 5px;
+    border: 1px solid #D5444C ;
+    padding: 7px 10px !important;
+    cursor: pointer;
+     margin-bottom: 20px;
+}
+
+.category:hover{
+    background-color: #D5444C !important; 
+    color: white;
+    border-radius: 5px;
+}
+
+.category:not(:last-child){
+    margin-right: 10px;
+}
+
+.users, .companies{
+    display: flex;
+    flex-direction: row;
+    /* padding: 20px; */
+    /* border: 1px solid rgb(0, 0, 0, 0.1); */
+    border-radius: 5px;
+    overflow: hidden;
+    align-items: center;
+    padding-right: 20px;
+
+    background-color: rgb(0, 0, 0, 0.05);
+    /* box-shadow: 5px 0px 10px rgba(0,0,0,0.1) */
+}
+
+.user-info, .company-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 33vw;
+}
+
+.suggestion{
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.suggestion .user-info, .suggestion .company-info{
+    width: 22vw;
+}
+
+.suggestion .user-info p, .suggestion .company-info p{
+    margin: 0 !important;
+    padding-right: 30px;
+}
+
+.users, .companies:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.users img, .companies img{
+    max-width: 100px;
+}
+
+.users p, .companies p{
+    margin: 0;
+}
+
+.users p:not(:last-child), .companies p:not(:last-child){
+    margin-bottom: 10px;
+}
+
+.empty{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.empty p{
+    color: rgb(0, 0, 0, 0.3)
+}
+
+.subscriptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.user-subscriptions{
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+}
+
+.suggestion-subscriptions{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0, 0, 0, 0.05);
+    padding: 30px 20px 0 20px;
+    width: 35vw;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 100%;
+    /* box-shadow: -5px 5px 10px rgba(0,0,0,0.1) */
+}
+
+.suggestion-subscriptions h4{
+    color: rgb(0, 0, 0, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.suggestion-subscriptions h6{
+    color: rgb(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.suggestion-categories, .suggestion-subscriptions .companies {
+    margin-bottom: 40px;
+}
+
+.suggestion-users {
+    margin-bottom: 20px;
+}
+
+.suggestion-categories{
+    display: flex;
+    flex-direction: row;
+}
+
+.suggestion-categories .mini-hover{
+    padding-right: 20px;
+}

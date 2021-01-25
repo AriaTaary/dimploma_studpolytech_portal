@@ -3,7 +3,8 @@
     <div class="header">
       <Header />
     </div>
-    <div class="main-content admin-main-page">
+    <div class="main-content">
+      <AddHeader />
       <router-view />
     </div>
     <div class="footer">
@@ -15,10 +16,11 @@
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import AddHeader from '@/components/Add-header-profile'
 
 export default {
   components: {
-    Header, Footer
+    Header, Footer, AddHeader
   }
 }
 </script>

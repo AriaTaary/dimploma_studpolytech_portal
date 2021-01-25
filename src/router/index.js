@@ -9,7 +9,17 @@ import Register from '@/views/Auth/Register'
 import NotFound from '@/views/Errors/404.vue'
 
 import Main from '@/views/Main/Main'
+
 import Personal from '@/views/Main/Profile/Personal'
+import PersonalEdit from '@/views/Main/Profile/Edit'
+import PersonalVacancies from '@/views/Main/Profile/Vacancies'
+import PersonalArticles from '@/views/Main/Profile/Articles'
+import PersonalSubscriptions from '@/views/Main/Profile/Subscriptions'
+
+import PersonalFavouriteArticles from '@/views/Main/Profile/Favourite/Articles'
+import PersonalFavouriteVacancies from '@/views/Main/Profile/Favourite/Vacancies'
+import PersonalLikedArticles from '@/views/Main/Profile/Liked/Articles'
+import PersonalLikedVacancies from '@/views/Main/Profile/Liked/Vacancies'
 
 import Admin from '@/views/Admin/Admin'
 
@@ -88,11 +98,91 @@ const routes = [
     }
   },
   {
-    path: '/personal',
+    path: '/users/:username',
     name: 'Personal',
     component: Personal,
     meta: {
       title: 'Личный кабинет',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/edit',
+    name: 'PersonalEdit',
+    component: PersonalEdit,
+    meta: {
+      title: 'Изменение данных аккаунта',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/vacancies',
+    name: 'PersonalVacancies',
+    component: PersonalVacancies,
+    meta: {
+      title: 'Мои вакансии',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/articles',
+    name: 'PersonalArticles',
+    component: PersonalArticles,
+    meta: {
+      title: 'Мои статьи',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/subscriptions',
+    name: 'PersonalSubscriptions',
+    component: PersonalSubscriptions,
+    meta: {
+      title: 'Подписки',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/favourite/articles',
+    name: 'PersonalFavouriteArticles',
+    component: PersonalFavouriteArticles,
+    meta: {
+      title: 'Избранные статьи',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/favourite/vacancies',
+    name: 'PersonalFavouriteVacancies',
+    component: PersonalFavouriteVacancies,
+    meta: {
+      title: 'Избранные вакансии',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/liked/articles',
+    name: 'PersonalLikedArticles',
+    component: PersonalLikedArticles,
+    meta: {
+      title: 'Понравившиеся статьи',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/liked/vacancies',
+    name: 'PersonalLikedVacancies',
+    component: PersonalLikedVacancies,
+    meta: {
+      title: 'Понравившиеся вакансии',
       layout: 'personal',
       block: blocks.personal
     }
@@ -342,7 +432,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
   Vue.nextTick(() => {
-    document.title = to.meta.title + ' - МосПолитех Аккаунт'
+    document.title = to.meta.title + ' - Студенческий Портал'
   })
 })
 

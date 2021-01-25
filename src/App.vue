@@ -26,9 +26,12 @@ export default {
 
 <style>
 @import "assets/CSS/main.css";
+@import "assets/CSS/profile.css";
 @import "assets/CSS/media.css";
-@import "https://fonts.gstatic.com";
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
 @import "https://unpkg.com/element-ui/lib/theme-chalk/index.css";
-@import "https://unpkg.com/element-ui/lib/index.js";
+
+/* TODO: разобраться с подключением */
+/* @import "https://fonts.gstatic.com"; */
+/* @import "https://unpkg.com/element-ui/lib/index.js"; */
 </style>

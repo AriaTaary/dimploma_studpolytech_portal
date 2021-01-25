@@ -11,6 +11,11 @@ export default {
     register: 'register',
     logout: 'logout',
     user: 'user',
+    userArticles: 'user/articles',
+    userVacancies: 'user/vacancies',
+    userFavourites: 'user/favourites',
+    userLiked: 'user/liked',
+    userSubscriptions: 'user/subscriptions',
     users: 'users'
   },
   adminRoutes: {
@@ -113,6 +118,66 @@ export default {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.user,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getUserArticles (authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userArticles,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getUserVacancies(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userVacancies,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getUserFavourites(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userFavourites,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getUserLiked(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userLiked,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getUserSubscriptions(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userSubscriptions,
         'get',
         {},
         true,

@@ -8,6 +8,7 @@ const helper = {
 
     return {
       id: data.id,
+      username: data.username,
       email: data.email,
       phone: data.phone,
       last_name: data.last_name,
@@ -26,6 +27,7 @@ export default {
   state: {
     user: {
       id: '',
+      username: '',
       email: '',
       phone: '',
       last_name: '',
