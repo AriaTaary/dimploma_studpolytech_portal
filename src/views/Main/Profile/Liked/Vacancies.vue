@@ -15,11 +15,6 @@
 <script>
 import moment from 'moment'
 moment.locale('ru')
-// export default {
-//   data: () => ({
-//     loading: false
-//   })
-// }
 
 export default {
   data: () => ({
@@ -49,5 +44,4 @@ export default {
   }
 }
 
-//const age = moment(this.user.date_birth, "YYYYMMDD").fromNow();
 </script>
