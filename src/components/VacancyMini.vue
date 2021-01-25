@@ -23,7 +23,8 @@
         <button class="button-not-main" @click="editAction ()">Подробнее >></button>
         <button class="button-main" @click="editAction ()">Редактировать</button>
       </div>
-      <!-- <div class="ratings">
+      <!-- TODO: блок сохранений и просмотров на вакансии
+      <div class="ratings">
         <div class="views">
           <img src="/img/view.svg" alt="">
           <span>{{ this.article.views }}</span>
