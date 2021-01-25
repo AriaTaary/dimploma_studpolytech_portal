@@ -6,7 +6,7 @@
           <h1>Мои статьи</h1>
         </div>
       </div>
-      <div v-if="this.count === 0">
+      <div class="empty" v-if="this.count === 0">
         <p>Вы пока не добавляли статьи</p>
       </div>
       <div v-else>
