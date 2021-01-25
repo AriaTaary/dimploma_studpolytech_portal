@@ -35,7 +35,7 @@
                   <p>Опубликованных вакансий:</p>
                 </div>
                 <div class=profile-active-info-item>
-                  <p class="main-item">{{ this.user.email_verified_at }}</p>
+                  <p class="main-item">{{ this.user.created_at }}</p>
                   <p class="main-item">{{ this.user.followers_count }}</p>
                   <p class="main-item">{{ this.user.article_count }}</p>
                   <p class="main-item">{{ this.user.vacancy_count }}</p>
@@ -76,7 +76,7 @@ export default {
       key_skills: '',
       about: '',
       age: '',
-      email_verified_at: '',
+      created_at: '',
       followers_count: '',
       article_count: '',
       vacancy_count: ''
@@ -99,7 +99,7 @@ export default {
       this.user.speciality = responseUser.speciality
       this.user.key_skills = responseUser.key_skills
       this.user.about = responseUser.about
-      this.user.email_verified_at = moment(responseUser.email_verified_at).format('ll')
+      this.user.created_at = moment(responseUser.created_at).format('ll')
       this.user.age = moment().diff(responseUser.date_birth, 'years')
       this.user.followers_count = responseUser.followers.length
       this.loading = false
