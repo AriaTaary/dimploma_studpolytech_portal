@@ -1,4 +1,6 @@
 import axios from 'axios'
+import router from '@/router'
+import { store } from '@/store'
 
 window.axios = axios
 
@@ -73,9 +75,14 @@ export default {
     return axios (request)
       .catch (function (error) {
         if (error.response) {
-          return error.response
+          if (error.response.status === 401) {
+            store.commit('resetState')
+            return router.push({ name: 'Login' })
+          } else {
+            return error.response
+          }
         } else if (error.request) {
-          console.error(error.message)
+          console.error(error)
         } else {
           console.error('Error', error.message)
         }

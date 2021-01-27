@@ -69,7 +69,7 @@ export default {
   },
   created () {
     if (this.$store.getters.getAuthToken) {
-      this.$router.push('personal')
+      this.$router.push({name: 'Personal', params: { username: this.$store.getters.getUser.username } })
     } else {
       this.loading = false
     }
