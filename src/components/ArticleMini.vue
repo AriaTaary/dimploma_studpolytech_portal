@@ -15,7 +15,7 @@
     </div>
     <div class="card-main-info">
       <h2>{{ this.article.title }}</h2>
-      <p>{{ this.article.cut }}</p>
+      <p class="card-description">{{ this.article.cut }}</p>
       <div class="row-group">
         <button class="button-not-main">Подробнее >></button>
         <button class="button-main">Редактировать</button>

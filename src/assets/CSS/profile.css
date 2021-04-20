@@ -182,14 +182,20 @@
     margin-top: 30px;
 }
 
-.card-main-info h2, .card-main-info p{
+/* .card-main-info h2, .card-main-info p{
     margin-bottom: 20px;
-}
+} */
 
 .card-main-info-title{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.card-description{
+    margin-bottom: 20px;
 }
 
 .ratings{

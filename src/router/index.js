@@ -9,6 +9,7 @@ import Register from '@/views/Auth/Register'
 import NotFound from '@/views/Errors/404.vue'
 
 import Main from '@/views/Main/Main'
+import Vacancies from '@/views/Main/Vacancies'
 
 import Personal from '@/views/Main/Profile/Personal'
 import PersonalEdit from '@/views/Main/Profile/Edit'
@@ -94,6 +95,16 @@ const routes = [
     meta: {
       title: 'Регистрация',
       layout: 'auth',
+      block: blocks.common
+    }
+  },
+  {
+    path: '/vacancies',
+    name: 'Vacancies',
+    component: Vacancies,
+    meta: {
+      title: 'Вакансии',
+      layout: 'vacancies',
       block: blocks.common
     }
   },

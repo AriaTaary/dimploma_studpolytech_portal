@@ -18,7 +18,7 @@
         <h2>{{ this.vacancy.title }}</h2>
         <p>{{ this.vacancy.salary }}</p>
       </div>
-      <p>{{ this.vacancy.description }}</p>
+      <p class="card-description">{{ this.vacancy.description }}</p>
       <div class="row-group">
         <button class="button-not-main" @click="editAction ()">Подробнее >></button>
         <button class="button-main" @click="editAction ()">Редактировать</button>

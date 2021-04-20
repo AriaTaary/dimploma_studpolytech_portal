@@ -305,6 +305,9 @@ input:focus{
 
 .filter, .sort{
     color: rgba(0, 0, 0, 0.3);
+}
+
+.sort{
     margin-left: 30px;
 }
 
@@ -475,7 +478,7 @@ input:focus{
     color: white;
     border-radius: 5px;
     border: none;
-    padding: 7px 10px !important;
+    padding: 5px 10px !important;
     cursor: pointer;
     outline: none;
 }
@@ -807,4 +810,39 @@ table{
 
 .admin-list-item{
     list-style: none;
+}
+
+
+.input-search{
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    border-radius:0px 5px 5px 0px;
+    outline: none;
+    background-color: #FBECED;
+    color: #D5444C;
+    font-size: 16px;
+    /* -webkit-appearance:textfield; */
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    width: 25vw;
+}
+
+input::-webkit-input-placeholder {
+    vertical-align: middle;
+    color: #D5444C;
+}
+
+.search-button{
+    top:0;
+    right:0px;
+    padding: 5px;
+    height:30px;
+    border:none;
+    background-color: #FBECED;
+    border-radius:5px 0px 0px 5px;
+    outline:none;
+    cursor: pointer;
+    margin-left: 20px;
 }

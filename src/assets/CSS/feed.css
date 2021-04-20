@@ -1,0 +1,103 @@
+.feed-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 30px 0 0 0;
+}
+
+.feed{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.feed-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 35px 0;
+}
+
+.feed-title-actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.vacancies-feed{
+    margin-top: 40px;
+}
+
+.advisory{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.advisory-block{
+    background-color: rgb(0, 0, 0, 0.05);
+    width: 25vw;
+    padding: 15px 15px 20px 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.advisory-block h4{
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.ad-vacancy{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.ad-vacancy .vacancy-name{
+    color: black;
+    margin-bottom: 10px;
+}
+
+.ad-vacancy-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ad-vacancy-info .vacancy-company{
+    color: #D5444C;
+}
+
+.button-favourite{
+    background-color: transparent !important;
+    border: none !important;
+    color: #B3B3B3;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 0px !important;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+
+.button-favourite:hover{
+    color:#D5444C;
+}
+
+.button-favourite::before{
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    content: ' ';
+    margin-right: 10px;
+    background-image: url('/img/star.svg');
+    height: 20px;
+    width: 20px;
+}
+.button-favourite:hover::before{
+    background-image: url('/img/star-hover.svg');
+}
