@@ -421,3 +421,98 @@
 .suggestion-categories .mini-hover{
     padding-right: 20px;
 }
+
+
+
+/* ТЕСТ */
+
+.profile-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.profile-content p{
+    line-height: 25px;
+}
+
+.personal-add{
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-info{
+    background-color: rgb(0, 0, 0, 0.05);
+    border-radius: 5px;
+    width: 30vw;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar{
+    display: flex;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.avatar .user{
+    /* width: 100%; */
+    height: 200px;
+}
+
+.avatar .plug{
+    width: 130px;
+    height: 130px;
+}
+
+.profile-name{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.personal-main-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.personal-add-info-block:not(:last-child){
+    margin-bottom: 30px;
+}
+
+.personal-add-info-block h5{
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.personal-education{
+    background-color: rgb(0, 0, 0, 0.05);
+    border-radius: 5px;
+    width: 55vw;
+    padding: 30px;
+}
+
+.personal-education:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.personal-education-title{
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+
+.personal-list{
+    padding-left: 18px;
+    line-height: 25px;
+}
