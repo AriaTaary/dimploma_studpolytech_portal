@@ -9,7 +9,11 @@ import Register from '@/views/Auth/Register'
 import NotFound from '@/views/Errors/404.vue'
 
 import Main from '@/views/Main/Main'
-import Vacancies from '@/views/Main/Vacancies'
+
+import Vacancies from '@/views/Main/Vacancies/Vacancies'
+import VacancyView from '@/views/Main/Vacancies/View'
+import VacancyCreate from '@/views/Main/Vacancies/Create'
+import VacancyEdit from '@/views/Main/Vacancies/Edit'
 
 import Personal from '@/views/Main/Profile/Personal'
 import PersonalEdit from '@/views/Main/Profile/Edit'
@@ -104,6 +108,39 @@ const routes = [
     component: Vacancies,
     meta: {
       title: 'Вакансии',
+      layout: 'vacancies',
+      block: blocks.common
+    }
+  },
+  {
+    // path: '/vacancies/:id/view',
+    path: '/vacancies/view',
+    name: 'ViewVacancy',
+    component: VacancyView,
+    meta: {
+      title: 'Просмотр вакансии',
+      layout: 'vacancies',
+      block: blocks.common
+    }
+  },
+  {
+    // path: '/vacancies/:id/create',
+    path: '/vacancies/create',
+    name: 'CreateVacancy',
+    component: VacancyCreate,
+    meta: {
+      title: 'Создание вакансии',
+      layout: 'vacancies',
+      block: blocks.common
+    }
+  },
+  {
+    // path: '/vacancies/:id/edit',
+    path: '/vacancies/edit',
+    name: 'EditVacancy',
+    component: VacancyEdit,
+    meta: {
+      title: 'Изменение вакансии',
       layout: 'vacancies',
       block: blocks.common
     }

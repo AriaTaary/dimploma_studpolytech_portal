@@ -846,3 +846,7 @@ input::-webkit-input-placeholder {
     cursor: pointer;
     margin-left: 20px;
 }
+
+.pink{
+    color:#D5444C;
+}

@@ -17,7 +17,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 35px 0;
+    margin: 0 0 45px 0;
 }
 
 .feed-title-actions{
@@ -28,6 +28,14 @@
 
 .vacancies-feed{
     margin-top: 40px;
+}
+
+.vacancy-feed{
+    /* margin-top: 40px; */
+}
+
+.not-main{
+    color: #B3B3B3;
 }
 
 .advisory{
@@ -71,6 +79,10 @@
     color: #D5444C;
 }
 
+.vacancy-employer, .vacancy-сount{
+    color: black;
+}
+
 .button-favourite{
     background-color: transparent !important;
     border: none !important;
@@ -100,4 +112,35 @@
 }
 .button-favourite:hover::before{
     background-image: url('/img/star-hover.svg');
+}
+
+.card-text{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.vacancy-info-block{
+    margin-bottom: 25px;
+}
+
+.vacancy-info-block h5{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.vacancy-info-list{
+    padding-left: 18px;
+      line-height: 25px;
+}
+
+.vacancy-info-block p{
+    line-height: 25px;
+}
+
+.vacancy-title{
+    margin-bottom: 25px;
+}
+
+.edit-block{
+    margin-bottom: 10px;
 }

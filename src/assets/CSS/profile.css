@@ -163,6 +163,12 @@
     margin-bottom: 40px;
 }
 
+.card-info-view{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
 .card-about-info, .card-categories{
     display: flex;
     flex-direction: row;
@@ -195,7 +201,7 @@
 }
 
 .card-description{
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .ratings{

@@ -61,26 +61,23 @@
         </div>
         <div class="advisory">
           <div class="advisory-block">
-            <h4>Возможные вакансии</h4>
+            <h4>Работодатели</h4>
             <div class="ad-vacancy">
-              <p class="vacancy-name">Название вакансии</p>
               <div class="ad-vacancy-info">
-                  <p class="vacancy-company">Название компании</p>
-                  <p class="vacancy-price">Сумма</p>
+                  <p class="vacancy-employer">Название компании</p>
+                  <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
               </div>
             </div>
             <div class="ad-vacancy">
-              <p class="vacancy-name">Название вакансии</p>
               <div class="ad-vacancy-info">
-                  <p class="vacancy-company">Название компании</p>
-                  <p class="vacancy-price">Сумма</p>
+                  <p class="vacancy-employer">Название компании</p>
+                  <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
               </div>
             </div>
             <div class="ad-vacancy">
-              <p class="vacancy-name">Название вакансии</p>
               <div class="ad-vacancy-info">
-                  <p class="vacancy-company">Название компании</p>
-                  <p class="vacancy-price">Сумма</p>
+                  <p class="vacancy-employer">Название компании</p>
+                  <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
               </div>
             </div>
           </div>
