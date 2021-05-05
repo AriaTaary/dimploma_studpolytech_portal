@@ -22,6 +22,7 @@ import ArticleCreate from '@/views/Main/Articles/Create'
 import ArticleEdit from '@/views/Main/Articles/Edit'
 
 import Personal from '@/views/Main/Profile/Personal'
+import Test from '@/views/Main/Profile/NewPersonal'
 import PersonalEdit from '@/views/Main/Profile/Edit'
 import PersonalVacancies from '@/views/Main/Profile/Vacancies'
 import PersonalArticles from '@/views/Main/Profile/Articles'
@@ -203,6 +204,16 @@ const routes = [
     path: '/users/:username',
     name: 'Personal',
     component: Personal,
+    meta: {
+      title: 'Личный кабинет',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test,
     meta: {
       title: 'Личный кабинет',
       layout: 'personal',
