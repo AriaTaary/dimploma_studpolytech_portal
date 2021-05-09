@@ -28,10 +28,12 @@
 
 .vacancies-feed{
     margin-top: 40px;
+    min-height: 300px;
 }
 
 .vacancy-feed{
     /* margin-top: 40px; */
+    /* min-height: 400px; */
 }
 
 .not-main{

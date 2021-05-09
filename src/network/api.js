@@ -18,7 +18,8 @@ export default {
     userFavourites: 'user/favourites',
     userLiked: 'user/liked',
     userSubscriptions: 'user/subscriptions',
-    users: 'users'
+    users: 'users',
+    vacancies: 'vacancies'
   },
   adminRoutes: {
     user: 'users',
@@ -114,6 +115,30 @@ export default {
         'post',
         {},
         false,
+        authToken
+      )
+    )
+  },
+
+  async getAllVacancies(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.vacancies,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getVacancy(authToken, id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.vacancies + '/' + id,
+        'get',
+        {},
+        true,
         authToken
       )
     )

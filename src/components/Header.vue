@@ -13,7 +13,7 @@
             <a href="" class="menu-link">Статьи</a>
           </li>
           <li class="menu-item">
-            <a href="" class="menu-link">Вакансии</a>
+            <a href="/vacancies" class="menu-link">Вакансии</a>
           </li>
           <li class="menu-item">
             <a href="" class="menu-link">Проекты</a>

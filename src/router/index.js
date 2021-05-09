@@ -113,8 +113,8 @@ const routes = [
     }
   },
   {
-    // path: '/vacancies/:id/view',
-    path: '/vacancies/view',
+    path: '/vacancies/:id/view',
+    // path: '/vacancies/view',
     name: 'ViewVacancy',
     component: VacancyView,
     meta: {

@@ -18,45 +18,15 @@
             <p class="sort">Сортировать</p>
           </div>
           <div class="vacancies-feed">
-            <div class="vacancy-block">
-              <div class="card-info">
-                <div class="card-about-info">
-                  <p class="author">@company</p>
-                  <p>01.01.21</p>
-                </div>
-                <div class="card-categories">
-                  <p class="mini-hover">
-                    JavaScript
-                  </p>
-                </div>
-                <div class="card-main-info">
-                  <div class="card-main-info-title">
-                    <h2>Заголовок</h2>
-                    <p>Сумма</p>
-                  </div>
-                  <p class="card-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque est nisi doloribus eius sequi delectus! Sit minus ad et corporis eveniet quis ea sint? Nemo vitae hic dolores esse dolor?</p>
-                  <div class="row-group">
-                    <button class="button-main" @click="editAction ()">Откликнуться</button>
-                    <button class="button-favourite" @click="editAction ()">Добавить в избранное</button>
-                  </div>
-                  <!-- TODO: блок сохранений и просмотров на вакансии
-                  <div class="ratings">
-                    <div class="views">
-                      <img src="/img/view.svg" alt="">
-                      <span>{{ this.article.views }}</span>
-                    </div>
-                    <div class="likes">
-                      <img src="/img/like.svg" alt="">
-                      <span>{{ this.article.views }}</span>
-                    </div>
-                    <div class="bookmarks">
-                      <img src="/img/bookmark.svg" alt="">
-                      <span>{{ this.article.views }}</span>
-                    </div>
-                  </div> -->
-                </div>
-              </div>
+            <div v-if="loading" class="mini_loading">
+              <img src="/img/preloader.svg" alt="Загрузка данных">
             </div>
+            <VacancyBase
+              v-else
+              v-for="vacancy in this.vacancies"
+              :key='vacancy.id'
+              v-bind:vacancy="vacancy"
+            />
           </div>
         </div>
         <div class="advisory">
@@ -86,3 +56,96 @@
     </div>
   </div>
 </template>
+
+
+
+<script>
+import moment from 'moment'
+import api from '@/network/api'
+import VacancyBase from '@/components/VacancyBase'
+
+moment.locale('ru')
+
+export default {
+  components: {
+    VacancyBase
+  },
+
+  data: () => ({
+    loading: true,
+    search: '',
+    count: '',
+    vacancy: [
+      {
+        id: '',
+        author: '',
+        title: '',
+        description: '',
+        created_at: '',
+        salary: '',
+        categories: [
+          {
+            id: '',
+            name: ''
+          }
+        ]
+      }
+    ]
+  }),
+
+  methods: {
+      // editAction () {
+      //   this.$router.push({ name: 'VacancyEdit' })
+      // }
+  },
+
+  async created () {
+    let response = await api.getAllVacancies(this.$store.getters.getAuthToken)
+    console.log(response);
+
+    if (response.status === 200){
+      this.count = response.data.length
+      console.log(this.count);
+
+      if (this.count !== 0){
+        const parsedVacancies = []
+
+        response.data.forEach(function(vacancy, key, vacancies){
+          const categories = []
+
+          vacancy.categories.forEach(
+            function (category, categoryKey, categoriesArray){
+              categories.push(
+              {
+                slug: category.slug,
+                name: category.name
+              }
+            )}
+          )
+
+          if (vacancy.salary !== null){
+            vacancy.salary = vacancy.salary + ' ₽'
+          }
+
+          parsedVacancies.push({
+            id: vacancy.id,
+            author: vacancy.company.name,
+            title: vacancy.title,
+            description: vacancy.description,
+            created_at: moment(vacancy.created_at).format('ll'),
+            categories: categories,
+            salary: vacancy.salary
+          })
+        })
+
+        this.vacancies = parsedVacancies
+        this.loading = false
+      }
+    }
+    else {
+      alert("Произошла ошибка")
+    }
+  }
+}
+
+</script>
