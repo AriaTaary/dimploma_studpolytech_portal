@@ -82,7 +82,7 @@
                     type="textarea"
                     :rows="5"
                     placeholder="Введите описание"
-                    v-model="textarea">
+                    >
                   </el-input>
                 </el-form-item>
 
@@ -95,7 +95,7 @@
                     type="textarea"
                     :rows="5"
                     placeholder="Введите обязанности"
-                    v-model="textarea">
+                    >
                   </el-input>
                 </el-form-item>
 
@@ -106,7 +106,7 @@
                     type="textarea"
                     :rows="5"
                     placeholder="Введите требования"
-                    v-model="textarea">
+                    >
                   </el-input>
                 </el-form-item>
 
@@ -117,7 +117,7 @@
                     type="textarea"
                     :rows="5"
                     placeholder="Введите условия"
-                    v-model="textarea">
+                    >
                   </el-input>
                 </el-form-item>
                 </div>
@@ -138,6 +138,9 @@
 </template>
 
 <script>
+
+// const metroAPI = 'https://api.superjob.ru/2.0/suggest/town/4/metro/all/'
+
   export default {
     data() {
       return {
@@ -178,6 +181,21 @@
           label: 'Стажировка'
         }]
       }
-    }
+    },
+    // methods: {
+    //    getJson(url) {
+    //         return fetch(url)
+    //             .then(result => result.json())
+    //             .catch(error => {
+    //                 console.log(error)
+    //             })
+    //     }
+    // },
+    // mounted() {
+    //   this.getJson(`${metroAPI}`)
+    //         .then(data => {
+    //           console.log(data)
+    //         });
+    // },
   }
 </script>
