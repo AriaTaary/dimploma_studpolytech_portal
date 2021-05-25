@@ -146,3 +146,122 @@
 .edit-block{
     margin-bottom: 10px;
 }
+
+
+
+.filter, .sort{
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    /* color: #6F6E6E; */
+    /* position: absolute; */
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 99;
+    background-color: transparent;
+    padding-bottom: 18px;
+    /* margin-right: 288.67px; */
+    padding: 13px 0 16px 0;
+}
+
+.filter_block, .sort_block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.filter-title{
+    font-size: 14px;
+    line-height: 17px;
+    border-bottom: 1px solid #EBEBEB;
+    padding: 11px;
+    padding-bottom: 21px;
+}
+
+
+.filter-title:hover{
+    color: black;
+}
+
+.filter-part{
+    margin-top: 10px;
+    /* position: absolute; */
+}
+
+.sort-part{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 11px 21px 11px;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.sort-label{
+    font-size: 14px;
+    padding: 11px 0;
+}
+
+.filter_box, .sort_box{
+    position: absolute;
+    background-color: white;
+    width: 300px;
+    box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.filter_list{
+    list-style: none;
+    margin-top: 20px;
+    /* margin: 20px 0; */
+    padding: 0 0 20px 11px;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.filter_item:not(:last-child){
+    margin-bottom: 10px;
+}
+
+.filter_link{
+    font-size: 14px;
+    line-height: 17px;
+    color: #6F6E6E;
+}
+
+summary {
+  display: block;
+  outline: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox label{
+    padding-left: 10px;
+    color: black;
+    font-size: 14px;
+}
+
+.filter-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.filter-buttons button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

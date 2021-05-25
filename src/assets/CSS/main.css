@@ -312,12 +312,12 @@ input:focus{
     margin-left: 30px;
 }
 
-.filter:hover, .sort:hover{
+.filter_block:hover, .sort_block:hover{
     color: rgba(0, 0, 0);
     cursor: pointer;
 }
 
-.filter::before{
+.filter_block::before{
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
@@ -328,11 +328,11 @@ input:focus{
     width: 15px;
 }
 
-.filter:hover::before{
+.filter_block:hover::before{
     background-image: url(/img/filter-hover.svg);
 }
 
-.sort::before{
+.sort_block::before{
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
@@ -343,7 +343,7 @@ input:focus{
     width: 15px;
 }
 
-.sort:hover::before{
+.sort_block:hover::before{
     background-image: url(/img/sort-hover.svg);
 }
 

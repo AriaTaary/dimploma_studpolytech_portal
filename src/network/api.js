@@ -120,12 +120,14 @@ export default {
     )
   },
 
-  async getAllVacancies(authToken) {
+  async getAllVacancies(authToken, search = null) {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.vacancies,
         'get',
-        {},
+        {
+          search: search
+        },
         true,
         authToken
       )
