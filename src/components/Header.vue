@@ -10,7 +10,7 @@
             <a href="/" class="menu-link">Новости</a>
           </li>
           <li class="menu-item">
-            <a href="" class="menu-link">Статьи</a>
+            <a href="/articles" class="menu-link">Статьи</a>
           </li>
           <li class="menu-item">
             <a href="/vacancies" class="menu-link">Вакансии</a>

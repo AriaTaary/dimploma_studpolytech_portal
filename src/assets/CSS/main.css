@@ -306,6 +306,7 @@ input:focus{
 
 .filter, .sort{
     color: rgba(0, 0, 0, 0.3);
+    font-size: 17px;
 }
 
 .sort{

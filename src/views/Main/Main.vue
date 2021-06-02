@@ -11,8 +11,8 @@
           <a class="not-active-title" href="">Моя лента</a>
         </div>
         <div class="content-settings">
-            <p class="filter">Фильтровать</p>
-            <p class="sort">Сортировать</p>
+            <p class="filter filter_block">Фильтровать</p>
+            <p class="sort sort_block">Сортировать</p>
         </div>
       </div>
       <!-- СДЕЛАТЬ СЛАЙДЕР НОВОСТЕЙ -->

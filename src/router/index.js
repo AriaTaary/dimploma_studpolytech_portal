@@ -15,6 +15,11 @@ import VacancyView from '@/views/Main/Vacancies/View'
 import VacancyCreate from '@/views/Main/Vacancies/Create'
 import VacancyEdit from '@/views/Main/Vacancies/Edit'
 
+import Articles from '@/views/Main/Articles/Articles'
+import ArticleView from '@/views/Main/Articles/View'
+import ArticleCreate from '@/views/Main/Articles/Create'
+import ArticleEdit from '@/views/Main/Articles/Edit'
+
 import Personal from '@/views/Main/Profile/Personal'
 import PersonalEdit from '@/views/Main/Profile/Edit'
 import PersonalVacancies from '@/views/Main/Profile/Vacancies'
@@ -142,6 +147,49 @@ const routes = [
     meta: {
       title: 'Изменение вакансии',
       layout: 'vacancies',
+      block: blocks.common
+    }
+  },
+  {
+    path: '/articles',
+    name: 'Articles',
+    component: Articles,
+    meta: {
+      title: 'Статьи',
+      layout: 'articles',
+      block: blocks.common
+    }
+  },
+  {
+    path: '/articles/:id/view',
+    // path: '/articles/view',
+    name: 'ViewArticle',
+    component: ArticleView,
+    meta: {
+      title: 'Просмотр статьи',
+      layout: 'articles',
+      block: blocks.common
+    }
+  },
+  {
+    // path: '/articles/:id/create',
+    path: '/articles/create',
+    name: 'CreateArticle',
+    component: ArticleCreate,
+    meta: {
+      title: 'Создание статьи',
+      layout: 'articles',
+      block: blocks.common
+    }
+  },
+  {
+    // path: '/articles/:id/edit',
+    path: '/articles/edit',
+    name: 'EditArticle',
+    component: ArticleEdit,
+    meta: {
+      title: 'Изменение статьи',
+      layout: 'articles',
       block: blocks.common
     }
   },

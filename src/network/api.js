@@ -19,7 +19,8 @@ export default {
     userLiked: 'user/liked',
     userSubscriptions: 'user/subscriptions',
     users: 'users',
-    vacancies: 'vacancies'
+    vacancies: 'vacancies',
+    articles: 'articles',
   },
   adminRoutes: {
     user: 'users',
@@ -138,6 +139,32 @@ export default {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.vacancies + '/' + id,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAllArticles(authToken, search = null) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.articles,
+        'get',
+        {
+          search: search
+        },
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getArticle(authToken, id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.article + '/' + id,
         'get',
         {},
         true,

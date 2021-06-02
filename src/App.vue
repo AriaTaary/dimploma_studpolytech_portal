@@ -12,6 +12,7 @@ import AuthLayout from '@/layouts/AuthLayout'
 import AdminLayout from '@/layouts/AdminLayout'
 import PersonalLayout from '@/layouts/PersonalLayout'
 import VacanciesLayout from '@/layouts/VacanciesLayout'
+import ArticlesLayout from '@/layouts/ArticlesLayout'
 
 export default {
   computed: {
@@ -20,7 +21,7 @@ export default {
     }
   },
   components: {
-    MainLayout, AuthLayout, AdminLayout, PersonalLayout, VacanciesLayout
+    MainLayout, AuthLayout, AdminLayout, PersonalLayout, VacanciesLayout, ArticlesLayout
   }
 }
 </script>
