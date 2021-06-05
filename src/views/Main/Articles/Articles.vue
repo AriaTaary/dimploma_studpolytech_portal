@@ -296,14 +296,12 @@ export default {
     updateArticle(article, index){
       this.loading = true;
       this.articles[index] = article;
-      // console.log( this.articles[index] = article);
       this.loading = false;
     }
   },
 
   async created () {
     this.articles = await this.getArticles();
-    console.log(this.articles);
     this.categories = await this.getCategories();
     this.loading = false;
   },

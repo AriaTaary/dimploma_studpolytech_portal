@@ -48,6 +48,7 @@
 import moment from 'moment'
 import api from '@/network/api'
 import ArticleMain from '@/components/ArticleMain'
+import prepareDate from "@/helpers/prepareDate";
 
 moment.locale('ru')
 
@@ -86,25 +87,15 @@ export default {
   },
 
   async created () {
-    let response = await api.getArticle(this.$store.getters.getAuthToken, this.$route.params.id)
-    console.log(response);
+    let response = await api.getMainArticle(this.$store.getters.getAuthToken, this.$route.params.id)
 
     if (response.status === 200){
-      this.article.id = response.data.id,
-      this.article.author = response.data.author.username,
-      this.article.title = response.data.title,
-      this.article.cut = response.data.cut,
-      this.article.text = response.data.text,
-      this.article.created_at = moment(response.data.created_at).format('ll'),
-      this.article.categories = response.data.categories,
-      this.article.views = response.data.views,
-      this.article.rating = response.data.rating,
-      this.article.saved = response.data.saved,
+      this.article = prepareDate.article(response.data, this.$store.getters.getUser.id);
 
-      this.loading = false
+      this.loading = false;
     }
     else {
-      alert("Произошла ошибка")
+      alert("Произошла ошибка");
     }
   }
 }

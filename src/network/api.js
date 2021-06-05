@@ -136,7 +136,7 @@ export default {
     )
   },
 
-  async getVacancy(authToken, id) {
+  async getMainVacancy(authToken, id) {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.vacancies + '/' + id,
@@ -178,7 +178,7 @@ export default {
     )
   },
 
-  async getArticle(authToken, id) {
+  async getMainArticle(authToken, id) {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.articles + '/' + id,
@@ -191,14 +191,13 @@ export default {
   },
 
   async ratingArticle(authToken, id, rating) {
-    const data = (rating) ? {
-      rating: rating
-    } : {};
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.articles + '/' + id + '/rating',
         'post',
-        data,
+        {
+          rating: rating
+        },
         true,
         authToken
       )

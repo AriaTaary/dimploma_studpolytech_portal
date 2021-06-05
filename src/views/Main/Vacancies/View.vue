@@ -82,7 +82,7 @@ export default {
   },
 
   async created () {
-    let response = await api.getVacancy(this.$store.getters.getAuthToken, this.$route.params.id)
+    let response = await api.getMainVacancy(this.$store.getters.getAuthToken, this.$route.params.id)
     console.log(response);
 
     if (response.status === 200){

@@ -1,7 +1,7 @@
 <template>
   <div class="card-info">
     <div class="card-about-info">
-      <p class="author mini-hover">@{{ this.article.author}}</p>
+      <p class="author mini-hover">@{{ this.article.author.username }}</p>
       <p>{{ this.article.created_at }}</p>
     </div>
     <div class="card-categories">
