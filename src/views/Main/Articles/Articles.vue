@@ -8,16 +8,18 @@
               <h1>Все статьи</h1>
             </div>
             <div class="feed-title-actions">
-              <button class="button-main">Создать</button>
+              <router-link class="button-main"
+              :to="{ name: 'CreateArticle'}
+              ">Создать</router-link>
               <!-- <form action="#"> -->
                 <button class="search-button" type="submit"><img class="search" src="/img/search.svg"></button>
-                <input v-model="searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
+                <input v-model="request.searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
               <!-- </form> -->
             </div>
           </div>
           <div class="content-settings">
             <!-- <p class="filter">Фильтровать</p> -->
-             <details class="filter" @click="openCloseFilterSort()">
+            <details v-if="this.categories.length != 0" class="filter" @click="openCloseFilterSort()">
                 <summary>
                     <div class="filter_block">
                         <p>Фильтровать</p>
@@ -25,94 +27,20 @@
                 </summary>
                 <div class="filter_box">
                 <details class="filter-part">
-                    <summary class="filter-title">Опыт работы</summary>
+                    <summary class="filter-title">По категории</summary>
                     <ul class="filter_list">
-                        <li class="filter_item">
+                        <li class="filter_item"
+                            v-for="category in this.categories"
+                            :key='category.id'>
                             <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Не имеет значения</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">От 1 года до 3 лет</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">От 3 до 6 лет</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Более 6 лет</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Нет опыта</label>
-                            </div>
-                        </li>
-                    </ul>
-                </details>
-                <details class="filter-part">
-                    <summary class="filter-title">График работы</summary>
-                    <ul class="filter_list">
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Полный день</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Удаленная работа</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Гибкий график</label>
-                            </div>
-                        </li>
-                    </ul>
-                </details>
-                <details class="filter-part">
-                    <summary class="filter-title">Тип занятости</summary>
-                    <ul class="filter_list">
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Полная занятость</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Проектная работа</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Частичная занятость</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Стажировка</label>
+                                <input :value='category.id' type="checkbox" :id='category.id' :name='category.name'>
+                                <label :for='category.id'>{{ category.name }}</label>
                             </div>
                         </li>
                     </ul>
                 </details>
                 <div class="filter-buttons">
-                  <button type="submit" id="submit-filter">
+                  <button type="submit" id="submit-filter" @click="submitFilter()">
                       <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
                       </svg>
@@ -134,34 +62,43 @@
                 </summary>
                 <div class="sort_box">
                   <div class="sort-part">
+                    <p class="sort-label">Выберите один параметр</p>
+                  </div>
+                  <div class="sort-part">
                     <label class="sort-label" for="date">По дате</label>
-                    <el-select value="" id="date" placeholder="Выберите">
-                      <el-option value="from-old">От новых к старым
+                    <el-select v-model="request.sort.date" id="date" placeholder="Выберите">
+                      <el-option value="" label="-">-
                       </el-option>
-                      <el-option value="from-new">От старых к новым
+                      <el-option value="desc" label="От новых к старым">От новых к старым
                       </el-option>
-                    </el-select>
-                  </div>
-                  <div class="sort-part">
-                    <label class="sort-label" for="experience">По требуемому опыту</label>
-                    <el-select value="" id="experience" placeholder="Выберите">
-                      <el-option value="from-great-exp">От наименьшего к наибольшему
-                      </el-option>
-                      <el-option value="from-little-exp">От наибольшего к наименьшему
+                      <el-option value="asc" label="От старых к новым">От старых к новым
                       </el-option>
                     </el-select>
                   </div>
                   <div class="sort-part">
-                    <label class="sort-label" for="payment">По оплате</label>
-                    <el-select value="" id="payment" placeholder="Выберите">
-                      <el-option value="from-great-emp">От наибольшей к наименьшей
+                    <label class="sort-label" for="rating">По рейтингу</label>
+                    <el-select v-model="request.sort.rating" id="rating" placeholder="Выберите">
+                      <el-option value="" label="-">-
                       </el-option>
-                      <el-option value="from-little-emp">От наименьшей к наибольшей
+                      <el-option value="asc" label="От наибольшего к наименьшему">От наибольшего к наименьшему
+                      </el-option>
+                      <el-option value="desc" label="От наименьшего к наибольшему">От наименьшего к наибольшему
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div class="sort-part">
+                    <label class="sort-label" for="views">По просмотрам</label>
+                    <el-select v-model="request.sort.views" id="views" placeholder="Выберите">
+                      <el-option value="" label="-">-
+                      </el-option>
+                      <el-option value="asc" label="От наибольших к наименьшим">От наибольших к наименьшим
+                      </el-option>
+                      <el-option value="desc" label="От наименьших к наибольшим">От наименьших к наибольшим
                       </el-option>
                     </el-select>
                   </div>
                   <div class="filter-buttons">
-                      <button type="submit" id="submit-sort">
+                      <button type="submit" id="submit-sort" @click="submitSort()">
                           <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
                           </svg>
@@ -186,9 +123,11 @@
               </div>
               <ArticleBase
                 v-else
-                v-for="article in this.articles"
-                :key='article.id'
+                v-for="(article, index) in this.articles"
+                :key='index'
                 v-bind:article="article"
+                v-bind:index="index"
+                v-on:articleUpdated="updateArticle"
               />
             </div>
           </div>
@@ -217,6 +156,13 @@
           </div>
         </div>
       </div>
+      <div class="pagination">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="1000">
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -237,8 +183,19 @@ export default {
 
   data: () => ({
     loading: true,
-    searchText: '',
     count: '',
+    index: 0,
+    request: {
+      sort: {
+        date: null,
+        rating: null,
+        views: null,
+      },
+      filter: {
+        categories: []
+      },
+      searchText: ''
+    },
     articles: [
       {
         id: '',
@@ -255,24 +212,40 @@ export default {
         ],
         views: '',
         rating: '',
-        saved: ''
+        saved: '',
+        rating_users: [
+          {
+          id: '',
+          user_id: '',
+          article_id: '',
+          rating: '',
+          created_at: '',
+          updated_at: '',
+          }
+        ],
+        rating_user: '',
+        saved_user: '',
+      }
+    ],
+    categories: [
+      {
+        id: '',
+        name: ''
       }
     ]
   }),
 
   methods: {
-    ...mapActions(['getArticles']),
+    ...mapActions(['getArticles', 'getCategories']),
     async search () {
-      // const searchText = this.searchText;
-      // console.log(this.searchText);
       this.loading = true;
-      this.articles = await this.getArticles(this.searchText);
+      this.articles = await this.getArticles(this.request);
       this.loading = false;
     },
     async checkEmptySearch () {
-      if (this.searchText.length === 0) {
+      if (this.request.searchText.length === 0) {
         this.loading = true;
-        this.articles = await this.getArticles(this.searchText);
+        this.articles = await this.getArticles(this.request);
         this.loading = false;
       }
     },
@@ -311,11 +284,27 @@ export default {
           sort.removeAttribute("open");
         });
       }
+    },
+    async submitSort() {
+      console.log(this.request.sort);
+      this.articles = await this.getArticles(this.request);
+    },
+    async submitFilter() {
+      console.log('сделать');
+      // this.articles = await this.getArticles(this.request);
+    },
+    updateArticle(article, index){
+      this.loading = true;
+      this.articles[index] = article;
+      // console.log( this.articles[index] = article);
+      this.loading = false;
     }
   },
 
   async created () {
     this.articles = await this.getArticles();
+    console.log(this.articles);
+    this.categories = await this.getCategories();
     this.loading = false;
   },
 }

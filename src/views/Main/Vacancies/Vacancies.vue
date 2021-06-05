@@ -8,7 +8,9 @@
               <h1>Все вакансии</h1>
             </div>
             <div class="feed-title-actions">
-              <button class="button-main">Создать</button>
+              <router-link class="button-main"
+              :to="{ name: 'CreateVacancy'}
+              ">Создать</router-link>
               <!-- <form action="#"> -->
                 <button class="search-button" type="submit"><img class="search" src="/img/search.svg"></button>
                 <input v-model="searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
@@ -134,29 +136,38 @@
                 </summary>
                 <div class="sort_box">
                   <div class="sort-part">
+                    <p class="sort-label">Выберите один параметр</p>
+                  </div>
+                   <div class="sort-part">
                     <label class="sort-label" for="date">По дате</label>
-                    <el-select value="" id="date" placeholder="Выберите">
-                      <el-option value="from-old">От новых к старым
+                    <el-select v-model="request.sort.date" id="date" placeholder="Выберите">
+                      <el-option value="" label="-">-
                       </el-option>
-                      <el-option value="from-new">От старых к новым
+                      <el-option value="desc" label="От новых к старым">От новых к старым
+                      </el-option>
+                      <el-option value="asc" label="От старых к новым">От старых к новым
                       </el-option>
                     </el-select>
                   </div>
                   <div class="sort-part">
                     <label class="sort-label" for="experience">По требуемому опыту</label>
-                    <el-select value="" id="experience" placeholder="Выберите">
-                      <el-option value="from-great-exp">От наименьшего к наибольшему
+                    <el-select v-model="request.sort.experience" id="experience" placeholder="Выберите">
+                      <el-option value="" label="-">-
                       </el-option>
-                      <el-option value="from-little-exp">От наибольшего к наименьшему
+                      <el-option value="asc">От наибольшего к наименьшему
+                      </el-option>
+                      <el-option value="desc">От наименьшего к наибольшему
                       </el-option>
                     </el-select>
                   </div>
                   <div class="sort-part">
                     <label class="sort-label" for="payment">По оплате</label>
-                    <el-select value="" id="payment" placeholder="Выберите">
-                      <el-option value="from-great-emp">От наибольшей к наименьшей
+                    <el-select v-model="request.sort.payment" id="payment" placeholder="Выберите">
+                      <el-option value="" label="-">-
                       </el-option>
-                      <el-option value="from-little-emp">От наименьшей к наибольшей
+                      <el-option value="asc">От наибольшей к наименьшей
+                      </el-option>
+                      <el-option value="desc">От наименьшей к наибольшей
                       </el-option>
                     </el-select>
                   </div>
@@ -239,6 +250,17 @@ export default {
     loading: true,
     searchText: '',
     count: '',
+    request: {
+      sort: {
+        date: null,
+        experience: null,
+        payment: null,
+      },
+      filter: {
+        categories: []
+      },
+      searchText: ''
+    },
     vacancies: [
       {
         id: '',

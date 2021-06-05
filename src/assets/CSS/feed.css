@@ -204,6 +204,10 @@
     border-bottom: 1px solid #EBEBEB;
 }
 
+.sort-part:first-child{
+    padding: 0 11px 10px 11px;
+}
+
 .sort-label{
     font-size: 14px;
     padding: 11px 0;
@@ -276,4 +280,57 @@ summary::-webkit-details-marker {
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
+}
+
+.pagination{
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #D5444C !important;
+    color: #FFF !important;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active:hover {
+    color: #FFF !important;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+     color: #D5444C !important;
+}
+
+.post-button{
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.post-button:hover{
+    cursor: pointer;
+}
+
+.post-button:hover .likes svg path{
+    fill: #D5444C;
+    fill-opacity: 1;
+}
+
+.post-button:hover .bookmarks svg path{
+    fill: #D5444C;
+    fill-opacity: 1;
+}
+
+.post-button:hover span{
+    color: #D5444C;
+}
+
+.post-button-active .likes span{
+    color: #D5444C;
+}
+
+
+.post-button-active .bookmarks span{
+    color: #D5444C;
 }

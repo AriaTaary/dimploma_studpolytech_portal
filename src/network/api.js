@@ -21,6 +21,7 @@ export default {
     users: 'users',
     vacancies: 'vacancies',
     articles: 'articles',
+    categories: 'categories'
   },
   adminRoutes: {
     user: 'users',
@@ -147,14 +148,30 @@ export default {
     )
   },
 
-  async getAllArticles(authToken, search = null) {
+  async getAllArticles(authToken, request = null) {
+    const data = (request) ? {
+      search: request.searchText,
+      filter: request.filter,
+      sort: request.sort,
+    } : {};
+
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.articles,
         'get',
-        {
-          search: search
-        },
+        data,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAllArticleCategories(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.categories,
+        'get',
+        {},
         true,
         authToken
       )
@@ -164,10 +181,37 @@ export default {
   async getArticle(authToken, id) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.article + '/' + id,
+        this.apiRoutes.articles + '/' + id,
         'get',
         {},
         true,
+        authToken
+      )
+    )
+  },
+
+  async ratingArticle(authToken, id, rating) {
+    const data = (rating) ? {
+      rating: rating
+    } : {};
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.articles + '/' + id + '/rating',
+        'post',
+        data,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async saveArticle(authToken, id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.articles + '/' + id + '/favourite',
+        'post',
+        true,
+        {},
         authToken
       )
     )

@@ -5,123 +5,38 @@
         <div class="feed">
           <div class="vacancy-feed">
             <div class="vacancy-block edit-block">
-            <h1 class="vacancy-title">Создание вакансии</h1>
+            <h1 class="vacancy-title">Создание статьи</h1>
             <el-form>
-              <div class="row-group row-group-profile">
+              <!-- <div class="row-group row-group-profile"> -->
                 <div>
                 <el-form-item prop="name">
                   <label class="required-label label" for="name">Название</label>
                   <el-input id="name" type="text" class="input" placeholder="Введите название" ></el-input>
                 </el-form-item>
 
-                <!-- СДЕЛАТЬ СЕЛЕКТ С ГОРОДАМИ -->
-                <el-form-item prop="city">
-                  <label class="required-label label" for="city">Город</label>
-                  <el-input id="city" type="text" class="input" placeholder="Введите название" ></el-input>
+                <el-form-item prop="name">
+                  <label class="label" for="name">Изображение</label>
+                  <el-input type="file" accept="image/jpeg" @change=uploadImage></el-input>
                 </el-form-item>
 
-                <!-- ЕСЛИ МОСКВА, ТО -->
-                <el-form-item prop="metro">
-                  <label class="required-label label" for="metro">Станция метро(?)</label>
-                  <el-input id="metro" type="text" class="input" placeholder="Введите название" ></el-input>
-                </el-form-item>
-
-                <el-form-item prop="experience">
-                  <label class="required-label label" for="experience">Требуемый опыт работы</label>
-                  <el-select id="experience" v-model="value" placeholder="Выберите требуемый опыт работы">
-                    <el-option
-                      v-for="item in experience"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-
-                <el-form-item prop="employment">
-                  <label class="required-label label" for="employment">Тип занятости</label>
-                  <el-select id="employment" v-model="value" placeholder="Выберите тип занятости">
-                    <el-option
-                      v-for="item in employment"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-
-                <el-form-item prop="address">
-                  <label class="required-label label" for="address">Адрес</label>
-                  <el-input id="address" type="text" class="input" placeholder="Введите адрес" ></el-input>
-                </el-form-item>
-
-                <!-- ПОДУМАТЬ КАКИЕ ЕЩЕ КОНТАКТНЫЕ ДАННЫЕ МОГУТ БЫТЬ -->
-
-                <el-form-item prop="tel">
-                  <label class="label" for="tel">Телефон</label>
-                  <el-input id="tel" type="text" class="input" placeholder="Введите ваш телефон" ></el-input>
-                </el-form-item>
-
-                <el-form-item prop="email">
-                  <label class="label" for="email">E-mail</label>
-                  <el-input id="email" type="text" class="input" placeholder="Введите ваш e-mail" ></el-input>
-                </el-form-item>
-
-                <el-form-item prop="site">
-                  <label class="label" for="site">Сайт</label>
-                  <el-input id="site" type="text" class="input" placeholder="Введите ссылку на ваш сайт" ></el-input>
-                </el-form-item>
-
-                </div>
-
-                <div>
-                   <el-form-item prop="description">
-                  <label class="label" for="description">Описание</label>
+                <el-form-item prop="description">
+                  <label class="required-label label" for="description">Текст</label>
                   <el-input
                     id="description"
                     type="textarea"
-                    :rows="5"
+                    :rows="10"
                     placeholder="Введите описание"
                     >
                   </el-input>
                 </el-form-item>
 
-                <!-- НАДО КАК-ТО ПЕРЕДАТЬ ДАННЫЕ ДЛЯ СПИСКА -->
-
-                <el-form-item prop="charge">
-                  <label class="label" for="charge">Обязанности</label>
-                  <el-input
-                    id="charge"
-                    type="textarea"
-                    :rows="5"
-                    placeholder="Введите обязанности"
-                    >
-                  </el-input>
+                <el-form-item prop="site">
+                  <label class="label" for="site">Ссылка на источник</label>
+                  <el-input id="site" type="text" class="input" placeholder="Введите ссылку на сайт" ></el-input>
                 </el-form-item>
 
-                <el-form-item prop="postulata">
-                  <label class="label" for="postulata">Требования</label>
-                  <el-input
-                    id="postulata"
-                    type="textarea"
-                    :rows="5"
-                    placeholder="Введите требования"
-                    >
-                  </el-input>
-                </el-form-item>
-
-                <el-form-item prop="circumstances">
-                  <label class="label" for="circumstances">Условия</label>
-                  <el-input
-                    id="circumstances"
-                    type="textarea"
-                    :rows="5"
-                    placeholder="Введите условия"
-                    >
-                  </el-input>
-                </el-form-item>
                 </div>
-              </div>
+                <!-- </div> -->
 
               <el-form-item class="one-button-row-profile">
                 <el-button class="button-save" type="primary">Сохранить</el-button>
