@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <!-- <div class="container">
     <div class="content content-profile">
       <div class="content-nav">
         <div class="content-title">
@@ -53,6 +53,101 @@
         </div>
       </div>
     </div>
+  </div> -->
+    <div class="container">
+    <div class="content content-profile">
+      <div class="content-nav">
+        <div class="content-title">
+          <h1>Профиль</h1>
+        </div>
+        <!-- <div class="content-settings">
+          <router-link class="button-main" :to="{ name: 'PersonalEdit', params: { username: this.user.username } }">Настройки профиля</router-link>
+        </div> -->
+      </div>
+      <div class="profile-content">
+        <div class="personal-info">
+          <div class="personal-main-info">
+            <div class="avatar">
+              <!-- <img class="user" src="/img/main-cover-new.png" alt="students"> -->
+              <img class="plug" src="/img/avatar.svg" alt="">
+            </div>
+            <h3 class="profile-name">{{ this.user.first_name + ' ' + this.user.last_name}}</h3>
+            <p class="profile-username">@{{ this.user.username }}</p>
+            <p>дата рождения</p>
+          </div>
+          <div class="personal-add-info">
+            <div class="personal-add-info-block">
+              <h5>Специализация</h5>
+              <p>{{ this.user.speciality }}</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Навыки</h5>
+              <p>Vue.js, Javascript, Figma</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Иностранные языки</h5>
+              <p>Английский: B2</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Подписчики</h5>
+              <p>{{ this.user.followers_count }}</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Опубликованные статьи</h5>
+              <p>{{ this.user.article_count }}</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Опубликованные вакансии</h5>
+              <p>{{ this.user.followers_count }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="personal-add">
+          <div class="personal-education">
+            <div class="personal-add-info-block">
+              <h5>О себе</h5>
+            </div>
+            <div class="personal-add-info-block">
+              <p>{{this.user.about}}</p>
+            </div>
+          </div>
+          <h2 class="personal-education-title">Образование</h2>
+          <div class="personal-education">
+            <div class="personal-add-info-block">
+              <h5>Бакалавриат</h5>
+              <p>Информатика и вычислительная техника, веб-технологии, 4 курс</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Проекты, выполненные в процессе обучения</h5>
+              <ul class="personal-list">
+                <li>Politech:One - сайт гоночной команды</li>
+                <li>HelpTense - сервис для изучения неправильных глаголов английского языка</li>
+                <li>Интернет-магазин OneClick</li>
+                <li>TeamPro - сайт для компании</li>
+                <li>Студенческий портал Московского Политеха</li>
+              </ul>
+            </div>
+          </div>
+          <div class="personal-education">
+            <div class="personal-add-info-block">
+              <h5>Курсы повышения квалификации</h5>
+              <p>GeekBrains</p>
+              <p>Frontend-разработчик</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Проекты, выполненные в процессе обучения</h5>
+              <ul class="personal-list">
+                <li>Politech:One - сайт гоночной команды</li>
+                <li>HelpTense - сервис для изучения неправильных глаголов английского языка</li>
+                <li>Интернет-магазин OneClick</li>
+                <li>TeamPro - сайт для компании</li>
+                <li>Студенческий портал Московского Политеха</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -92,6 +187,8 @@ export default {
     if (response.status === 200) {
       const responseUser = response.data.data
       console.log(responseUser)
+
+      console.log(responseUser);
 
       this.user.username = responseUser.username
       this.user.avatar = responseUser.avatar

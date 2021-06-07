@@ -32,6 +32,8 @@ import {store} from '@/store'
         {title: 'Избранное', component: { name: 'PersonalFavouriteArticles', params: { username: store.getters.getUser.username } }},
         {title: 'Понравившееся', component: { name: 'PersonalLikedArticles', params: { username: store.getters.getUser.username } }},
         // {title: 'Подписки', component: { name: 'PersonalSubscriptions', params: { username: store.getters.getUser.username } }}
+        // {title: 'Подписки', component: { name: 'PersonalSubscriptions', params: { username: store.getters.getUser.username } }},
+        {title: 'Настройки', component: { name: 'PersonalEdit', params: { username: store.getters.getUser.username } }},
       ]
     }),
 
