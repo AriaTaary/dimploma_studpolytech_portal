@@ -126,7 +126,7 @@
     margin-bottom: 0;
 }
 
-.row-group-profile .el-form-item{
+.column-group-profile .el-form-item{
     width: 45vw;
 }
 
@@ -515,4 +515,24 @@
 .personal-list{
     padding-left: 18px;
     line-height: 25px;
+}
+
+.profile-username{
+    color: #D5444C;
+    margin-bottom: 10px;
+}
+
+.profile-settings-block{
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.profile-settings-block:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.profile-settings-block-title{
+    text-align: center;
+    padding: 10px 0;
 }
