@@ -11,14 +11,11 @@
               <router-link class="button-main"
               :to="{ name: 'CreateArticle'}
               ">Создать</router-link>
-              <!-- <form action="#"> -->
-                <button class="search-button" type="submit"><img class="search" src="/img/search.svg"></button>
-                <input v-model="request.searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
-              <!-- </form> -->
+              <button class="search-button" type="submit"><img class="search" src="/img/search.svg"></button>
+              <input v-model="request.searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
             </div>
           </div>
           <div class="content-settings">
-            <!-- <p class="filter">Фильтровать</p> -->
             <details v-if="this.categories.length != 0" class="filter" @click="openCloseFilterSort()">
                 <summary>
                     <div class="filter_block">
@@ -75,7 +72,7 @@
                       </el-option>
                     </el-select>
                   </div>
-                  <div class="sort-part">
+                  <!-- <div class="sort-part">
                     <label class="sort-label" for="rating">По рейтингу</label>
                     <el-select v-model="request.sort.rating" id="rating" placeholder="Выберите">
                       <el-option value="" label="-">-
@@ -85,7 +82,7 @@
                       <el-option value="desc" label="От наименьшего к наибольшему">От наименьшего к наибольшему
                       </el-option>
                     </el-select>
-                  </div>
+                  </div> -->
                   <div class="sort-part">
                     <label class="sort-label" for="views">По просмотрам</label>
                     <el-select v-model="request.sort.views" id="views" placeholder="Выберите">
@@ -188,7 +185,7 @@ export default {
     request: {
       sort: {
         date: null,
-        rating: null,
+        // rating: null,
         views: null,
       },
       filter: {

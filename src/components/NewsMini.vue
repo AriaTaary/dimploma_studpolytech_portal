@@ -1,10 +1,27 @@
 <template>
-  <div class="news-block">
-    <div class="gradient">
-      <img src="img/news.jpeg" alt="">
+  <router-link
+    :to="{ name: 'NewsView',
+    params: { id: this.item.id } }">
+      <div class="news-block">
+        <div class="gradient">
+          <img src="img/news.jpeg" alt="">
+        </div>
+        <div class="news-info">
+          <div class="news-title">
+            <p>{{ this.item.title }}</p>
+          </div>
+          <div class="news-data">
+            <p>{{ this.item.created_at }}</p>
+          </div>
+        </div>
     </div>
-    <div class="news-title">
-        <p>Название новости</p>
-      </div>
-  </div>
+  </router-link>
 </template>
+
+<script>
+export default {
+  props: {
+    item: Object
+  },
+}
+</script>

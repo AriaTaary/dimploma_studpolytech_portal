@@ -188,6 +188,7 @@
 .filter-title:hover{
     color: black;
     border-left: 2px solid #D5444C;
+    cursor: pointer;
 }
 
 .filter-part{
@@ -275,7 +276,7 @@ summary::-webkit-details-marker {
 }
 
 .article-photo{
-    margin-top: 25px;
+    margin-top: 30px;
     width: 100%;
     height: 300px;
     border-radius: 5px;
@@ -333,4 +334,8 @@ summary::-webkit-details-marker {
 
 .post-button-active .bookmarks span{
     color: #D5444C;
+}
+
+.back-to{
+    margin-top: 30px;
 }

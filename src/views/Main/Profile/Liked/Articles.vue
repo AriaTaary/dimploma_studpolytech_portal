@@ -25,6 +25,7 @@
           :key='index'
           v-bind:article="article"
           v-bind:index="index"
+          v-on:articleUpdated="updateArticle"
         />
       </div>
     </div>
@@ -35,6 +36,7 @@
 import moment from 'moment'
 import api from '@/network/api'
 import ArticleBase from '@/components/ArticleBase'
+import {mapActions} from 'vuex'
 
 moment.locale('ru')
 
@@ -77,75 +79,84 @@ export default {
       }
     ]
   }),
-
+  methods:{
+    ...mapActions(['getUserLikedArticles']),
+    updateArticle(article, index){
+      this.loading = true;
+      this.articles[index] = article;
+      this.loading = false;
+    }
+  },
   async created () {
-    const response = await api.getUserLiked(this.$store.getters.getAuthToken);
-    // console.log(response);
+    this.articles = await this.getUserLikedArticles();
+    this.loading = false;
+    // const response = await api.getUserLiked(this.$store.getters.getAuthToken);
+    // // console.log(response);
 
-    const userTag = this.$store.getters.getUser.id;
+    // const userTag = this.$store.getters.getUser.id;
 
-    if (response.status === 200){
-      this.count = response.data.count;
+    // if (response.status === 200){
+    //   this.count = response.data.count;
 
-      // console.log(this.count);
+    //   // console.log(this.count);
 
-      if (this.count !== 0){
-        const parsedArticles = []
+    //   if (this.count !== 0){
+    //     const parsedArticles = []
 
-        response.data.articles.forEach(function(article, key, articles){
-          const categories = []
+    //     response.data.articles.forEach(function(article, key, articles){
+    //       const categories = []
 
-          article.categories.forEach(
-            function (category, categoryKey, categoriesArray){
-              categories.push(
-              {
-                slug: category.slug,
-                name: category.name
-              }
-            )}
-          )
+    //       article.categories.forEach(
+    //         function (category, categoryKey, categoriesArray){
+    //           categories.push(
+    //           {
+    //             slug: category.slug,
+    //             name: category.name
+    //           }
+    //         )}
+    //       )
 
-          let ratingTag = null;
+    //       let ratingTag = null;
 
-          article.rating_users.forEach(
-            function (rating_user, rating_usersKey, rating_usersArray) {
-              if (rating_user.id === userTag) {
-                ratingTag = 1;
-              }
-          })
+    //       article.rating_users.forEach(
+    //         function (rating_user, rating_usersKey, rating_usersArray) {
+    //           if (rating_user.id === userTag) {
+    //             ratingTag = 1;
+    //           }
+    //       })
 
-          let saveTag = null;
+    //       let saveTag = null;
 
-          article.saved_users.forEach(
-            function (saved_user, saved_usersKey, saved_usersArray) {
-              if (saved_user.id === userTag) {
-                saveTag = 1;
-              }
-            })
+    //       article.saved_users.forEach(
+    //         function (saved_user, saved_usersKey, saved_usersArray) {
+    //           if (saved_user.id === userTag) {
+    //             saveTag = 1;
+    //           }
+    //         })
 
-          parsedArticles.push({
-            id: article.id,
-            author: article.author.username,
-            title: article.title,
-            cut: article.cut,
-            created_at: moment(article.created_at).format('llll'),
-            categories: categories,
-            views: article.views,
-            rating: article.rating,
-            saved: article.saved,
-            rating_user: ratingTag,
-            saved_user: saveTag,
-          })
-        })
+    //       parsedArticles.push({
+    //         id: article.id,
+    //         author: article.author.username,
+    //         title: article.title,
+    //         cut: article.cut,
+    //         created_at: moment(article.created_at).format('llll'),
+    //         categories: categories,
+    //         views: article.views,
+    //         rating: article.rating,
+    //         saved: article.saved,
+    //         rating_user: ratingTag,
+    //         saved_user: saveTag,
+    //       })
+    //     })
 
-        this.articles = parsedArticles;
-        console.log(this.articles);
-        this.loading = false
-      }
-    }
-    else {
-      alert("Произошла ошибка")
-    }
+    //     this.articles = parsedArticles;
+    //     console.log(this.articles);
+    //     this.loading = false
+    //   }
+    // }
+    // else {
+    //   alert("Произошла ошибка")
+    // }
   }
 }
 

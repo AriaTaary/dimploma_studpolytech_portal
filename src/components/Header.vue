@@ -15,9 +15,6 @@
           <li class="menu-item">
             <a href="/vacancies" class="menu-link">Вакансии</a>
           </li>
-          <li class="menu-item">
-            <a href="" class="menu-link">Проекты</a>
-          </li>
           <li v-if="this.$store.getters.getAuthToken" class="menu-item">
               <router-link class="menu-link"
               :to="{ name: 'Personal',

@@ -9,6 +9,7 @@ import Register from '@/views/Auth/Register'
 import NotFound from '@/views/Errors/404.vue'
 
 import Main from '@/views/Main/Main'
+import NewsView from '@/views/Main/NewsView'
 
 import Vacancies from '@/views/Main/Vacancies/Vacancies'
 import VacancyView from '@/views/Main/Vacancies/View'
@@ -88,6 +89,16 @@ const routes = [
     }
   },
   {
+    path: '/news/:id/view',
+    name: 'NewsView',
+    component: NewsView,
+    meta: {
+      title: 'Просмотр новости',
+      layout: 'main',
+      block: blocks.common
+    }
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login,
@@ -119,7 +130,6 @@ const routes = [
   },
   {
     path: '/vacancies/:id/view',
-    // path: '/vacancies/view',
     name: 'ViewVacancy',
     component: VacancyView,
     meta: {
@@ -162,7 +172,6 @@ const routes = [
   },
   {
     path: '/articles/:id/view',
-    // path: '/articles/view',
     name: 'ViewArticle',
     component: ArticleView,
     meta: {

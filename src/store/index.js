@@ -6,6 +6,7 @@ import authModule from './authModule'
 import userModule from './userModule'
 import vacancies from './vacancies'
 import articles from './articles'
+import userData from './userData'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ export const store = new Vuex.Store({
     authModule,
     userModule,
     vacancies,
-    articles
+    articles,
+    userData,
   },
   plugins: [createPersistedState()]
 })

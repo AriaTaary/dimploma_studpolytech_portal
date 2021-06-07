@@ -19,6 +19,8 @@ export default {
             parsedArticles.push(prepareDate.article(article))
           })
 
+          console.log(parsedArticles);
+
           return parsedArticles;
         }
         else {

@@ -9,6 +9,7 @@
           <div class="vacancy-feed">
             <ArticleMain
               v-bind:article="article"
+              v-on:articleUpdated="updateArticle"
             />
           </div>
         </div>
@@ -81,9 +82,11 @@ export default {
   }),
 
   methods: {
-      // editAction () {
-      //   this.$router.push({ name: 'VacancyEdit' })
-      // }
+    updateArticle(article){
+      this.loading = true;
+      this.article = article;
+      this.loading = false;
+    }
   },
 
   async created () {

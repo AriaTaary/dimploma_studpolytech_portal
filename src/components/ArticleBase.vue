@@ -16,7 +16,7 @@
     <div class="card-main-info">
       <h2>{{ this.article.title }}</h2>
       <img class="article-photo" src="/img/article-photo.png" alt="article-photo">
-      <p class="card-description">{{ this.article.cut }}</p>
+      <p class="card-description-base">{{ this.article.cut }}</p>
       <div class="row-group">
         <router-link class="button-not-main"
               :to="{ name: 'ViewArticle',
@@ -77,9 +77,7 @@
 import moment from 'moment'
 import api from '@/network/api'
 import {mapActions} from 'vuex'
-
 moment.locale('ru')
-
 export default {
   props: {
     article: Object,
@@ -92,7 +90,6 @@ export default {
     ...mapActions(['getSavedArticle', 'setLikedArticle']),
     async likeArticle() {
       const articleLiked = this.article.rating_users.filter(ratingUser => ratingUser.user_id === this.$store.getters.getUser.id).length !== 0;
-
       if (articleLiked) {
         const article = await this.setLikedArticle({
           article_id: this.article.id,
@@ -108,37 +105,9 @@ export default {
       }
     },
     async saveArticle() {
-      // const responseAPI = await api.saveArticle(this.$store.getters.getAuthToken, this.article.id);
-      // this.article = response.data;
-      // console.log(responseAPI.data);
-
       const article = await this.getSavedArticle(this.article.id);
-
-      // console.log(response);
-      // const userTag = this.$store.getters.getUser.id;
-      // let saveTag = null;
-      // let raitingTag = null;
-
-      // response.data.saved_users.forEach(
-      //   function (saved_user, saved_usersKey, saved_usersArray) {
-      //     if (saved_user.id === userTag) {
-      //       saveTag = 1;
-      //     }
-      //   })
-
-      // response.data.rating_users.forEach(
-      //   function (rating_user, rating_usersKey, rating_usersArray) {
-      //     if (rating_user.id === userTag) {
-      //       raitingTag = 1;
-      //     }
-      // })
-
-      // response.data.saved_user = saveTag;
-      // response.data.rating_user = raitingTag;
-
       this.$emit('articleUpdated', article, this.index);
     }
   }
 }
-
 </script>
