@@ -4,7 +4,7 @@ import moment from 'moment'
 const helper = {
   getUserObjectFromResponse (response) {
     moment.locale('ru')
-    const data = response.data
+    const data = response.data.data
 
     return {
       id: data.id,

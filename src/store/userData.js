@@ -9,12 +9,12 @@ export default {
       let response = await api.getUserFavourites(rootGetters.getAuthToken);
 
       if (response.status === 200) {
-        this.count = response.data.articles.length
+        this.count = response.data.data.articles.length
 
         if (this.count !== 0) {
           const parsedArticles = []
 
-          response.data.articles.forEach(function (article) {
+          response.data.data.articles.forEach(function (article) {
             parsedArticles.push(prepareDate.article(article))
           })
 
@@ -37,12 +37,12 @@ export default {
       console.log(response);
 
       if (response.status === 200) {
-        this.count = response.data.articles.length
+        this.count = response.data.data.articles.length
 
         if (this.count !== 0) {
           const parsedArticles = []
 
-          response.data.articles.forEach(function (article) {
+          response.data.data.articles.forEach(function (article) {
             parsedArticles.push(prepareDate.article(article))
           })
 

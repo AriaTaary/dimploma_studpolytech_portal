@@ -919,3 +919,7 @@ input::-webkit-input-placeholder {
     margin-bottom: 15px;
     text-align: justify;
 }
+
+.news_ratings{
+    margin-bottom: 15px;
+}

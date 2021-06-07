@@ -30,7 +30,7 @@
                             v-for="category in this.categories"
                             :key='category.id'>
                             <div class="checkbox">
-                                <input :value='category.id' type="checkbox" :id='category.id' :name='category.name'>
+                                <input v-model='category.value' type="checkbox" :id='category.id' :name='category.name'>
                                 <label :for='category.id'>{{ category.name }}</label>
                             </div>
                         </li>
@@ -157,7 +157,13 @@
         <el-pagination
           background
           layout="prev, pager, next"
-          :total="1000">
+          :total="this.total"
+          :page-size="this.per_page"
+          :current-page="this.current_page"
+          @current-change="changePage"
+          @prev-click="changePage"
+          @next-click="changePage"
+          >
         </el-pagination>
       </div>
     </div>
@@ -180,56 +186,22 @@ export default {
 
   data: () => ({
     loading: true,
-    count: '',
-    index: 0,
     request: {
       sort: {
         date: null,
-        // rating: null,
         views: null,
       },
       filter: {
-        categories: []
+        categories: {},
       },
       searchText: ''
     },
-    articles: [
-      {
-        id: '',
-        author: '',
-        title: '',
-        cut: '',
-        text: '',
-        created_at: '',
-        categories: [
-          {
-            id: '',
-            name: ''
-          }
-        ],
-        views: '',
-        rating: '',
-        saved: '',
-        rating_users: [
-          {
-          id: '',
-          user_id: '',
-          article_id: '',
-          rating: '',
-          created_at: '',
-          updated_at: '',
-          }
-        ],
-        rating_user: '',
-        saved_user: '',
-      }
-    ],
-    categories: [
-      {
-        id: '',
-        name: ''
-      }
-    ]
+    articles: [],
+    categories: [],
+    current_page: null,
+    last_page: null,
+    total: null,
+    per_page: null,
   }),
 
   methods: {
@@ -287,19 +259,50 @@ export default {
       this.articles = await this.getArticles(this.request);
     },
     async submitFilter() {
-      console.log('сделать');
-      // this.articles = await this.getArticles(this.request);
+      this.loading = true;
+
+      const categories = {};
+      this.categories.forEach(function(category){
+        categories[category.id] = category.value;
+      })
+      this.request.filter.categories = categories;
+      const response = await this.getArticles(this.request);
+      this.setData(response);
+
+      this.loading = false;
     },
     updateArticle(article, index){
       this.loading = true;
       this.articles[index] = article;
       this.loading = false;
+    },
+    async changePage(page){
+      this.loading = true;
+      const response = await this.getArticles({
+        page: page,
+      });
+      this.setData(response);
+      this.loading = false;
+    },
+    setData(response){
+      this.articles = response.data;
+      this.current_page = response.current_page;
+      this.last_page = response.last_page;
+      this.total = response.total;
+      this.per_page = response.per_page;
     }
   },
 
   async created () {
-    this.articles = await this.getArticles();
-    this.categories = await this.getCategories();
+    const response = await this.getArticles();
+    this.setData(response);
+
+    const categories = await this.getCategories();
+    categories.forEach(function(category , index) {
+      categories[index].value = false;
+    })
+    this.categories = categories;
+
     this.loading = false;
   },
 }

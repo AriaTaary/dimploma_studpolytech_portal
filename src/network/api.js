@@ -98,7 +98,7 @@ export default {
     return {
       status: response.status,
       headers: response.headers,
-      data: response.data.data
+      data: response.data,
     }
   },
 
@@ -153,6 +153,7 @@ export default {
       search: request.searchText,
       filter: request.filter,
       sort: request.sort,
+      page: request.page,
     } : {};
 
     return this.prepareResponse(

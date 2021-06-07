@@ -7,12 +7,12 @@ export default {
       let response = await api.getAllVacancies(rootGetters.getAuthToken, search)
 
       if (response.status === 200) {
-        this.count = response.data.length
+        this.count = response.data.data.length
 
         if (this.count !== 0) {
           const parsedVacancies = []
 
-          response.data.forEach(function (vacancy, key, vacancies) {
+          response.data.data.forEach(function (vacancy, key, vacancies) {
             const categories = []
 
             vacancy.categories.forEach(
