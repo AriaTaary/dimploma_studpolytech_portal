@@ -122,6 +122,49 @@ export default {
     )
   },
 
+  async getAllNews(authToken, request = null) {
+    const data = (request) ? {
+      search: request.searchText,
+      filter: request.filter,
+      sort: request.sort,
+      page: request.page,
+    } : {};
+
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.news,
+        'get',
+        data,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getMainNews(authToken, id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.news + '/' + id,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAllNewsCategories(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.news-categories,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
   async getAllVacancies(authToken, search = null) {
     return this.prepareResponse(
       this.execute(

@@ -37,40 +37,28 @@ moment.locale('ru')
 export default {
   data: () => ({
     loading: true,
-    searchText: '',
     count: '',
-    article:{
-        id: '',
-        author: '',
-        title: '',
-        cut: '',
-        text: '',
-        created_at: '',
-        categories: [
-          {
-            id: '',
-            name: ''
-          }
-        ],
-        views: '',
-        rating: '',
-        saved: ''
+    request: {
+      sort: {
+        date: null,
+        views: null,
+      },
+      filter: {
+        categories: []
       }
+    },
+    news: [],
+    categories: [],
+    current_page: null,
+    total: null,
+    per_page: null,
   }),
 
-  methods: {
-    updateArticle(article){
-      this.loading = true;
-      this.article = article;
-      this.loading = false;
-    }
-  },
-
   async created () {
-    let response = await api.getMainArticle(this.$store.getters.getAuthToken, this.$route.params.id)
+    let response = await api.getMainNews(this.$store.getters.getAuthToken, this.$route.params.id)
 
     if (response.status === 200){
-      this.article = prepareDate.article(response.data, this.$store.getters.getUser.id);
+      this.news = prepareDate.news(response.data, this.$store.getters.getUser.id);
 
       this.loading = false;
     }

@@ -86,13 +86,13 @@ export default {
     console.log(response);
 
     if (response.status === 200){
-      this.vacancy.id = response.data.id,
-      this.vacancy.author = response.data.company.name,
-      this.vacancy.title = response.data.title,
-      this.vacancy.description = response.data.description,
-      this.vacancy.created_at = moment(response.data.created_at).format('ll'),
-      this.vacancy.categories = response.data.categories,
-      this.vacancy.salary = response.data.salary,
+      this.vacancy.id = response.data.data.id,
+      this.vacancy.author = response.data.data.company.name,
+      this.vacancy.title = response.data.data.title,
+      this.vacancy.description = response.data.data.description,
+      this.vacancy.created_at = moment(response.data.data.created_at).format('ll'),
+      this.vacancy.categories = response.data.data.categories,
+      this.vacancy.salary = response.data.data.salary,
 
       this.loading = false
     }

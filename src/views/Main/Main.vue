@@ -122,6 +122,8 @@
 <script>
 import moment from 'moment'
 import NewsMini from '@/components/NewsMini'
+import {mapActions} from 'vuex'
+
 
 moment.locale('ru')
 
@@ -141,41 +143,14 @@ export default {
         categories: []
       }
     },
-    news: [
-      {
-        id: '1',
-        title: ' Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        text: '1',
-        created_at: '25.05.10',
-        views: '1'
-      },
-        {
-        id: '2',
-        title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere tenetur maxime perspiciatis',
-        text: '2',
-        created_at: '25.05.10',
-        views: '2'
-      },
-        {
-        id: '3',
-        title: '3',
-        text: '3',
-        created_at: '25.05.10',
-        views: '3'
-      },
-    ],
-    categories: [
-      {
-        id: '1',
-        name: '1'
-      },
-      {
-        id: '1',
-        name: '2'
-      }
-    ]
+    news: [],
+    categories: [],
+    current_page: null,
+    total: null,
+    per_page: null,
   }),
   methods: {
+    ...mapActions(['getNews', 'getNewsCategories']),
     openCloseFilterSort () {
       const filter = document.querySelector(".filter-main");
       const sort = document.querySelector(".sort-main");
@@ -211,7 +186,55 @@ export default {
           sort.removeAttribute("open");
         });
       }
+    },
+    async submitSort() {
+      this.news = await this.getNews(this.request);
+    },
+    async submitFilter() {
+      this.loading = true;
+
+      const categories = {};
+      this.categories.forEach(function(category){
+        categories[category.id] = category.value;
+      })
+      this.request.filter.categories = categories;
+      const response = await this.getNews(this.request);
+      this.setData(response);
+
+      this.loading = false;
+    },
+    updateArticle(article, index){
+      this.loading = true;
+      this.news[index] = article;
+      this.loading = false;
+    },
+    async changePage(page){
+      this.loading = true;
+      const response = await this.getNews({
+        page: page,
+      });
+      this.setData(response);
+      this.loading = false;
+    },
+    setData(response){
+      this.news = response.data;
+      this.current_page = response.current_page;
+      this.total = response.total;
+      this.per_page = response.per_page;
     }
-  }
-  }
+  },
+
+  async created () {
+    const response = await this.getNews();
+    this.setData(response);
+
+    const categories = await this.getCategories();
+    categories.forEach(function(index) {
+      categories[index].value = false;
+    })
+    this.categories = categories;
+
+    this.loading = false;
+  },
+}
 </script>

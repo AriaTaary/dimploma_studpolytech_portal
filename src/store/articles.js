@@ -22,7 +22,6 @@ export default {
           return {
             data: parsedArticles,
             current_page: data.meta.current_page,
-            last_page: data.meta.last_page,
             total: data.meta.total,
             per_page: data.meta.per_page,
 
@@ -32,7 +31,6 @@ export default {
           return {
             data: [],
             current_page: null,
-            last_page: null,
             total: null,
             per_page: null,
           };

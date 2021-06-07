@@ -199,7 +199,6 @@ export default {
     articles: [],
     categories: [],
     current_page: null,
-    last_page: null,
     total: null,
     per_page: null,
   }),
@@ -255,7 +254,6 @@ export default {
       }
     },
     async submitSort() {
-      console.log(this.request.sort);
       this.articles = await this.getArticles(this.request);
     },
     async submitFilter() {
@@ -287,7 +285,6 @@ export default {
     setData(response){
       this.articles = response.data;
       this.current_page = response.current_page;
-      this.last_page = response.last_page;
       this.total = response.total;
       this.per_page = response.per_page;
     }
@@ -298,7 +295,7 @@ export default {
     this.setData(response);
 
     const categories = await this.getCategories();
-    categories.forEach(function(category , index) {
+    categories.forEach(function(index) {
       categories[index].value = false;
     })
     this.categories = categories;
