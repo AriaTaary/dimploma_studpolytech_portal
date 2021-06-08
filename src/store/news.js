@@ -13,7 +13,7 @@ export default {
         const data = response.data
 
         if (data.data.length !== 0) {
-          const parsedArticles = []
+          const parsedNews = []
 
           data.data.forEach(function (news) {
             parsedNews.push(prepareDate.news(news))

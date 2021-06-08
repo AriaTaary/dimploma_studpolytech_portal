@@ -27,14 +27,20 @@
 }
 
 .vacancies-feed{
-    margin-top: 40px;
     min-height: 300px;
 }
 
-.vacancy-feed{
-    /* margin-top: 40px; */
-    /* min-height: 400px; */
+.articles-feed{
+    min-height: 300px;
 }
+
+.articles-content-settings, .vacancies-content-settings{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
 
 .not-main{
     color: #B3B3B3;
@@ -286,7 +292,7 @@ summary::-webkit-details-marker {
 .pagination{
     display: flex;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     justify-content: center;
 }
 

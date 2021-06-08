@@ -34,7 +34,7 @@
                     </ul>
                 </details>
                 <div class="filter-buttons">
-                  <button type="submit" id="submit-filter">
+                  <button type="submit" id="submit-filter" @click="submitFilter()">
                       <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
                       </svg>
@@ -69,17 +69,6 @@
                       </el-option>
                     </el-select>
                   </div>
-                  <!-- <div class="sort-part">
-                    <label class="sort-label" for="rating">По рейтингу</label>
-                    <el-select v-model="request.sort.rating" id="rating" placeholder="Выберите">
-                      <el-option value="" label="-">-
-                      </el-option>
-                      <el-option value="asc" label="От наибольшего к наименьшему">От наибольшего к наименьшему
-                      </el-option>
-                      <el-option value="desc" label="От наименьшего к наибольшему">От наименьшего к наибольшему
-                      </el-option>
-                    </el-select>
-                  </div> -->
                   <div class="sort-part">
                     <label class="sort-label" for="views">По просмотрам</label>
                     <el-select v-model="request.sort.views" id="views" placeholder="Выберите">
@@ -92,7 +81,7 @@
                     </el-select>
                   </div>
                   <div class="filter-buttons">
-                      <button type="submit" id="submit-sort">
+                      <button type="submit" id="submit-sort" @click="submitSort()">
                           <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
                           </svg>
@@ -108,13 +97,34 @@
             </details>
         </div>
       </div>
-      <div class="daily-news">
-        <NewsMini
-          v-for="item in this.news"
-          :key='item.id'
-          v-bind:item="item"
-        />
+      <div v-if="loading" class="loading">
+        <img src="/img/preloader.svg" alt="Загрузка данных">
+      </div>
+      <div v-else>
+        <div v-if="this.news.length === 0">
+          <p>Ничего не найдено</p>
         </div>
+        <div class="daily-news">
+          <NewsMini
+            v-for="item in this.news"
+            :key='item.id'
+            v-bind:item="item"
+          />
+        </div>
+        <div class="pagination">
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="this.total"
+            :page-size="this.per_page"
+            :current-page="this.current_page"
+            @current-change="changePage"
+            @prev-click="changePage"
+            @next-click="changePage"
+            >
+          </el-pagination>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -228,8 +238,8 @@ export default {
     const response = await this.getNews();
     this.setData(response);
 
-    const categories = await this.getCategories();
-    categories.forEach(function(index) {
+    const categories = await this.getNewsCategories();
+    categories.forEach(function(category, index) {
       categories[index].value = false;
     })
     this.categories = categories;

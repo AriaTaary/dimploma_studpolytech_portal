@@ -11,225 +11,238 @@
               <router-link class="button-main"
               :to="{ name: 'CreateVacancy'}
               ">Создать</router-link>
-              <!-- <form action="#"> -->
-                <button class="search-button" type="submit"><img class="search" src="/img/search.svg"></button>
-                <input v-model="searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
-              <!-- </form> -->
+              <button class="search-button" type="submit"><img class="search" src="/img/search.svg"></button>
+              <input v-model="searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
             </div>
           </div>
-          <div class="content-settings">
-            <!-- <p class="filter">Фильтровать</p> -->
-             <details class="filter" @click="openCloseFilterSort()">
-                <summary>
-                    <div class="filter_block">
-                        <p>Фильтровать</p>
-                    </div>
-                </summary>
-                <div class="filter_box">
-                <details class="filter-part">
-                    <summary class="filter-title">Опыт работы</summary>
-                    <ul class="filter_list">
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Не имеет значения</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">От 1 года до 3 лет</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">От 3 до 6 лет</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Более 6 лет</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Нет опыта</label>
-                            </div>
-                        </li>
-                    </ul>
-                </details>
-                <details class="filter-part">
-                    <summary class="filter-title">График работы</summary>
-                    <ul class="filter_list">
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Полный день</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Удаленная работа</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Гибкий график</label>
-                            </div>
-                        </li>
-                    </ul>
-                </details>
-                <details class="filter-part">
-                    <summary class="filter-title">Тип занятости</summary>
-                    <ul class="filter_list">
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Полная занятость</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Проектная работа</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Частичная занятость</label>
-                            </div>
-                        </li>
-                        <li class="filter_item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="1" name="1">
-                                <label for="1">Стажировка</label>
-                            </div>
-                        </li>
-                    </ul>
-                </details>
-                <div class="filter-buttons">
-                  <button type="submit" id="submit-filter">
-                      <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
-                      </svg>
-                  </button>
-                  <button type="submit" id="close-filter">
-                    <svg id="close-filter" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M33.9286 35.7143C33.4716 35.7143 33.0146 35.54 32.6659 35.191L14.8089 17.334C14.1112 16.6363 14.1112 15.5064 14.8089 14.809C15.5063 14.1117 16.6365 14.1113 17.3339 14.809L35.1909 32.666C35.8886 33.3637 35.8886 34.4936 35.1909 35.191C34.8422 35.54 34.3856 35.7143 33.9286 35.7143Z" fill="#A4A4A5"/>
-                        <path d="M16.0712 35.7144C15.6142 35.7144 15.1576 35.54 14.8089 35.191C14.1112 34.4936 14.1112 33.3634 14.8089 32.666L32.6659 14.809C33.3636 14.1113 34.4935 14.1113 35.1909 14.809C35.8882 15.5064 35.8886 16.6367 35.1909 17.334L17.3339 35.191C16.9852 35.54 16.5282 35.7144 16.0712 35.7144Z" fill="#A4A4A5"/>
-                    </svg>
-                  </button>
-                </div>
-                </div>
-            </details>
-            <details class="sort" @click="openCloseFilterSort()">
-                <summary>
-                    <div class="sort_block">
-                        <p>Сортировать</p>
-                    </div>
-                </summary>
-                <div class="sort_box">
-                  <div class="sort-part">
-                    <p class="sort-label">Выберите один параметр</p>
-                  </div>
-                   <div class="sort-part">
-                    <label class="sort-label" for="date">По дате</label>
-                    <el-select v-model="request.sort.date" id="date" placeholder="Выберите">
-                      <el-option value="" label="-">-
-                      </el-option>
-                      <el-option value="desc" label="От новых к старым">От новых к старым
-                      </el-option>
-                      <el-option value="asc" label="От старых к новым">От старых к новым
-                      </el-option>
-                    </el-select>
-                  </div>
-                  <div class="sort-part">
-                    <label class="sort-label" for="experience">По требуемому опыту</label>
-                    <el-select v-model="request.sort.experience" id="experience" placeholder="Выберите">
-                      <el-option value="" label="-">-
-                      </el-option>
-                      <el-option value="asc">От наибольшего к наименьшему
-                      </el-option>
-                      <el-option value="desc">От наименьшего к наибольшему
-                      </el-option>
-                    </el-select>
-                  </div>
-                  <div class="sort-part">
-                    <label class="sort-label" for="payment">По оплате</label>
-                    <el-select v-model="request.sort.payment" id="payment" placeholder="Выберите">
-                      <el-option value="" label="-">-
-                      </el-option>
-                      <el-option value="asc">От наибольшей к наименьшей
-                      </el-option>
-                      <el-option value="desc">От наименьшей к наибольшей
-                      </el-option>
-                    </el-select>
-                  </div>
-                  <div class="filter-buttons">
-                      <button type="submit" id="submit-sort">
-                          <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
-                          </svg>
-                      </button>
-                      <button type="submit" id="close-sort">
-                        <svg id="close-filter" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M33.9286 35.7143C33.4716 35.7143 33.0146 35.54 32.6659 35.191L14.8089 17.334C14.1112 16.6363 14.1112 15.5064 14.8089 14.809C15.5063 14.1117 16.6365 14.1113 17.3339 14.809L35.1909 32.666C35.8886 33.3637 35.8886 34.4936 35.1909 35.191C34.8422 35.54 34.3856 35.7143 33.9286 35.7143Z" fill="#A4A4A5"/>
-                            <path d="M16.0712 35.7144C15.6142 35.7144 15.1576 35.54 14.8089 35.191C14.1112 34.4936 14.1112 33.3634 14.8089 32.666L32.6659 14.809C33.3636 14.1113 34.4935 14.1113 35.1909 14.809C35.8882 15.5064 35.8886 16.6367 35.1909 17.334L17.3339 35.191C16.9852 35.54 16.5282 35.7144 16.0712 35.7144Z" fill="#A4A4A5"/>
-                        </svg>
-                      </button>
-                  </div>
-                </div>
-            </details>
-          </div>
           <div class="vacancies-feed">
-            <div v-if="loading" class="mini_loading">
+            <div v-if="loading" class="loading">
               <img src="/img/preloader.svg" alt="Загрузка данных">
             </div>
             <div v-else>
               <div v-if="this.vacancies.length === 0">
                 <p>Ничего не найдено</p>
               </div>
-              <VacancyBase
-                v-else
-                v-for="vacancy in this.vacancies"
-                :key='vacancy.id'
-                v-bind:vacancy="vacancy"
-              />
+              <div v-else>
+                <div class="vacancies-content-settings">
+                  <details class="filter" @click="openCloseFilterSort()">
+                      <summary>
+                          <div class="filter_block">
+                              <p>Фильтровать</p>
+                          </div>
+                      </summary>
+                      <div class="filter_box">
+                      <details class="filter-part">
+                          <summary class="filter-title">Опыт работы</summary>
+                          <ul class="filter_list">
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Не имеет значения</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">От 1 года до 3 лет</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">От 3 до 6 лет</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Более 6 лет</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Нет опыта</label>
+                                  </div>
+                              </li>
+                          </ul>
+                      </details>
+                      <details class="filter-part">
+                          <summary class="filter-title">График работы</summary>
+                          <ul class="filter_list">
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Полный день</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Удаленная работа</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Гибкий график</label>
+                                  </div>
+                              </li>
+                          </ul>
+                      </details>
+                      <details class="filter-part">
+                          <summary class="filter-title">Тип занятости</summary>
+                          <ul class="filter_list">
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Полная занятость</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Проектная работа</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Частичная занятость</label>
+                                  </div>
+                              </li>
+                              <li class="filter_item">
+                                  <div class="checkbox">
+                                      <input type="checkbox" id="1" name="1">
+                                      <label for="1">Стажировка</label>
+                                  </div>
+                              </li>
+                          </ul>
+                      </details>
+                      <div class="filter-buttons">
+                        <button type="submit" id="submit-filter">
+                            <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
+                            </svg>
+                        </button>
+                        <button type="submit" id="close-filter">
+                          <svg id="close-filter" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M33.9286 35.7143C33.4716 35.7143 33.0146 35.54 32.6659 35.191L14.8089 17.334C14.1112 16.6363 14.1112 15.5064 14.8089 14.809C15.5063 14.1117 16.6365 14.1113 17.3339 14.809L35.1909 32.666C35.8886 33.3637 35.8886 34.4936 35.1909 35.191C34.8422 35.54 34.3856 35.7143 33.9286 35.7143Z" fill="#A4A4A5"/>
+                              <path d="M16.0712 35.7144C15.6142 35.7144 15.1576 35.54 14.8089 35.191C14.1112 34.4936 14.1112 33.3634 14.8089 32.666L32.6659 14.809C33.3636 14.1113 34.4935 14.1113 35.1909 14.809C35.8882 15.5064 35.8886 16.6367 35.1909 17.334L17.3339 35.191C16.9852 35.54 16.5282 35.7144 16.0712 35.7144Z" fill="#A4A4A5"/>
+                          </svg>
+                        </button>
+                      </div>
+                      </div>
+                  </details>
+                  <details class="sort" @click="openCloseFilterSort()">
+                      <summary>
+                          <div class="sort_block">
+                              <p>Сортировать</p>
+                          </div>
+                      </summary>
+                      <div class="sort_box">
+                        <div class="sort-part">
+                          <p class="sort-label">Выберите один параметр</p>
+                        </div>
+                        <div class="sort-part">
+                          <label class="sort-label" for="date">По дате</label>
+                          <el-select v-model="request.sort.date" id="date" placeholder="Выберите">
+                            <el-option value="" label="-">-
+                            </el-option>
+                            <el-option value="desc" label="От новых к старым">От новых к старым
+                            </el-option>
+                            <el-option value="asc" label="От старых к новым">От старых к новым
+                            </el-option>
+                          </el-select>
+                        </div>
+                        <div class="sort-part">
+                          <label class="sort-label" for="experience">По требуемому опыту</label>
+                          <el-select v-model="request.sort.experience" id="experience" placeholder="Выберите">
+                            <el-option value="" label="-">-
+                            </el-option>
+                            <el-option value="asc">От наибольшего к наименьшему
+                            </el-option>
+                            <el-option value="desc">От наименьшего к наибольшему
+                            </el-option>
+                          </el-select>
+                        </div>
+                        <div class="sort-part">
+                          <label class="sort-label" for="payment">По оплате</label>
+                          <el-select v-model="request.sort.payment" id="payment" placeholder="Выберите">
+                            <el-option value="" label="-">-
+                            </el-option>
+                            <el-option value="asc">От наибольшей к наименьшей
+                            </el-option>
+                            <el-option value="desc">От наименьшей к наибольшей
+                            </el-option>
+                          </el-select>
+                        </div>
+                        <div class="filter-buttons">
+                            <button type="submit" id="submit-sort">
+                                <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
+                                </svg>
+                            </button>
+                            <button type="submit" id="close-sort">
+                              <svg id="close-filter" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M33.9286 35.7143C33.4716 35.7143 33.0146 35.54 32.6659 35.191L14.8089 17.334C14.1112 16.6363 14.1112 15.5064 14.8089 14.809C15.5063 14.1117 16.6365 14.1113 17.3339 14.809L35.1909 32.666C35.8886 33.3637 35.8886 34.4936 35.1909 35.191C34.8422 35.54 34.3856 35.7143 33.9286 35.7143Z" fill="#A4A4A5"/>
+                                  <path d="M16.0712 35.7144C15.6142 35.7144 15.1576 35.54 14.8089 35.191C14.1112 34.4936 14.1112 33.3634 14.8089 32.666L32.6659 14.809C33.3636 14.1113 34.4935 14.1113 35.1909 14.809C35.8882 15.5064 35.8886 16.6367 35.1909 17.334L17.3339 35.191C16.9852 35.54 16.5282 35.7144 16.0712 35.7144Z" fill="#A4A4A5"/>
+                              </svg>
+                            </button>
+                        </div>
+                      </div>
+                  </details>
+                </div>
+                <VacancyBase
+                  v-for="(vacancy,index) in this.vacancies"
+                  :key='index'
+                  v-bind:vacancy="vacancy"
+                  v-bind:index="index"
+                  v-on:vacancyUpdated="updateVacancy"
+                />
+                <div class="pagination">
+                  <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    :total="this.total"
+                    :page-size="this.per_page"
+                    :current-page="this.current_page"
+                    @current-change="changePage"
+                    @prev-click="changePage"
+                    @next-click="changePage"
+                    >
+                  </el-pagination>
+                </div>
             </div>
           </div>
         </div>
-        <div class="advisory">
-          <div class="advisory-block">
-            <h4>Работодатели</h4>
-            <div class="ad-vacancy">
-              <div class="ad-vacancy-info">
-                  <p class="vacancy-employer">Название компании</p>
-                  <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
-              </div>
+      </div>
+      <div class="advisory">
+        <div class="advisory-block">
+          <h4>Работодатели</h4>
+          <div class="ad-vacancy">
+            <div class="ad-vacancy-info">
+                <p class="vacancy-employer">Название компании</p>
+                <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
             </div>
-            <div class="ad-vacancy">
-              <div class="ad-vacancy-info">
-                  <p class="vacancy-employer">Название компании</p>
-                  <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
-              </div>
+          </div>
+          <div class="ad-vacancy">
+            <div class="ad-vacancy-info">
+                <p class="vacancy-employer">Название компании</p>
+                <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
             </div>
-            <div class="ad-vacancy">
-              <div class="ad-vacancy-info">
-                  <p class="vacancy-employer">Название компании</p>
-                  <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
-              </div>
+          </div>
+          <div class="ad-vacancy">
+            <div class="ad-vacancy-info">
+                <p class="vacancy-employer">Название компании</p>
+                <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 
@@ -261,29 +274,16 @@ export default {
       },
       searchText: ''
     },
-    vacancies: [
-      {
-        id: '',
-        author: '',
-        title: '',
-        description: '',
-        created_at: '',
-        salary: '',
-        categories: [
-          {
-            id: '',
-            name: ''
-          }
-        ]
-      }
-    ]
+    vacancies: [],
+    categories: [],
+    current_page: null,
+    total: null,
+    per_page: null,
   }),
 
   methods: {
     ...mapActions(['getVacancies']),
     async search () {
-      // const searchText = this.searchText;
-      // console.log(this.searchText);
       this.loading = true;
       this.vacancies = await this.getVacancies(this.searchText);
       this.loading = false;
@@ -330,11 +330,47 @@ export default {
           sort.removeAttribute("open");
         });
       }
+    },
+    async submitSort() {
+      this.vacancies = await this.getVacancies(this.request);
+    },
+    async submitFilter() {
+      this.loading = true;
+
+      const categories = {};
+      this.categories.forEach(function(category){
+        categories[category.id] = category.value;
+      })
+      this.request.filter.categories = categories;
+      const response = await this.getVacancies(this.request);
+      this.setData(response);
+
+      this.loading = false;
+    },
+    updateVacancy(vacancy, index){
+      this.loading = true;
+      this.vacancies[index] = vacancy;
+      this.loading = false;
+    },
+    async changePage(page){
+      this.loading = true;
+      const response = await this.getVacancies({
+        page: page,
+      });
+      this.setData(response);
+      this.loading = false;
+    },
+    setData(response){
+      this.vacancies = response.data;
+      this.current_page = response.current_page;
+      this.total = response.total;
+      this.per_page = response.per_page;
     }
   },
 
   async created () {
-    this.vacancies = await this.getVacancies();
+    const response = await this.getVacancies();
+    this.setData(response);
     this.loading = false;
   },
 }

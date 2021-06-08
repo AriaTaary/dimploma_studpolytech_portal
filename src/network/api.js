@@ -21,7 +21,9 @@ export default {
     users: 'users',
     vacancies: 'vacancies',
     articles: 'articles',
-    categories: 'categories'
+    categories: 'categories',
+    news: 'news',
+    newsCategories: 'news-categories'
   },
   adminRoutes: {
     user: 'users',
@@ -156,7 +158,7 @@ export default {
   async getAllNewsCategories(authToken) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.news-categories,
+        this.apiRoutes.newsCategories,
         'get',
         {},
         true,
@@ -165,14 +167,19 @@ export default {
     )
   },
 
-  async getAllVacancies(authToken, search = null) {
+  async getAllVacancies(authToken, request = null) {
+    const data = (request) ? {
+      search: request.searchText,
+      filter: request.filter,
+      sort: request.sort,
+      page: request.page,
+    } : {};
+
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.vacancies,
         'get',
-        {
-          search: search
-        },
+        data,
         true,
         authToken
       )

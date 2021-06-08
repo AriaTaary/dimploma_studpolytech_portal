@@ -434,6 +434,7 @@ input:focus{
 	display: inline-block;
 	position: relative;    
     line-height: 0;
+    width: 100%;
 }
 
 .gradient:after {
@@ -827,7 +828,7 @@ table{
     width: 100%;
     min-height: 100%;
     justify-content: center;
-    margin-top: 20vh;
+    margin-top: 15vh;
     margin-bottom: 100px;
 }
 

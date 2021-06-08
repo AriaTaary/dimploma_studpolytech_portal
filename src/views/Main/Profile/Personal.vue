@@ -88,7 +88,7 @@ export default {
     const response = await api.getUserData(this.$store.getters.getAuthToken, '')
 
     if (response.status === 200) {
-      const responseUser = response.data
+      const responseUser = response.data.data
 
       this.user.username = responseUser.username
       this.user.avatar = responseUser.avatar

@@ -1,5 +1,5 @@
 import api from '@/network/api'
-import prepareDate from "@/helpers/prepareDate";
+import prepareDate from "@/helpers/prepareDate"
 
 export default {
   actions: {

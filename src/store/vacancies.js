@@ -1,55 +1,44 @@
 import api from '@/network/api'
-import moment from 'moment'
+import prepareDate from "@/helpers/prepareDate"
 
 export default {
   actions: {
-    async getVacancies ({rootGetters}, search = null) {
-      let response = await api.getAllVacancies(rootGetters.getAuthToken, search)
+    async getVacancies (
+      { rootGetters },
+      request = null
+    ) {
+        let response = await api.getAllVacancies(rootGetters.getAuthToken, request)
 
-      if (response.status === 200) {
-        this.count = response.data.data.length
+        if (response.status === 200) {
+          const data = response.data
 
-        if (this.count !== 0) {
-          const parsedVacancies = []
+          if (data.data.length !== 0) {
+            const parsedVacancies = []
 
-          response.data.data.forEach(function (vacancy, key, vacancies) {
-            const categories = []
-
-            vacancy.categories.forEach(
-              function (category, categoryKey, categoriesArray) {
-                categories.push(
-                  {
-                    slug: category.slug,
-                    name: category.name
-                  }
-                )
-              }
-            )
-
-            if (vacancy.salary !== null) {
-              vacancy.salary = vacancy.salary + ' ₽'
-            }
-
-            parsedVacancies.push({
-              id: vacancy.id,
-              author: vacancy.company.name,
-              title: vacancy.title,
-              description: vacancy.description,
-              created_at: moment(vacancy.created_at).format('ll'),
-              categories: categories,
-              salary: vacancy.salary
+            data.data.forEach(function (vacancy) {
+              parsedVacancies.push(prepareDate.vacancy(vacancy))
             })
-          })
 
-          return parsedVacancies
+            return {
+              data: parsedVacancies,
+              current_page: data.meta.current_page,
+              total: data.meta.total,
+              per_page: data.meta.per_page,
+
+            };
+          }
+          else {
+            return {
+              data: [],
+              current_page: null,
+              total: null,
+              per_page: null,
+            };
+          }
         }
         else {
-          return []
+          alert("Произошла ошибка")
         }
-      }
-      else {
-        alert("Произошла ошибка")
-      }
-    }
+      },
   }
 }

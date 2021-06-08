@@ -49,7 +49,7 @@
 import moment from 'moment'
 import api from '@/network/api'
 import ArticleMain from '@/components/ArticleMain'
-import prepareDate from "@/helpers/prepareDate";
+import prepareDate from "@/helpers/prepareDate"
 
 moment.locale('ru')
 
