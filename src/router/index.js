@@ -149,8 +149,8 @@ const routes = [
     }
   },
   {
-    // path: '/vacancies/:id/edit',
-    path: '/vacancies/edit',
+    path: '/vacancies/:id/edit',
+    // path: '/vacancies/edit',
     name: 'VacancyEdit',
     component: VacancyEdit,
     meta: {

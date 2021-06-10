@@ -6,15 +6,26 @@
           <div class="vacancy-feed">
             <div class="vacancy-block edit-block">
             <h1 class="vacancy-title">Создание вакансии</h1>
-            <el-form>
+            <div v-if="loading" class="loading">
+              <img src="/img/preloader.svg" alt="Загрузка данных">
+            </div>
+            <el-form v-else>
               <div class="row-group row-group-profile">
                 <div>
                   <el-form-item prop="name">
-                    <label class="required-label label" for="name">Название</label>
-                    <el-input id="name" type="text" class="input" placeholder="Введите название" v-model="formData.title"></el-input>
+                    <label class="required-label label" for="name">Название вакансии</label>
+                    <el-input id="name" type="text" class="input" placeholder="Введите название вакансии" v-model="formData.title"></el-input>
                     <p class="error-message"
                     v-if="this.errors.hasOwnProperty('title')"
                     >{{this.errors.title[0]}}</p>
+                  </el-form-item>
+
+                  <el-form-item prop="company_name">
+                    <label class="required-label label" for="company_name">Название компании</label>
+                    <el-input id="company_name" type="text" class="input" placeholder="Введите название компании" v-model="formData.company_name"></el-input>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('company_name')"
+                    >{{this.errors.company_name[0]}}</p>
                   </el-form-item>
 
                   <el-form-item prop="city">
@@ -131,7 +142,7 @@
                   <el-input
                     id="description"
                     type="textarea"
-                    :rows="10"
+                    :rows="11"
                     placeholder="Введите описание"
                     v-model="formData.common_description"
                     >
@@ -146,7 +157,7 @@
                   <el-input
                     id="postulata"
                     type="textarea"
-                    :rows="10"
+                    :rows="11"
                     placeholder="Введите требования"
                     v-model="formData.requirements_description"
                     >
@@ -161,7 +172,7 @@
                   <el-input
                     id="circumstances"
                     type="textarea"
-                    :rows="10"
+                    :rows="11"
                     placeholder="Введите условия"
                     v-model="formData.condition_description"
                     >
@@ -190,6 +201,7 @@
 
 <script>
 import {mapActions} from 'vuex'
+import prepareDate from "@/helpers/prepareDate"
 
 export default {
   data: () => ({
@@ -201,6 +213,7 @@ export default {
     schedules: {},
     formData: {
       title: '',
+      company_name: '',
       city: '',
       needed_work_experience: '',
       employment_type: '',
@@ -212,8 +225,7 @@ export default {
       condition_description: '',
       company_phone: '',
       company_email: '',
-      company_site: '',
-      company_id: '',
+      company_site: ''
     },
   }),
   methods:{
@@ -240,19 +252,21 @@ export default {
         this.errors = response.data.error.errors;
         this.loading = false;
       }
-      // if (response.status){
-      //   alert('Данные успешно сохранены!');
-      //   this.$router.push({ name: 'VacancyView', params: { id: response.id } });
-      // }
+      if (response.status === 201){
+        const newResponse = prepareDate.vacancy(response.data.data);
+        alert('Данные успешно сохранены!');
+        this.$router.push({ name: 'VacancyView', params: { id: newResponse.id } });
+      }
     }
   },
   async created () {
     this.categories = await this.getCategories();
-    this.loading = false;
+
     const vacanciesData = await this.getVacanciesData();
     this.employments = vacanciesData.employments;
     this.experiences = vacanciesData.experiences;
     this.schedules = vacanciesData.schedules;
+
     this.loading = false;
   },
 }

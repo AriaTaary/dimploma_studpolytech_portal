@@ -6,7 +6,7 @@
               params: { id: this.vacancy.id } }
               ">
         <div class="card-about-info">
-          <p class="author">@{{ this.vacancy.author}}</p>
+          <p class="author">@{{ this.vacancy.company_name}}</p>
           <p>{{ this.vacancy.created_at }}</p>
         </div>
         <div class="card-categories">
@@ -27,7 +27,14 @@
         </div>
         </router-link>
         <div class="row-group">
-          <button class="button-main" @click="editAction ()">Откликнуться</button>
+          <button
+            v-if="vacancy.responses.filter(user => user.id === this.$store.getters.getUser.id).length !== 0"
+            class="button-main button-main-active" disabled
+          >Отклик отправлен</button>
+          <button
+            v-else
+            class="button-main" @click="responseVacancy()"
+          >Откликнуться</button>
           <!-- <button class="button-favourite" @click="editAction ()">Добавить в избранное</button> -->
 
           <button v-if="vacancy.saved_users.filter(user => user.id === this.$store.getters.getUser.id).length !== 0" class="post-button post-button-active" @click="saveVacancy()">
@@ -83,9 +90,13 @@ export default {
     saved: null,
   }),
   methods: {
-    ...mapActions(['getSavedVacancy']),
+    ...mapActions(['getSavedVacancy', 'getResponsedVacancy']),
     async saveVacancy() {
       const vacancy = await this.getSavedVacancy(this.vacancy.id);
+      this.$emit('vacancyUpdated', vacancy, this.index);
+    },
+    async responseVacancy() {
+      const vacancy = await this.getResponsedVacancy(this.vacancy.id);
       this.$emit('vacancyUpdated', vacancy, this.index);
     }
   }

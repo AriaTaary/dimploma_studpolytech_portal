@@ -65,12 +65,36 @@ export default {
       },
       async createVacancy({ rootGetters }, formData) {
         let response = await api.createVacancy(rootGetters.getAuthToken, formData);
+        console.log(response);
         if (response.status === 201) {
-          return prepareDate.vacancy(response.data.data)
+          return response;
         }
         else {
           alert("Произошла ошибка");
           return response;
+        }
+      },
+      async updateVacancy({ rootGetters }, request) {
+        let response = await api.updateVacancy(rootGetters.getAuthToken, request.formData, request.id);
+        if (response.status === 200) {
+          return prepareDate.vacancy(response.data.data)
+        }
+        else {
+          alert("Произошла ошибка")
+        }
+      },
+      async getResponsedVacancy(
+        { rootGetters },
+        vacancy_id = null,
+      ) {
+        const response = await api.responseVacancy(rootGetters.getAuthToken, vacancy_id);
+
+        if (response.status === 200) {
+          alert("Ваш отклик отправлен");
+          return prepareDate.vacancy(response.data.data)
+        }
+        else {
+          alert("Произошла ошибка")
         }
       },
 

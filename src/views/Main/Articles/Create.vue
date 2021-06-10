@@ -118,6 +118,7 @@
 
 <script>
 import {mapActions} from 'vuex'
+import prepareDate from "@/helpers/prepareDate"
 
 export default {
   data: () => ({
@@ -146,14 +147,17 @@ export default {
       if (this.$refs.upload.uploadFiles.length !== 0 ){
         formData.append('image', this.$refs.upload.uploadFiles[0].raw);
       }
+
       const response = await this.createArticle(formData);
+      console.log(response);
       if (response.status === 400){
         this.errors = response.data.error.errors;
         this.loading = false;
       }
       if (response.status === 201){
+        const newResponse = prepareDate.article(response.data.data);
         alert('Данные успешно сохранены!');
-        this.$router.push({ name: 'ArticleView', params: { id: response.id } });
+        this.$router.push({ name: 'ArticleView', params: { id: newResponse.id } });
       }
     }
   },

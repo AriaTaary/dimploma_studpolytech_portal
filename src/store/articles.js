@@ -44,7 +44,7 @@ export default {
     async createArticle( { rootGetters }, formData) {
       let response = await api.createArticle(rootGetters.getAuthToken, formData);
       if (response.status === 201) {
-        return prepareDate.article(response.data.data)
+        return response;
       }
       else {
         alert("Произошла ошибка");

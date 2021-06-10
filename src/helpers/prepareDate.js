@@ -44,7 +44,6 @@ const prepare = {
     }
   },
   news(item) {
-    console.log(item);
     const categories = [];
 
     item.categories.forEach(
@@ -85,7 +84,7 @@ const prepare = {
 
     return {
       id: item.id,
-      author: item.company.name,
+      author: item.author,
       title: item.title,
       description: item.common_description,
       requirements_description: item.requirements_description,
@@ -94,6 +93,7 @@ const prepare = {
       needed_work_experience: item.needed_work_experience,
       work_schedule: item.work_schedule,
       city: item.city,
+      company_name: item.company_name,
       company_address: item.company_address,
       company_email: item.company_email,
       company_phone: item.company_phone,
@@ -102,6 +102,7 @@ const prepare = {
       categories: categories,
       saved: item.saved,
       saved_users: item.saved_users,
+      responses: item.responses,
       salary: item.salary
     };
   },

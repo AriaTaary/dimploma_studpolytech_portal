@@ -545,6 +545,13 @@ input:focus{
     border-radius: 5px;
 }
 
+.button-main-active{
+    background-color: #d5444bc5 !important; 
+    color: white;
+    border-radius: 5px;
+    cursor: default !important;
+}
+
 .mini-hover:hover{
     color: #D5444C;
     cursor: pointer;

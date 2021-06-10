@@ -21,6 +21,9 @@ export default {
     userVacancy(vacancy_id) {
       return 'user/vacancies/' + vacancy_id;
     },
+    responseVacancy(vacancy_id) {
+      return 'vacancies/' + vacancy_id + '/response'
+    },
     userFavourites: 'user/favourites',
     userLiked: 'user/liked',
     userSubscriptions: 'user/subscriptions',
@@ -241,13 +244,25 @@ export default {
     )
   },
 
-  async updateVcancy(authToken, formData, vacancy_id) {
+  async updateVacancy(authToken, formData, vacancy_id) {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.userVacancy(vacancy_id),
-        'post',
+        'put',
         formData,
         true,
+        authToken
+      )
+    )
+  },
+
+  async responseVacancy(authToken, vacancy_id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.responseVacancy(vacancy_id),
+        'post',
+        true,
+        {},
         authToken
       )
     )

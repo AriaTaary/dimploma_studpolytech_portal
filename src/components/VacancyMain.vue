@@ -1,22 +1,25 @@
 <template>
   <div class="vacancy-block">
     <div class="card-info-view">
-      <div class="content-title">
-        <div>
-            <div class="card-about-info">
-              <p class="author">@{{ this.vacancy.author}}</p>
-              <p>{{ this.vacancy.created_at }}</p>
-            </div>
-            <div class="card-categories">
-              <p
-              v-for="category in this.vacancy.categories"
-              :key='category.id'
-              class="mini-hover"
-              >
-                {{ category.name }}
-              </p>
-            </div>
-          </div>
+      <div class="card-about-info">
+        <div class="card-about-main-info">
+          <p class="author mini-hover">@{{ this.vacancy.company_name}}</p>
+          <p>{{ this.vacancy.created_at }}</p>
+        </div>
+        <div v-if="this.vacancy.author.id === this.$store.getters.getUser.id">
+          <router-link class="button-main"
+            :to="{ name: 'VacancyEdit'}
+            ">Редактировать</router-link>
+        </div>
+      </div>
+      <div class="card-categories">
+        <p
+        v-for="category in this.vacancy.categories"
+        :key='category.id'
+        class="mini-hover"
+        >
+          {{ category.name }}
+        </p>
       </div>
       <div class="card-main-info">
         <div class="card-main-info-title">
@@ -25,7 +28,14 @@
         </div>
         <p class="card-description not-main">Город: {{ this.vacancy.city }}</p>
         <div class="row-group">
-          <button class="button-main">Откликнуться</button>
+          <button
+            v-if="vacancy.responses.filter(user => user.id === this.$store.getters.getUser.id).length !== 0"
+            class="button-main button-main-active" disabled
+          >Отклик отправлен</button>
+          <button
+            v-else
+            class="button-main" @click="responseVacancy()"
+          >Откликнуться</button>
           <button v-if="vacancy.saved_users.filter(user => user.id === this.$store.getters.getUser.id).length !== 0" class="post-button post-button-active" @click="saveVacancy()">
             <div class="bookmarks">
               <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +86,14 @@
           </div>
         </div>
           <div class="row-group">
-          <button class="button-main">Откликнуться</button>
+          <button
+            v-if="vacancy.responses.filter(user => user.id === this.$store.getters.getUser.id).length !== 0"
+            class="button-main button-main-active" disabled
+          >Отклик отправлен</button>
+          <button
+            v-else
+            class="button-main" @click="responseVacancy()"
+          >Откликнуться</button>
           <button v-if="vacancy.saved_users.filter(user => user.id === this.$store.getters.getUser.id).length !== 0" class="post-button post-button-active" @click="saveVacancy()">
             <div class="bookmarks">
               <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,10 +130,14 @@ export default {
     schedules: Object,
   },
   methods: {
-    ...mapActions(['getSavedVacancy']),
+    ...mapActions(['getSavedVacancy', 'getResponsedVacancy']),
     async saveVacancy() {
       const vacancy = await this.getSavedVacancy(this.vacancy.id);
       this.$emit('vacancyUpdated', vacancy);
+    },
+    async responseVacancy() {
+      const vacancy = await this.getResponsedVacancy(this.vacancy.id);
+      this.$emit('vacancyUpdated', vacancy, this.index);
     }
   },
 }
