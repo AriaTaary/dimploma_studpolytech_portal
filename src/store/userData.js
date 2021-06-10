@@ -3,6 +3,48 @@ import prepareDate from "@/helpers/prepareDate";
 
 export default {
   actions: {
+    async getUser(
+      { rootGetters }
+    ) {
+      let response = await api.getUserData(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+
+        const userData = (prepareDate.user(response.data.data));
+
+        return userData;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getUserEducations(
+      { rootGetters }
+    ) {
+      let response = await api.getUserEducations(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+
+        const userEducations = (prepareDate.educations(response.data.data));
+
+        return userEducations;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getAllUserEducations(
+      { rootGetters }
+    ) {
+      let response = await api.getAllUserEducations(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+        return response.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
     async getUserArticles(
       { rootGetters }
     ) {

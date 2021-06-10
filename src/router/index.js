@@ -24,6 +24,7 @@ import ArticleEdit from '@/views/Main/Articles/Edit'
 import Personal from '@/views/Main/Profile/Personal'
 import Test from '@/views/Main/Profile/NewPersonal'
 import PersonalEdit from '@/views/Main/Profile/Edit'
+import PersonalEditEducation from '@/views/Main/Profile/EditEducation'
 import PersonalVacancies from '@/views/Main/Profile/Vacancies'
 import PersonalArticles from '@/views/Main/Profile/Articles'
 import PersonalSubscriptions from '@/views/Main/Profile/Subscriptions'
@@ -226,6 +227,16 @@ const routes = [
     component: PersonalEdit,
     meta: {
       title: 'Изменение данных аккаунта',
+      layout: 'personal',
+      block: blocks.personal
+    }
+  },
+  {
+    path: '/users/:username/edit/education',
+    name: 'PersonalEditEducation',
+    component: PersonalEditEducation,
+    meta: {
+      title: 'Изменение данных образования',
       layout: 'personal',
       block: blocks.personal
     }

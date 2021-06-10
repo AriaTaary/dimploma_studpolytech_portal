@@ -4,6 +4,9 @@
       <div class="content-nav">
         <div class="content-title">
           <h1>Мои вакансии</h1>
+          <router-link class="button-main"
+              :to="{ name: 'VacancyCreate'}
+          ">Создать</router-link>
         </div>
       </div>
       <div class="empty" v-if="this.count === 0">

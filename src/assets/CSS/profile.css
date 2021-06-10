@@ -449,6 +449,7 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
+    margin-right: 30px;
 }
 
 .avatar{
@@ -535,4 +536,54 @@
 .profile-settings-block-title{
     text-align: center;
     padding: 10px 0;
+}
+
+.column-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.label-title{
+    margin-bottom: 20px;
+}
+
+.link-profile{
+    color: rgb(0, 0, 0, 0.3) !important;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.link-profile-active{
+    color: black;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.profile-content-title{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.password-block{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 15px 30px 30px 30px;
+    box-sizing: border-box;
+    width: 45vw;
+    border-radius: 7px;
+}
+
+.column-group-profile .password-block .el-form-item {
+    width: 100%;
+}
+
+.password-label{
+    margin-top: 10px;
+    line-height: 40px;
+}
+
+.password-label-first{
+    line-height: 40px;
 }

@@ -8,7 +8,8 @@
         </div>
         <div v-if="this.vacancy.author.id === this.$store.getters.getUser.id">
           <router-link class="button-main"
-            :to="{ name: 'VacancyEdit'}
+            :to="{ name: 'VacancyEdit',
+            params: { id: this.vacancy.id } }
             ">Редактировать</router-link>
         </div>
       </div>
