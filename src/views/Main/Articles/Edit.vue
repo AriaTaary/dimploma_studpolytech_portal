@@ -110,7 +110,6 @@ export default {
   data: () => ({
     loading: true,
     searchText: '',
-    count: '',
     loading: true,
     categories: [],
     article:{

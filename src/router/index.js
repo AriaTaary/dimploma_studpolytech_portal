@@ -30,7 +30,6 @@ import PersonalSubscriptions from '@/views/Main/Profile/Subscriptions'
 import PersonalFavouriteArticles from '@/views/Main/Profile/Favourite/Articles'
 import PersonalFavouriteVacancies from '@/views/Main/Profile/Favourite/Vacancies'
 import PersonalLikedArticles from '@/views/Main/Profile/Liked/Articles'
-import PersonalLikedVacancies from '@/views/Main/Profile/Liked/Vacancies'
 
 import Admin from '@/views/Admin/Admin'
 
@@ -276,16 +275,6 @@ const routes = [
     component: PersonalLikedArticles,
     meta: {
       title: 'Понравившиеся статьи',
-      layout: 'personal',
-      block: blocks.personal
-    }
-  },
-  {
-    path: '/users/:username/liked/vacancies',
-    name: 'PersonalLikedVacancies',
-    component: PersonalLikedVacancies,
-    meta: {
-      title: 'Понравившиеся вакансии',
       layout: 'personal',
       block: blocks.personal
     }

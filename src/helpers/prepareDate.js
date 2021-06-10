@@ -21,7 +21,7 @@ const prepare = {
       title: item.title,
       cut: item.cut,
       text: item.text,
-      created_at: moment(item.created_at).format('llll'),
+      created_at: moment(item.created_at).format('ll'),
       categories: categories,
       views: item.views,
       rating: item.rating,

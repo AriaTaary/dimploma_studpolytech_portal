@@ -64,9 +64,8 @@ export default {
         let response = await api.getAllArticleCategories(rootGetters.getAuthToken)
 
         if (response.status === 200) {
-          this.count = response.data.data.length
 
-          if (this.count !== 0) {
+          if (response.data.data.length !== 0) {
             const parsedCategories = []
 
             response.data.data.forEach(function (category, key, categories) {

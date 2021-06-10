@@ -13,11 +13,12 @@
         <div v-if="loading" class="loading">
           <img src="/img/preloader.svg" alt="Загрузка данных">
         </div>
-        <VacancyMini
-          v-else
-          v-for="vacancy in this.vacancies"
-          :key='vacancy.id'
+        <VacancyBase
+          v-for="(vacancy,index) in this.vacancies"
+          :key='index'
           v-bind:vacancy="vacancy"
+          v-bind:index="index"
+          v-on:vacancyUpdated="updateVacancy"
         />
       </div>
     </div>
@@ -26,83 +27,34 @@
 
 <script>
 import moment from 'moment'
-import api from '@/network/api'
-import VacancyMini from '@/components/VacancyMini'
+import VacancyBase from '@/components/VacancyBase'
+import {mapActions} from 'vuex'
 
 moment.locale('ru')
 
 export default {
   components: {
-    VacancyMini
+    VacancyBase
   },
   data: () => ({
     loading: true,
-    search: '',
     count: '',
-    vacancy: [
-      {
-        id: '',
-        author: '',
-        title: '',
-        description: '',
-        created_at: '',
-        salary: '',
-        categories: [
-          {
-            id: '',
-            name: ''
-          }
-        ]
-      }
-    ]
+    vacancies: []
   }),
 
-  methods: {
-      editAction () {
-        this.$router.push({ name: 'PersonalEdit' })
-      }
+  methods:{
+    ...mapActions(['getUserVacancies']),
+    updateVacancy(vacancy, index){
+      this.loading = true;
+      this.vacancies[index] = vacancy;
+      this.loading = false;
+    }
   },
 
   async created () {
-    const response = await api.getUserVacancies(this.$store.getters.getAuthToken)
-
-    if (response.status === 200){
-      this.count = response.data.count
-
-      if (this.count !== 0){
-        const parsedVacancies = []
-
-        response.data.vacancies.forEach(function(vacancy, key, vacancies){
-          const categories = []
-
-          vacancy.categories.forEach(
-            function (category, categoryKey, categoriesArray){
-              categories.push(
-              {
-                slug: category.slug,
-                name: category.name
-              }
-            )}
-          )
-
-          parsedVacancies.push({
-            id: vacancy.id,
-            author: vacancy.company.name,
-            title: vacancy.title,
-            description: vacancy.description,
-            created_at: moment(vacancy.created_at).format('llll'),
-            categories: categories,
-            salary: vacancy.salary
-          })
-        })
-
-        this.vacancies = parsedVacancies
-        this.loading = false
-      }
-    }
-    else {
-      alert("Произошла ошибка")
-    }
+    this.vacancies = await this.getUserVacancies();
+    this.count = this.vacancies.length;
+    this.loading = false;
   }
 }
 

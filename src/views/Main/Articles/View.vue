@@ -160,7 +160,6 @@ export default {
   data: () => ({
     loading: true,
     searchText: '',
-    count: '',
     article:{
         id: '',
         author: '',

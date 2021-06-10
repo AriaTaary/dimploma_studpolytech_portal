@@ -267,7 +267,6 @@ export default {
 
   data: () => ({
     loading: true,
-    count: '',
     request: {
       sort: {
         date: null,
