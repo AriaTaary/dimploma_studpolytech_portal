@@ -15,7 +15,7 @@
       <div v-else class="profile-info">
         <div class="profile-main-info">
           <div class="profile-name-info">
-            <!-- <img :src="this.user.avatar"  alt="" class="profile-photo"> -->
+            <img :src="this.user.avatar"  alt="" class="profile-photo">
             <img src="/img/default_avatar.svg"  alt="" class="profile-photo">
             <div class="profile-data">
               <p>@{{ this.user.username }}</p>
@@ -26,9 +26,9 @@
             </div>
           </div>
           <div class="profile-active-info">
-              <!-- <div v-if="loading" class="mini_loading">
+              <div v-if="loading" class="mini_loading">
                 <img src="/img/preloader-mini.svg" alt="Загрузка данных">
-              </div> -->
+              </div>
               <div class="profile-active-info-block">
                 <div class=profile-active-info-item>
                   <p>Зарегестрирован:</p>
@@ -76,10 +76,10 @@
             <p>дата рождения</p>
           </div>
           <div class="personal-add-info">
-            <div class="personal-add-info-block">
+            <!-- <div class="personal-add-info-block">
               <h5>Специализация</h5>
               <p>{{ this.user.speciality }}</p>
-            </div>
+            </div> -->
             <div class="personal-add-info-block">
               <h5>Навыки</h5>
               <p>Vue.js, Javascript, Figma</p>
@@ -88,17 +88,17 @@
               <h5>Иностранные языки</h5>
               <p>Английский: B2</p>
             </div>
-            <div class="personal-add-info-block">
+            <!-- <div class="personal-add-info-block">
               <h5>Подписчики</h5>
               <p>{{ this.user.followers_count }}</p>
-            </div>
+            </div> -->
             <div class="personal-add-info-block">
               <h5>Опубликованные статьи</h5>
               <p>{{ this.user.article_count }}</p>
             </div>
             <div class="personal-add-info-block">
               <h5>Опубликованные вакансии</h5>
-              <p>{{ this.user.followers_count }}</p>
+              <p>{{ this.user.vacancy_count }}</p>
             </div>
           </div>
         </div>
@@ -154,6 +154,7 @@
 <script>
 import moment from 'moment'
 import api from '@/network/api'
+import {mapActions} from 'vuex'
 
 moment.locale('ru')
 
@@ -179,36 +180,17 @@ export default {
       vacancy_count: ''
     }
   }),
-
+  methods: {
+     ...mapActions(['getUser']),
+     setData(response){
+    this.user = response;
+    }
+  },
   async created () {
+    const response = await this.getUser();
+    this.setData(response);
 
-    const response = await api.getUserData(this.$store.getters.getAuthToken, '')
-
-    if (response.status === 200) {
-      const responseUser = response.data.data
-      console.log(responseUser)
-
-      console.log(responseUser);
-
-      this.user.username = responseUser.username
-      this.user.avatar = responseUser.avatar
-      console.log(this.user.avatar);
-      this.user.last_name = responseUser.last_name
-      this.user.first_name = responseUser.first_name
-      this.user.middle_name = responseUser.middle_name
-      this.user.faculty = responseUser.faculty
-      this.user.speciality = responseUser.speciality
-      this.user.key_skills = responseUser.key_skills
-      this.user.about = responseUser.about
-      this.user.created_at = moment(responseUser.created_at).format('ll')
-      this.user.date_birth = responseUser.date_birth
-      this.user.age = moment().diff(responseUser.date_birth, 'years')
-      this.user.followers_count = responseUser.followers.length
-      // this.loading = false
-    }
-    else {
-      alert("Произошла ошибка")
-    }
+    this.loading = false;
 
     const article_response = await api.getUserArticles(this.$store.getters.getAuthToken)
 

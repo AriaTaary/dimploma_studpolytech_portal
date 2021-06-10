@@ -13,6 +13,7 @@ export default {
     register: 'register',
     logout: 'logout',
     user: 'user',
+    userEducations: 'user/educations',
     userArticles: 'user/articles',
     userArticle(article_id){
       return 'user/articles/' + article_id;
@@ -27,6 +28,7 @@ export default {
     userFavourites: 'user/favourites',
     userLiked: 'user/liked',
     userSubscriptions: 'user/subscriptions',
+    educations: 'educations',
     users: 'users',
     vacancies: 'vacancies',
     vacanciesData: 'vacancies/data',
@@ -343,6 +345,30 @@ export default {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.user,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getUserEducations(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userEducations,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAllUserEducations(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.educations,
         'get',
         {},
         true,

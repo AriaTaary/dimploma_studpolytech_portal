@@ -1,6 +1,38 @@
 import moment from "moment";
 
 const prepare = {
+  user(item) {
+    return {
+      id: item.id,
+      username: item.username,
+      avatar: prepare.file(item.avatar),
+      last_name: item.last_name,
+      first_name: item.first_name,
+      middle_name: item.middle_name,
+      faculty: item.faculty,
+      speciality: item.speciality,
+      key_skills: item.key_skills,
+      about: item.about,
+      created_at: moment(item.created_at).format('ll'),
+      date_birth: item.date_birth
+    };
+  },
+  educations(item) {
+    return {
+      id: item.id,
+      username: item.username,
+      avatar: prepare.file(item.avatar),
+      last_name: item.last_name,
+      first_name: item.first_name,
+      middle_name: item.middle_name,
+      faculty: item.faculty,
+      speciality: item.speciality,
+      key_skills: item.key_skills,
+      about: item.about,
+      created_at: moment(item.created_at).format('ll'),
+      date_birth: item.date_birth
+    };
+  },
   article (item) {
     const categories = [];
 

@@ -1,7 +1,10 @@
 <template>
 <div class="content">
     <div class="container">
-      <div class="news-main">
+      <div v-if="loading" class="loading">
+        <img src="/img/preloader.svg" alt="Загрузка данных">
+      </div>
+      <div v-else class="news-main">
         <p class="news-main-date">{{ this.news.created_at }}</p>
         <h2 class="news-main-title">{{ this.news.title }}</h2>
         <img src="/img/news.jpeg" alt="">

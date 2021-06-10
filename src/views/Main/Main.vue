@@ -5,9 +5,9 @@
       <h1>СТУДЕНЧЕСКИЙ ПОРТАЛ</h1>
     </div>
     <div class="container">
-      <div class="content-nav">
+      <div class="content-main-nav">
         <div class="content-title">
-          <a href="">Все новости</a>
+          <h1>Все новости</h1>
           <!-- <a class="not-active-title" href="">Моя лента</a> -->
         </div>
         <div class="content-settings-main">
