@@ -142,10 +142,11 @@ export default {
     async deleteAction (index, row) {
       const result = await api.deleteUserDataFromAdmin(this.$store.getters.getAuthToken, row.id)
 
-      if (result.status === 200) {
+      if (result.status === 204) {
         this.loading = true
         const users = await api.getUsersInAdmin(this.$store.getters.getAuthToken)
-        this.users = users.data
+        this.users = users.data.data
+        alert('Данные успешно удалены.')
         this.loading = false
       } else {
         alert('При удалении данных произошла ошибка.')
@@ -163,7 +164,7 @@ export default {
       return null
     }
 
-    this.users = users.data
+    this.users = users.data.data
     const userArray = []
 
     this.users.forEach(function (user, key, users) {

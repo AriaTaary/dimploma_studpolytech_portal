@@ -112,7 +112,7 @@ export default {
   async created () {
     const categories = await api.getCategories(this.$store.getters.getAuthToken)
 
-    this.categories = categories.data
+    this.categories = categories.data.data
     this.loading = false
   }
 }

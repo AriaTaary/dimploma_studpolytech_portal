@@ -184,7 +184,7 @@ export default {
     const users = await api.getUserDataForEdit(this.$store.getters.getAuthToken, this.$route.params.id)
 
     if (users.status === 200) {
-      this.user = users.data
+      this.user = users.data.data
       this.loading = false
     }
   }

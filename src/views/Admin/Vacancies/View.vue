@@ -86,7 +86,7 @@ export default {
 
   async created () {
     const vacancy = await api.getVacancy(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.vacancy = vacancy.data
+    this.vacancy = vacancy.data.data
 
     this.loading = false
   }

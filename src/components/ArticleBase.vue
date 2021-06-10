@@ -15,11 +15,15 @@
     </div>
     <div class="card-main-info">
       <h2>{{ this.article.title }}</h2>
-      <img class="article-photo" src="/img/article-photo.png" alt="article-photo">
+      <img
+        class="article-photo"
+        v-bind:src="'data:image/' + this.article.image.content_type + ';base64,' + this.article.image.base64"
+        alt="article-photo"
+      >
       <p class="card-description-base">{{ this.article.cut }}</p>
       <div class="row-group">
         <router-link class="button-not-main"
-              :to="{ name: 'ViewArticle',
+              :to="{ name: 'ArticleView',
               params: { id: this.article.id } }
               ">Подробнее >></router-link>
       </div>
@@ -75,7 +79,6 @@
 
 <script>
 import moment from 'moment'
-import api from '@/network/api'
 import {mapActions} from 'vuex'
 moment.locale('ru')
 export default {

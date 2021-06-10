@@ -57,7 +57,7 @@ export default {
 
   async created () {
     const category = await api.getCategory(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.category = category.data
+    this.category = category.data.data
 
     this.loading = false
   },

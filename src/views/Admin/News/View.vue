@@ -94,7 +94,7 @@ export default {
 
   async created () {
     const news = await api.getNewsData(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.news = news.data
+    this.news = news.data.data
 
     this.loading = false
   }

@@ -5,126 +5,87 @@
         <div class="feed">
           <div class="vacancy-feed">
             <div class="vacancy-block edit-block">
-            <h1 class="vacancy-title">Редактирование вакансии</h1>
-            <el-form>
-              <div class="row-group row-group-profile">
+            <h1 class="vacancy-title">Редактирование статьи</h1>
+            <div v-if="loading" class="loading">
+              <img src="/img/preloader.svg" alt="Загрузка данных">
+            </div>
+            <el-form v-else>
                 <div>
+
                 <el-form-item prop="name">
                   <label class="required-label label" for="name">Название</label>
-                  <el-input id="name" type="text" class="input" placeholder="Введите название" ></el-input>
+                  <el-input id="name" type="text" class="input" :placeholder="this.article.title" v-model="formData.title"></el-input>
                 </el-form-item>
 
-                <!-- СДЕЛАТЬ СЕЛЕКТ С ГОРОДАМИ -->
-                <el-form-item prop="city">
-                  <label class="required-label label" for="city">Город</label>
-                  <el-input id="city" type="text" class="input" placeholder="Введите название" ></el-input>
+                <!-- <el-form-item prop="name">
+                  <label class="required-label label" for="name">Изображение</label>
+                  <el-input type="file" accept="image/jpeg, image/jpg, image/png, image/gif" v-model="formData.image"></el-input>
+                </el-form-item> -->
+
+                <el-form-item prop="image">
+                  <label class="required-label label" for="image">Изображение</label>
+                  <el-upload
+                    class="upload"
+                    ref="upload"
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    :auto-upload="false">
+                    <el-button slot="trigger" size="small" type="primary"><p class="button-text">Выберите файл</p></el-button>
+                    <div class="el-upload__tip" slot="tip">Поддерживаемые форматы: jpg/jpeg/png/gif</div>
+                  </el-upload>
                 </el-form-item>
 
-                <!-- ЕСЛИ МОСКВА, ТО -->
-                <el-form-item prop="metro">
-                  <label class="required-label label" for="metro">Станция метро(?)</label>
-                  <el-input id="metro" type="text" class="input" placeholder="Введите название" ></el-input>
-                </el-form-item>
-
-                <el-form-item prop="experience">
-                  <label class="required-label label" for="experience">Требуемый опыт работы</label>
-                  <el-select id="experience" v-model="value" placeholder="Выберите требуемый опыт работы">
-                    <el-option
-                      v-for="item in experience"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-
-                <el-form-item prop="employment">
-                  <label class="required-label label" for="employment">Тип занятости</label>
-                  <el-select id="employment" v-model="value" placeholder="Выберите тип занятости">
-                    <el-option
-                      v-for="item in employment"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-
-                <el-form-item prop="address">
-                  <label class="required-label label" for="address">Адрес</label>
-                  <el-input id="address" type="text" class="input" placeholder="Введите адрес" ></el-input>
-                </el-form-item>
-
-                <!-- ПОДУМАТЬ КАКИЕ ЕЩЕ КОНТАКТНЫЕ ДАННЫЕ МОГУТ БЫТЬ -->
-
-                <el-form-item prop="tel">
-                  <label class="label" for="tel">Телефон</label>
-                  <el-input id="tel" type="text" class="input" placeholder="Введите ваш телефон" ></el-input>
-                </el-form-item>
-
-                <el-form-item prop="email">
-                  <label class="label" for="email">E-mail</label>
-                  <el-input id="email" type="text" class="input" placeholder="Введите ваш e-mail" ></el-input>
-                </el-form-item>
-
-                <el-form-item prop="site">
-                  <label class="label" for="site">Сайт</label>
-                  <el-input id="site" type="text" class="input" placeholder="Введите ссылку на ваш сайт" ></el-input>
-                </el-form-item>
-
-                </div>
-
-                <div>
-                   <el-form-item prop="description">
-                  <label class="label" for="description">Описание</label>
+                <el-form-item prop="description">
+                  <label class="required-label label" for="description">Текст</label>
                   <el-input
                     id="description"
                     type="textarea"
-                    :rows="5"
-                    placeholder="Введите описание"
-                    v-model="textarea">
+                    :rows="10"
+                    :placeholder="this.article.text"
+                    v-model="formData.text"
+                    >
                   </el-input>
                 </el-form-item>
 
-                <!-- НАДО КАК-ТО ПЕРЕДАТЬ ДАННЫЕ ДЛЯ СПИСКА -->
-
-                <el-form-item prop="charge">
-                  <label class="label" for="charge">Обязанности</label>
+                <el-form-item prop="cut_description">
+                  <label class="required-label label" for="cut_description">Превью</label>
                   <el-input
-                    id="charge"
+                    id="cut_description"
                     type="textarea"
-                    :rows="5"
-                    placeholder="Введите обязанности"
-                    v-model="textarea">
+                    :rows="3"
+                    :placeholder="this.article.cut"
+                    v-model="formData.cut"
+                    >
                   </el-input>
                 </el-form-item>
 
-                <el-form-item prop="postulata">
-                  <label class="label" for="postulata">Требования</label>
-                  <el-input
-                    id="postulata"
-                    type="textarea"
-                    :rows="5"
-                    placeholder="Введите требования"
-                    v-model="textarea">
-                  </el-input>
+                <el-form-item prop="categories" class="input">
+                  <label class="label" for="categories">Категории статьи</label>
+                  <el-select
+                    class="input"
+                    id="categories"
+                    placeholder="Выберите"
+                    multiple
+                    v-model="formData.categories">
+                    <el-option
+                      class="input"
+                      v-for="category in categories"
+                      :key='category.id'
+                      :value='category.id'
+                      :label='category.name'
+                      >{{ category.name }}
+                    </el-option>
+                  </el-select>
                 </el-form-item>
 
-                <el-form-item prop="circumstances">
-                  <label class="label" for="circumstances">Условия</label>
-                  <el-input
-                    id="circumstances"
-                    type="textarea"
-                    :rows="5"
-                    placeholder="Введите условия"
-                    v-model="textarea">
-                  </el-input>
+                <el-form-item prop="site">
+                  <label class="label" for="site">Ссылка на источник</label>
+                  <el-input id="site" type="text" class="input" :placeholder="this.article.source" v-model="formData.source"></el-input>
                 </el-form-item>
+
                 </div>
-              </div>
 
               <el-form-item class="one-button-row-profile">
-                <el-button class="button-save" type="primary">Сохранить</el-button>
+                <el-button class="button-save" type="primary" @click="submit">Сохранить</el-button>
               </el-form-item>
 
               </el-form>
@@ -138,46 +99,94 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        experience: [{
-          value: 'Option1',
-          label: 'Не имеет значения'
-        }, {
-          value: 'Option2',
-          label: 'Нет опыта'
-        }, {
-          value: 'Option3',
-          label: 'Меньше 1 года'
-        }, {
-          value: 'Option4',
-          label: 'От 1 года до 3 лет'
-        }, {
-          value: 'Option5',
-          label: 'От 3 до 6 лет'
-        }, {
-          value: 'Option6',
-          label: 'Более 6 лет'
-        }],
-        value: '',
-        employment: [{
-          value: 'Option1',
-          label: 'Полная занятость'
-        }, {
-          value: 'Option2',
-          label: 'Частичная занятость'
-        }, {
-          value: 'Option3',
-          label: 'Проектная работа'
-        }, {
-          value: 'Option4',
-          label: 'Волонтерство'
-        }, {
-          value: 'Option5',
-          label: 'Стажировка'
-        }]
+import moment from 'moment'
+import api from '@/network/api'
+import prepareDate from "@/helpers/prepareDate"
+import {mapActions} from 'vuex'
+
+moment.locale('ru')
+
+export default {
+  data: () => ({
+    loading: true,
+    searchText: '',
+    count: '',
+    loading: true,
+    categories: [],
+    article:{
+        id: '',
+        author: '',
+        title: '',
+        cut: '',
+        text: '',
+        created_at: '',
+        categories: [
+          {
+            id: '',
+            name: ''
+          }
+        ],
+        views: '',
+        rating: '',
+        saved: ''
+      },
+    formData: {
+      categories: [],
+      title: '',
+      text: '',
+      cut: '',
+      source: '',
+      image: '',
+    },
+    request: {
+      formData: '',
+      id: '',
+    }
+  }),
+  methods:{
+    ...mapActions(['updateArticle','getCategories']),
+    async submit(){
+      this.loading = true;
+      const formData = new FormData();
+      formData.append('title', this.formData.title);
+      formData.append('text', this.formData.text);
+      formData.append('cut', this.formData.cut);
+      formData.append('source', this.formData.source);
+      formData.append('categories', this.formData.categories);
+      if (this.$refs.upload.uploadFiles.length !== 0){
+        formData.append('image', this.$refs.upload.uploadFiles[0].raw);
+      }
+      // console.log(formData);
+      this.request.formData = formData;
+      this.request.id = this.article.id;
+      const response = await this.updateArticle(this.request);
+      if (response) {
+        alert('Данные успешно сохранены!');
+        this.$router.push({ name: 'ArticleView', params: { id: response.id } });
       }
     }
+  },
+
+  async created () {
+    this.categories = await this.getCategories();
+
+    let response = await api.getMainArticle(this.$store.getters.getAuthToken, this.$route.params.id);
+    console.log(response);
+
+    if (response.status === 200){
+      this.article = prepareDate.article(response.data.data, this.$store.getters.getUser.id);
+      this.loading = false;
+      this.formData.categories = this.article.categories;
+      this.formData.title = this.article.title;
+      this.formData.text = this.article.text;
+      this.formData.cut = this.article.cut;
+      this.formData.source = this.article.source;
+      console.log(this.formData);
+    }
+    else {
+      alert("Произошла ошибка");
+    }
   }
+}
+
 </script>

@@ -9,10 +9,10 @@
             </div>
             <div class="feed-title-actions">
               <router-link class="button-main"
-              :to="{ name: 'CreateVacancy'}
+              :to="{ name: 'VacancyCreate'}
               ">Создать</router-link>
               <button class="search-button" type="submit"><img class="search" src="/img/search.svg"></button>
-              <input v-model="searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
+              <input v-model="request.searchText" @keyup.enter="search" @change="checkEmptySearch" class="input-search" placeholder="Поиск..." type="search">
             </div>
           </div>
           <div class="vacancies-feed">
@@ -38,7 +38,7 @@
                               <li class="filter_item">
                                   <div class="checkbox">
                                       <input type="checkbox" id="1" name="1">
-                                      <label for="1">Не имеет значения</label>
+                                      <label for="1">Менее 1 года</label>
                                   </div>
                               </li>
                               <li class="filter_item">
@@ -57,12 +57,6 @@
                                   <div class="checkbox">
                                       <input type="checkbox" id="1" name="1">
                                       <label for="1">Более 6 лет</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Нет опыта</label>
                                   </div>
                               </li>
                           </ul>
@@ -219,7 +213,19 @@
       </div>
       <div class="advisory">
         <div class="advisory-block">
-          <h4>Работодатели</h4>
+          <h4>Работодатели (пока не реализовано)</h4>
+          <div class="ad-vacancy">
+            <div class="ad-vacancy-info">
+                <p class="vacancy-employer">Название компании</p>
+                <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
+            </div>
+          </div>
+          <div class="ad-vacancy">
+            <div class="ad-vacancy-info">
+                <p class="vacancy-employer">Название компании</p>
+                <p class="vacancy-сount"><span class="pink">35</span> вакансий</p>
+            </div>
+          </div>
           <div class="ad-vacancy">
             <div class="ad-vacancy-info">
                 <p class="vacancy-employer">Название компании</p>
@@ -261,7 +267,6 @@ export default {
 
   data: () => ({
     loading: true,
-    searchText: '',
     count: '',
     request: {
       sort: {
@@ -285,13 +290,14 @@ export default {
     ...mapActions(['getVacancies']),
     async search () {
       this.loading = true;
-      this.vacancies = await this.getVacancies(this.searchText);
+      const response = await this.getVacancies(this.request);
+      this.setData(response);
       this.loading = false;
     },
     async checkEmptySearch () {
-      if (this.searchText.length === 0) {
+      if (this.request.searchText.length === 0) {
         this.loading = true;
-        this.vacancies = await this.getVacancies(this.searchText);
+        this.vacancies = await this.getVacancies(this.request);
         this.loading = false;
       }
     },

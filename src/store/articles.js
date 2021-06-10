@@ -1,5 +1,6 @@
 import api from '@/network/api'
 import prepareDate from "@/helpers/prepareDate"
+import prepare from '../helpers/prepareDate'
 
 export default {
   actions: {
@@ -35,6 +36,25 @@ export default {
             per_page: null,
           };
         }
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async createArticle( { rootGetters }, formData) {
+      let response = await api.createArticle(rootGetters.getAuthToken, formData);
+      if (response.status === 201) {
+        return prepareDate.article(response.data.data)
+      }
+      else {
+        alert("Произошла ошибка");
+        return response;
+      }
+    },
+    async updateArticle({ rootGetters }, request) {
+      let response = await api.updateArticle(rootGetters.getAuthToken, request.formData, request.id);
+      if (response.status === 200) {
+        return prepareDate.article(response.data.data)
       }
       else {
         alert("Произошла ошибка")

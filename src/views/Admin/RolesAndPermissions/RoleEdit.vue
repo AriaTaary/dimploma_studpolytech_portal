@@ -67,7 +67,7 @@ export default {
   },
   async created () {
     const role = await api.getRole(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.role = role.data
+    this.role = role.data.data
 
     this.loading = false
   }

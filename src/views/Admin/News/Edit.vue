@@ -26,6 +26,11 @@
             <el-input id="text" type="text" class="input" placeholder="Введите текст" v-model="news.text"></el-input>
           </el-form-item>
 
+          <el-form-item prop="name">
+            <label class="label" for="name">Изображение</label>
+            <el-input type="file" accept="image/jpeg" @change=uploadImage></el-input>
+          </el-form-item>
+
           <el-form-item prop="categories">
             <label class="label" for="categories">Категории</label>
               <el-select id="categories" class="form-item-select" placeholder="Выберите категории" multiple v-model="selectedCategories">
@@ -102,18 +107,18 @@ export default {
   }),
   async created () {
     const news = await api.getNewsData(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.news = news.data
+    this.news = news.data.data
 
     let defaultCategories = await api.getNewsCategories(this.$store.getters.getAuthToken)
     this.categories = []
-    for (const category of defaultCategories.data) {
+    for (const category of defaultCategories.data.data) {
       this.categories.push({
         id: category.id,
         name: category.name
       })
     }
 
-    for (const category of news.data.categories) {
+    for (const category of news.data.data.categories) {
       this.selectedCategories.push(category.id)
     }
 

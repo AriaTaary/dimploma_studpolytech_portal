@@ -1,8 +1,15 @@
 <template>
   <div class="main-card-info">
     <div class="card-about-info">
-      <p class="author mini-hover">@{{ this.article.author.username }}</p>
-      <p>{{ this.article.created_at }}</p>
+      <div class="card-about-main-info">
+        <p class="author mini-hover">@{{ this.article.author.username }}</p>
+        <p>{{ this.article.created_at }}</p>
+      </div>
+      <div v-if="this.article.author.id === this.$store.getters.getUser.id">
+        <router-link class="button-main"
+          :to="{ name: 'ArticleEdit'}
+          ">Редактировать</router-link>
+      </div>
     </div>
     <div class="card-categories">
       <p

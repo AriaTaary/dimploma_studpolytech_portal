@@ -636,9 +636,9 @@ input:focus{
 
 .admin{
     height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: row;  
+    box-sizing: border-box !important;
 }
 
 .admin-background{
@@ -923,4 +923,46 @@ input::-webkit-input-placeholder {
 
 .news_ratings{
     margin-bottom: 15px;
+}
+
+.el-upload__tip{
+    margin: 0 !important;
+    line-height: 12px;
+    padding-top: 5px;
+}
+
+.upload button{
+    background-color: #D5444C;
+    border: #D5444C;
+}
+
+.el-button :hover, .el-button--primary :hover, .el-button--small:hover{
+    background-color: #DF7274 !important;
+    border: #D37778 !important;
+}
+
+.el-button :active, .el-button--primary :active, .el-button--small:active{
+    background-color: #DF7274 !important;
+    border: #D37778 !important;
+}
+
+.el-button :focus, .el-button--primary :focus, .el-button--small:focus{
+    background-color: #DF7274 !important;
+    border: #D37778 !important;
+}
+
+/* .el-button :hover span, .el-button--primary span :hover, .el-button--small span :hover{
+    background-color: transparent !important;
+    border: none !important;
+} */
+
+
+/* .upload button :hover{
+    background-color: #d5444bc5 !important;
+    border: #d5444bc5 !important;
+} */
+
+.error-message{
+    color: #D5444C;
+    font-size: 12px;
 }

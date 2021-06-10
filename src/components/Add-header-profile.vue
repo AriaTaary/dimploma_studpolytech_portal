@@ -31,7 +31,7 @@ import {store} from '@/store'
         {title: 'Мои вакансии', component: { name: 'PersonalVacancies', params: { username: store.getters.getUser.username } }},
         {title: 'Избранное', component: { name: 'PersonalFavouriteArticles', params: { username: store.getters.getUser.username } }},
         {title: 'Понравившееся', component: { name: 'PersonalLikedArticles', params: { username: store.getters.getUser.username } }},
-        {title: 'Подписки', component: { name: 'PersonalSubscriptions', params: { username: store.getters.getUser.username } }}
+        // {title: 'Подписки', component: { name: 'PersonalSubscriptions', params: { username: store.getters.getUser.username } }}
       ]
     }),
 

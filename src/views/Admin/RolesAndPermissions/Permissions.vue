@@ -78,7 +78,7 @@ export default {
     const rolesAndPermissions = await api.getRolesAndPermissions(this.$store.getters.getAuthToken)
 
     if (rolesAndPermissions.status === 200) {
-      this.permissions = rolesAndPermissions.data.permissions
+      this.permissions = rolesAndPermissions.data.data.permissions
       this.loading = false
     }
   }

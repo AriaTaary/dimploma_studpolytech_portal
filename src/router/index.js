@@ -130,7 +130,7 @@ const routes = [
   },
   {
     path: '/vacancies/:id/view',
-    name: 'ViewVacancy',
+    name: 'VacancyView',
     component: VacancyView,
     meta: {
       title: 'Просмотр вакансии',
@@ -139,9 +139,8 @@ const routes = [
     }
   },
   {
-    // path: '/vacancies/:id/create',
     path: '/vacancies/create',
-    name: 'CreateVacancy',
+    name: 'VacancyCreate',
     component: VacancyCreate,
     meta: {
       title: 'Создание вакансии',
@@ -152,7 +151,7 @@ const routes = [
   {
     // path: '/vacancies/:id/edit',
     path: '/vacancies/edit',
-    name: 'EditVacancy',
+    name: 'VacancyEdit',
     component: VacancyEdit,
     meta: {
       title: 'Изменение вакансии',
@@ -172,7 +171,7 @@ const routes = [
   },
   {
     path: '/articles/:id/view',
-    name: 'ViewArticle',
+    name: 'ArticleView',
     component: ArticleView,
     meta: {
       title: 'Просмотр статьи',
@@ -183,7 +182,7 @@ const routes = [
   {
     // path: '/articles/:id/create',
     path: '/articles/create',
-    name: 'CreateArticle',
+    name: 'ArticleCreate',
     component: ArticleCreate,
     meta: {
       title: 'Создание статьи',
@@ -192,9 +191,8 @@ const routes = [
     }
   },
   {
-    // path: '/articles/:id/edit',
-    path: '/articles/edit',
-    name: 'EditArticle',
+    path: '/articles/:id/edit',
+    name: 'ArticleEdit',
     component: ArticleEdit,
     meta: {
       title: 'Изменение статьи',

@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 50px;
+    margin-bottom: 40px;
 }
 
 .advisory-block{
@@ -66,7 +67,11 @@
     border-bottom: 1px solid rgb(0, 0, 0, 0.1);
 }
 
-.ad-vacancy{
+.advisory-block h4:not(:first-child){
+    padding-top: 15px;
+}
+
+.ad-vacancy, .ad-article{
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -77,7 +82,7 @@
     margin-bottom: 10px;
 }
 
-.ad-vacancy-info{
+.ad-vacancy-info, .ad-article-info{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -87,8 +92,13 @@
     color: #D5444C;
 }
 
-.vacancy-employer, .vacancy-сount{
+.vacancy-employer, .vacancy-сount, .article-author, .article-count{
     color: black;
+}
+
+.ad-article-title{
+    color: black;
+    margin-bottom: 10px;
 }
 
 .button-favourite{

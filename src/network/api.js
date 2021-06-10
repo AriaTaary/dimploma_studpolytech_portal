@@ -14,16 +14,23 @@ export default {
     logout: 'logout',
     user: 'user',
     userArticles: 'user/articles',
+    userArticle(article_id){
+      return 'user/articles/' + article_id;
+    },
     userVacancies: 'user/vacancies',
+    userVacancy(vacancy_id) {
+      return 'user/vacancies/' + vacancy_id;
+    },
     userFavourites: 'user/favourites',
     userLiked: 'user/liked',
     userSubscriptions: 'user/subscriptions',
     users: 'users',
     vacancies: 'vacancies',
+    vacanciesData: 'vacancies/data',
     articles: 'articles',
     categories: 'categories',
     news: 'news',
-    newsCategories: 'news-categories'
+    newsCategories: 'news-categories',
   },
   adminRoutes: {
     user: 'users',
@@ -198,6 +205,54 @@ export default {
     )
   },
 
+  async getVacanciesData(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.vacanciesData,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async saveVacancy(authToken, id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.vacancies + '/' + id + '/favourite',
+        'post',
+        true,
+        {},
+        authToken
+      )
+    )
+  },
+
+  async createVacancy(authToken, formData) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userVacancies,
+        'post',
+        formData,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async updateVcancy(authToken, formData, vacancy_id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userVacancy(vacancy_id),
+        'post',
+        formData,
+        true,
+        authToken
+      )
+    )
+  },
+
   async getAllArticles(authToken, request = null) {
     const data = (request) ? {
       search: request.searchText,
@@ -287,6 +342,30 @@ export default {
         this.apiRoutes.userArticles,
         'get',
         {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async createArticle(authToken, formData) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userArticles,
+        'post',
+        formData,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async updateArticle(authToken, formData, article_id) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userArticle(article_id),
+        'post',
+        formData,
         true,
         authToken
       )

@@ -9,12 +9,30 @@
           <div class="vacancy-feed">
             <VacancyMain
               v-bind:vacancy="vacancy"
+              v-bind:employments="employments"
+              v-bind:experiences="experiences"
+              v-bind:schedules="schedules"
+              v-on:vacancyUpdated="updateVacancy"
             />
           </div>
         </div>
         <div class="advisory">
           <div class="advisory-block">
-            <h4>Похожие вакансии</h4>
+            <h4>Похожие вакансии (пока не реализовано)</h4>
+            <div class="ad-vacancy">
+              <p class="vacancy-name">Название вакансии</p>
+              <div class="ad-vacancy-info">
+                  <p class="vacancy-company">Название компании</p>
+                  <p class="vacancy-price">Сумма</p>
+              </div>
+            </div>
+            <div class="ad-vacancy">
+              <p class="vacancy-name">Название вакансии</p>
+              <div class="ad-vacancy-info">
+                  <p class="vacancy-company">Название компании</p>
+                  <p class="vacancy-price">Сумма</p>
+              </div>
+            </div>
             <div class="ad-vacancy">
               <p class="vacancy-name">Название вакансии</p>
               <div class="ad-vacancy-info">
@@ -48,6 +66,8 @@
 import moment from 'moment'
 import api from '@/network/api'
 import VacancyMain from '@/components/VacancyMain'
+import prepareDate from "@/helpers/prepareDate"
+import {mapActions} from 'vuex'
 
 moment.locale('ru')
 
@@ -60,25 +80,19 @@ export default {
     loading: true,
     search: '',
     count: '',
-    vacancy: {
-      id: '',
-      title: '',
-      description: '',
-      author: '',
-      created_at: '',
-      categories: [
-        {
-          id: '',
-          name: ''
-        }
-      ]
-    }
+    vacancy: {},
+    employments: {},
+    experiences: {},
+    schedules: {},
   }),
 
   methods: {
-      // editAction () {
-      //   this.$router.push({ name: 'VacancyEdit' })
-      // }
+    ...mapActions(['getVacanciesData']),
+    updateVacancy(vacancy){
+      this.loading = true;
+      this.vacancy = vacancy;
+      this.loading = false;
+    }
   },
 
   async created () {
@@ -86,19 +100,17 @@ export default {
     console.log(response);
 
     if (response.status === 200){
-      this.vacancy.id = response.data.data.id,
-      this.vacancy.author = response.data.data.company.name,
-      this.vacancy.title = response.data.data.title,
-      this.vacancy.description = response.data.data.description,
-      this.vacancy.created_at = moment(response.data.data.created_at).format('ll'),
-      this.vacancy.categories = response.data.data.categories,
-      this.vacancy.salary = response.data.data.salary,
-
-      this.loading = false
+      this.vacancy = prepareDate.vacancy(response.data.data, this.$store.getters.getUser.id);
     }
     else {
-      alert("Произошла ошибка")
+      alert("Произошла ошибка");
     }
+
+    const vacanciesData = await this.getVacanciesData();
+    this.employments = vacanciesData.employments;
+    this.experiences = vacanciesData.experiences;
+    this.schedules = vacanciesData.schedules;
+    this.loading = false;
   }
 }
 

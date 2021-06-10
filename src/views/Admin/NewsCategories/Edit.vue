@@ -57,7 +57,7 @@ export default {
 
   async created () {
     const newsCategory = await api.getNewsCategory(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.newsCategory = newsCategory.data
+    this.newsCategory = newsCategory.data.data
 
     this.loading = false
   },

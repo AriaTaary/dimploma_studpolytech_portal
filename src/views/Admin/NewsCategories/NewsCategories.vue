@@ -99,7 +99,7 @@ export default {
 
       const newsCategories = await api.getNewsCategories(this.$store.getters.getAuthToken)
 
-      this.newsCategories = newsCategories.data
+      this.newsCategories = newsCategories.data.data
       this.loading = false
     },
     formatDateTime (row, column) {
@@ -110,7 +110,7 @@ export default {
   async created () {
     const newsCategories = await api.getNewsCategories(this.$store.getters.getAuthToken)
 
-    this.newsCategories = newsCategories.data
+    this.newsCategories = newsCategories.data.data
     this.loading = false
   }
 }

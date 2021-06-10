@@ -9,122 +9,173 @@
             <el-form>
               <div class="row-group row-group-profile">
                 <div>
-                <el-form-item prop="name">
-                  <label class="required-label label" for="name">Название</label>
-                  <el-input id="name" type="text" class="input" placeholder="Введите название" ></el-input>
-                </el-form-item>
+                  <el-form-item prop="name">
+                    <label class="required-label label" for="name">Название</label>
+                    <el-input id="name" type="text" class="input" placeholder="Введите название" v-model="formData.title"></el-input>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('title')"
+                    >{{this.errors.title[0]}}</p>
+                  </el-form-item>
 
-                <!-- СДЕЛАТЬ СЕЛЕКТ С ГОРОДАМИ -->
-                <el-form-item prop="city">
-                  <label class="required-label label" for="city">Город</label>
-                  <el-input id="city" type="text" class="input" placeholder="Введите название" ></el-input>
-                </el-form-item>
+                  <el-form-item prop="city">
+                    <label class="required-label label" for="city">Город</label>
+                    <el-input id="city" type="text" class="input" placeholder="Введите название" v-model="formData.city"></el-input>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('city')"
+                    >{{this.errors.city[0]}}</p>
+                  </el-form-item>
 
-                <!-- ЕСЛИ МОСКВА, ТО -->
-                <el-form-item prop="metro">
-                  <label class="required-label label" for="metro">Станция метро(?)</label>
-                  <el-input id="metro" type="text" class="input" placeholder="Введите название" ></el-input>
-                </el-form-item>
+                  <el-form-item prop="experience">
+                    <label class="required-label label" for="experience">Требуемый опыт работы</label>
+                    <el-select id="experience" v-model="formData.needed_work_experience" placeholder="Выберите требуемый опыт работы">
+                      <el-option
+                        v-for="(experienceName, key) in experiences"
+                        :key="key"
+                        :label="experienceName"
+                        :value="key">
+                      </el-option>
+                    </el-select>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('needed_work_experience')"
+                    >{{this.errors.needed_work_experience[0]}}</p>
+                  </el-form-item>
 
-                <el-form-item prop="experience">
-                  <label class="required-label label" for="experience">Требуемый опыт работы</label>
-                  <el-select id="experience" v-model="value" placeholder="Выберите требуемый опыт работы">
-                    <el-option
-                      v-for="item in experience"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
+                  <el-form-item prop="employment">
+                    <label class="required-label label" for="employment">Тип занятости</label>
+                    <el-select id="employment" v-model="formData.employment_type" placeholder="Выберите тип занятости">
+                      <el-option
+                        v-for="(employmentName, key) in employments"
+                        :key="key"
+                        :label="employmentName"
+                        :value="key">
+                      </el-option>
+                    </el-select>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('employment_type')"
+                    >{{this.errors.employment_type[0]}}</p>
+                  </el-form-item>
 
-                <el-form-item prop="employment">
-                  <label class="required-label label" for="employment">Тип занятости</label>
-                  <el-select id="employment" v-model="value" placeholder="Выберите тип занятости">
-                    <el-option
-                      v-for="item in employment"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
+                  <el-form-item prop="employment">
+                    <label class="required-label label" for="employment">График работы</label>
+                    <el-select id="employment" v-model="formData.work_schedule" placeholder="Выберите тип занятости">
+                      <el-option
+                        v-for="(scheduleName, key) in schedules"
+                        :key="key"
+                        :label="scheduleName"
+                        :value="key">
+                      </el-option>
+                    </el-select>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('work_schedule')"
+                    >{{this.errors.work_schedule[0]}}</p>
+                  </el-form-item>
 
-                <el-form-item prop="address">
-                  <label class="required-label label" for="address">Адрес</label>
-                  <el-input id="address" type="text" class="input" placeholder="Введите адрес" ></el-input>
-                </el-form-item>
+                  <el-form-item prop="categories" class="input">
+                    <label class="label" for="categories">Категории вакансии</label>
+                    <el-select
+                      class="input"
+                      id="categories"
+                      placeholder="Выберите"
+                      multiple
+                      v-model="formData.categories">
+                      <el-option
+                        class="input"
+                        v-for="category in categories"
+                        :key='category.id'
+                        :value='category.id'
+                        :label='category.name'
+                        >{{ category.name }}
+                      </el-option>
+                    </el-select>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('categories')"
+                    >{{this.errors.categories[0]}}</p>
+                  </el-form-item>
 
-                <!-- ПОДУМАТЬ КАКИЕ ЕЩЕ КОНТАКТНЫЕ ДАННЫЕ МОГУТ БЫТЬ -->
+                  <el-form-item prop="address">
+                    <label class="required-label label" for="address">Адрес</label>
+                    <el-input id="address" type="text" class="input" placeholder="Введите адрес" v-model="formData.company_address"></el-input>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('company_address')"
+                    >{{this.errors.company_address[0]}}</p>
+                  </el-form-item>
 
-                <el-form-item prop="tel">
-                  <label class="label" for="tel">Телефон</label>
-                  <el-input id="tel" type="text" class="input" placeholder="Введите ваш телефон" ></el-input>
-                </el-form-item>
+                  <el-form-item prop="tel">
+                    <label class="label" for="tel">Телефон</label>
+                    <el-input id="tel" type="text" class="input" placeholder="Введите ваш телефон" v-model="formData.company_phone"></el-input>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('company_phone')"
+                    >{{this.errors.company_phone[0]}}</p>
+                  </el-form-item>
 
-                <el-form-item prop="email">
-                  <label class="label" for="email">E-mail</label>
-                  <el-input id="email" type="text" class="input" placeholder="Введите ваш e-mail" ></el-input>
-                </el-form-item>
+                  <el-form-item prop="email">
+                    <label class="label" for="email">E-mail</label>
+                    <el-input id="email" type="text" class="input" placeholder="Введите ваш e-mail" v-model="formData.company_email"></el-input>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('company_email')"
+                    >{{this.errors.company_email[0]}}</p>
+                  </el-form-item>
 
-                <el-form-item prop="site">
-                  <label class="label" for="site">Сайт</label>
-                  <el-input id="site" type="text" class="input" placeholder="Введите ссылку на ваш сайт" ></el-input>
-                </el-form-item>
-
+                  <el-form-item prop="site">
+                    <label class="label" for="site">Сайт</label>
+                    <el-input id="site" type="text" class="input" placeholder="Введите ссылку на ваш сайт" v-model="formData.company_site"></el-input>
+                    <p class="error-message"
+                    v-if="this.errors.hasOwnProperty('company_site')"
+                    >{{this.errors.site[0]}}</p>
+                  </el-form-item>
                 </div>
 
                 <div>
-                   <el-form-item prop="description">
-                  <label class="label" for="description">Описание</label>
+                  <el-form-item prop="description">
+                  <label class="required-label label" for="description">Описание</label>
                   <el-input
                     id="description"
                     type="textarea"
-                    :rows="5"
+                    :rows="10"
                     placeholder="Введите описание"
+                    v-model="formData.common_description"
                     >
                   </el-input>
-                </el-form-item>
-
-                <!-- НАДО КАК-ТО ПЕРЕДАТЬ ДАННЫЕ ДЛЯ СПИСКА -->
-
-                <el-form-item prop="charge">
-                  <label class="label" for="charge">Обязанности</label>
-                  <el-input
-                    id="charge"
-                    type="textarea"
-                    :rows="5"
-                    placeholder="Введите обязанности"
-                    >
-                  </el-input>
+                  <p class="error-message"
+                  v-if="this.errors.hasOwnProperty('comcommon_descriptionpany_site')"
+                  >{{this.errors.common_description[0]}}</p>
                 </el-form-item>
 
                 <el-form-item prop="postulata">
-                  <label class="label" for="postulata">Требования</label>
+                  <label class="required-label label" for="postulata">Требования</label>
                   <el-input
                     id="postulata"
                     type="textarea"
-                    :rows="5"
+                    :rows="10"
                     placeholder="Введите требования"
+                    v-model="formData.requirements_description"
                     >
                   </el-input>
+                  <p class="error-message"
+                  v-if="this.errors.hasOwnProperty('requirements_description')"
+                  >{{this.errors.requirements_description[0]}}</p>
                 </el-form-item>
 
                 <el-form-item prop="circumstances">
-                  <label class="label" for="circumstances">Условия</label>
+                  <label class="required-label label" for="circumstances">Условия</label>
                   <el-input
                     id="circumstances"
                     type="textarea"
-                    :rows="5"
+                    :rows="10"
                     placeholder="Введите условия"
+                    v-model="formData.condition_description"
                     >
                   </el-input>
+                  <p class="error-message"
+                  v-if="this.errors.hasOwnProperty('condition_description')"
+                  >{{this.errors.condition_description[0]}}</p>
                 </el-form-item>
+
                 </div>
               </div>
 
               <el-form-item class="one-button-row-profile">
-                <el-button class="button-save" type="primary">Сохранить</el-button>
+                <el-button class="button-save" type="primary" @click="submit">Создать</el-button>
               </el-form-item>
 
               </el-form>
@@ -138,64 +189,71 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 
-// const metroAPI = 'https://api.superjob.ru/2.0/suggest/town/4/metro/all/'
-
-  export default {
-    data() {
-      return {
-        experience: [{
-          value: 'Option1',
-          label: 'Не имеет значения'
-        }, {
-          value: 'Option2',
-          label: 'Нет опыта'
-        }, {
-          value: 'Option3',
-          label: 'Меньше 1 года'
-        }, {
-          value: 'Option4',
-          label: 'От 1 года до 3 лет'
-        }, {
-          value: 'Option5',
-          label: 'От 3 до 6 лет'
-        }, {
-          value: 'Option6',
-          label: 'Более 6 лет'
-        }],
-        value: '',
-        employment: [{
-          value: 'Option1',
-          label: 'Полная занятость'
-        }, {
-          value: 'Option2',
-          label: 'Частичная занятость'
-        }, {
-          value: 'Option3',
-          label: 'Проектная работа'
-        }, {
-          value: 'Option4',
-          label: 'Волонтерство'
-        }, {
-          value: 'Option5',
-          label: 'Стажировка'
-        }]
-      }
+export default {
+  data: () => ({
+    categories: [],
+    loading: true,
+    errors: {},
+    employments: {},
+    experiences: {},
+    schedules: {},
+    formData: {
+      title: '',
+      city: '',
+      needed_work_experience: '',
+      employment_type: '',
+      work_schedule: '',
+      categories: [],
+      company_address: '',
+      common_description: '',
+      requirements_description: '',
+      condition_description: '',
+      company_phone: '',
+      company_email: '',
+      company_site: '',
+      company_id: '',
     },
-    // methods: {
-    //    getJson(url) {
-    //         return fetch(url)
-    //             .then(result => result.json())
-    //             .catch(error => {
-    //                 console.log(error)
-    //             })
-    //     }
-    // },
-    // mounted() {
-    //   this.getJson(`${metroAPI}`)
-    //         .then(data => {
-    //           console.log(data)
-    //         });
-    // },
-  }
+  }),
+  methods:{
+    ...mapActions(['createVacancy','getCategories', 'getVacanciesData']),
+    async submit(){
+      this.loading = true;
+      // const formData = new FormData();
+      // formData.append('title', this.formData.title);
+      // formData.append('city', this.formData.city);
+      // formData.append('needed_work_experience', this.formData.needed_work_experience);
+      // formData.append('employment_type', this.formData.employment_type);
+      // formData.append('work_schedule', this.formData.work_schedule);
+      // formData.append('categories', this.formData.categories);
+      // formData.append('company_address', this.formData.company_address);
+      // formData.append('common_description', this.formData.common_description);
+      // formData.append('requirements_description', this.formData.requirements_description);
+      // formData.append('condition_description', this.formData.condition_description);
+      // formData.append('company_phone', this.formData.company_phone);
+      // formData.append('company_email', this.formData.company_email);
+      // formData.append('company_site', this.formData.company_site);
+      // formData.append('company_id', this.formData.company_id);
+      const response = await this.createVacancy(this.formData);
+      if (response.status === 400){
+        this.errors = response.data.error.errors;
+        this.loading = false;
+      }
+      // if (response.status){
+      //   alert('Данные успешно сохранены!');
+      //   this.$router.push({ name: 'VacancyView', params: { id: response.id } });
+      // }
+    }
+  },
+  async created () {
+    this.categories = await this.getCategories();
+    this.loading = false;
+    const vacanciesData = await this.getVacanciesData();
+    this.employments = vacanciesData.employments;
+    this.experiences = vacanciesData.experiences;
+    this.schedules = vacanciesData.schedules;
+    this.loading = false;
+  },
+}
 </script>

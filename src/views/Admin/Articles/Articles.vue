@@ -124,14 +124,17 @@ export default {
       this.$router.push({ name: 'ViewArticle', params: { id: row.id } })
     },
     async deleteAction (index, row) {
-      await api.deleteAdminArticle(this.$store.getters.getAuthToken, row.id)
+      const result = await api.deleteAdminArticle(this.$store.getters.getAuthToken, row.id)
 
-      this.loading = true
-
-      const articles = await api.getArticles(this.$store.getters.getAuthToken)
-
-      this.articles = articles.data
-      this.loading = false
+      if (result.status === 204) {
+        this.loading = true
+        const articles = await api.getArticles(this.$store.getters.getAuthToken)
+        this.articles = articles.data.data
+        alert('Данные успешно удалены.')
+        this.loading = false
+      } else {
+        alert('При удалении данных произошла ошибка.')
+      }
     },
     formatDateTime (row, column) {
       return moment(column).format('LL')
@@ -141,7 +144,7 @@ export default {
   async created () {
     const articles = await api.getArticles(this.$store.getters.getAuthToken)
 
-    this.articles = articles.data
+    this.articles = articles.data.data
     this.loading = false
   }
 }

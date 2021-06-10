@@ -114,24 +114,27 @@ export default {
       this.$router.push({ name: 'ViewNews', params: { id: row.id } })
     },
     async deleteAction (index, row) {
-      await api.deleteAdminNews(this.$store.getters.getAuthToken, row.id)
+      const result = await api.deleteAdminNews(this.$store.getters.getAuthToken, row.id);
 
-      this.loading = true
-
-      const news = await api.getNews(this.$store.getters.getAuthToken)
-
-      this.news = news.data
-      this.loading = false
+      if (result.status === 204) {
+          this.loading = true
+          const news = await api.getNews(this.$store.getters.getAuthToken)
+          this.news = news.data.data
+          alert('Данные успешно удалены.')
+          this.loading = false
+      } else {
+        alert('При удалении данных произошла ошибка.')
+      }
     },
     formatDateTime (row, column) {
       return moment(column).format('LLL')
-    }
+    },
   },
 
   async created () {
     const news = await api.getNews(this.$store.getters.getAuthToken)
 
-    this.news = news.data
+    this.news = news.data.data
     this.loading = false
   }
 }

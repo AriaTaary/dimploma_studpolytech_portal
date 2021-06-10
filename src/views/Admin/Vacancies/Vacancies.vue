@@ -136,14 +136,17 @@ export default {
       this.$router.push({ name: 'ViewVacancy', params: { id: row.id } })
     },
     async deleteAction (index, row) {
-      await api.deleteAdminVacancy(this.$store.getters.getAuthToken, row.id)
+      const result = await api.deleteAdminVacancy(this.$store.getters.getAuthToken, row.id)
 
+      if (result.status === 204) {
       this.loading = true
-
       const vacancies = await api.getVacancies(this.$store.getters.getAuthToken)
-
-      this.vacancies = vacancies.data
+      this.vacancies = vacancies.data.data
+      alert('Данные успешно удалены.')
       this.loading = false
+      } else {
+        alert('При удалении данных произошла ошибка.')
+      }
     },
     formatDateTime (row, column) {
       return moment(column).format('LL')
@@ -153,7 +156,7 @@ export default {
   async created () {
     const vacancies = await api.getVacancies(this.$store.getters.getAuthToken)
 
-    this.vacancies = vacancies.data
+    this.vacancies = vacancies.data.data
     this.loading = false
   }
 }
