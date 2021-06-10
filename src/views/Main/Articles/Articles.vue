@@ -22,11 +22,11 @@
             </div>
             <div v-else>
               <div v-if="this.articles.length === 0">
-                <p>Ничего не найдено</p>
+                <p class="page-error">Ничего не найдено</p>
               </div>
               <div v-else>
                 <div class="articles-content-settings">
-                  <details v-if="this.categories.length != 0" class="filter" @click="openCloseFilterSort()">
+                  <details class="filter" @click="openCloseFilterSort()">
                       <summary>
                           <div class="filter_block">
                               <p>Фильтровать</p>
@@ -35,7 +35,8 @@
                       <div class="filter_box">
                       <details class="filter-part">
                           <summary class="filter-title">По категории</summary>
-                          <ul class="filter_list">
+                          <p v-if="this.categories.length === 0" class="filter-error">Нет доступных категорий</p>
+                          <ul v-else class="filter_list">
                               <li class="filter_item"
                                   v-for="category in this.categories"
                                   :key='category.id'>

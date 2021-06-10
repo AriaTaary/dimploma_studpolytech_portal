@@ -21,7 +21,7 @@
             </div>
             <div v-else>
               <div v-if="this.vacancies.length === 0">
-                <p>Ничего не найдено</p>
+                <p class="page-error">Ничего не найдено</p>
               </div>
               <div v-else>
                 <div class="vacancies-content-settings">

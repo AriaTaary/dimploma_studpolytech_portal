@@ -102,27 +102,29 @@
       </div>
       <div v-else>
         <div v-if="this.news.length === 0">
-          <p>Ничего не найдено</p>
+          <p class="page-error">Ничего не найдено</p>
         </div>
-        <div class="daily-news">
-          <NewsMini
-            v-for="item in this.news"
-            :key='item.id'
-            v-bind:item="item"
-          />
-        </div>
-        <div class="pagination">
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            :total="this.total"
-            :page-size="this.per_page"
-            :current-page="this.current_page"
-            @current-change="changePage"
-            @prev-click="changePage"
-            @next-click="changePage"
-            >
-          </el-pagination>
+        <div v-else>
+          <div class="daily-news">
+            <NewsMini
+              v-for="item in this.news"
+              :key='item.id'
+              v-bind:item="item"
+            />
+          </div>
+            <div class="pagination">
+            <el-pagination
+              background
+              layout="prev, pager, next"
+              :total="this.total"
+              :page-size="this.per_page"
+              :current-page="this.current_page"
+              @current-change="changePage"
+              @prev-click="changePage"
+              @next-click="changePage"
+              >
+            </el-pagination>
+          </div>
         </div>
       </div>
     </div>
