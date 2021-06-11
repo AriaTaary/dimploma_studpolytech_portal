@@ -29,6 +29,7 @@ export default {
     userLiked: 'user/liked',
     userSubscriptions: 'user/subscriptions',
     educations: 'educations',
+    languages: 'languages',
     users: 'users',
     vacancies: 'vacancies',
     vacanciesData: 'vacancies/data',
@@ -353,10 +354,35 @@ export default {
     )
   },
 
+  async updateUserData(authToken, formData) {
+
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.user,
+        'post',
+        formData,
+        true,
+        authToken
+      )
+    )
+  },
+
   async getUserEducations(authToken) {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.userEducations,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAllUserLanguages(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.languages,
         'get',
         {},
         true,
@@ -479,18 +505,6 @@ export default {
         this.apiRoutes.users + '/' + userId + '/roles',
         'get',
         {},
-        true,
-        authToken
-      )
-    )
-  },
-
-  async updateUserData (authToken, userData) {
-    return this.prepareResponse(
-      this.execute(
-        this.apiRoutes.user + '/' + userData.id,
-        'put',
-        userData,
         true,
         authToken
       )

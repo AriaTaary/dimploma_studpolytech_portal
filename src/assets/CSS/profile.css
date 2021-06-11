@@ -494,6 +494,12 @@
 
 .personal-add-info-block h5{
     font-weight: 500;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.personal-add-info-block h4{
+    font-weight: 500;
     margin-bottom: 10px;
 }
 

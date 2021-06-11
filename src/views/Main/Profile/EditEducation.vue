@@ -107,6 +107,7 @@
                 <label class="label" for="mag-grade">Курс</label>
                 <el-select id="mag-grade" placeholder="Выберите"
                   v-model="formData.secondEducation.grade">
+                  <el-option value="null" label="-">-</el-option>
                   <el-option
                     v-for="(gradeName, key) in this.educations.magGrades"
                     :key="key"
@@ -295,6 +296,7 @@ export default {
 
 
     const userEducation = await this.getUserEducations();
+    console.log()
     // console.log(userEducation.first_education.education_type);
     // this.userEducation
 
@@ -312,7 +314,7 @@ export default {
     else {
       this.formData.firstEducation = {
         // education_type: userEducation.first_education.education_type,
-        education_type: 'magistratura',
+        education_type: 'bakalavriat',
         university: userEducation.first_education.university,
         faculty: userEducation.first_education.faculty,
         speciality: userEducation.first_education.speciality,
@@ -324,7 +326,7 @@ export default {
 
     if (userEducation.second_education === null){
       this.formData.secondEducation = {
-        education_type: '',
+        education_type: 'magistratura',
         university: '',
         faculty: '',
         speciality: '',
@@ -336,7 +338,7 @@ export default {
     else {
       this.formData.secondEducation = {
         // education_type: userEducation.second_education.education_type,
-        education_type: 'bakalavriat',
+        education_type: 'magistratura',
         university: userEducation.second_education.university,
         faculty: userEducation.second_education.faculty,
         speciality: userEducation.second_education.speciality,

@@ -154,7 +154,7 @@
                             </el-option>
                           </el-select>
                         </div>
-                        <div class="sort-part">
+                        <!-- <div class="sort-part">
                           <label class="sort-label" for="experience">По требуемому опыту</label>
                           <el-select v-model="request.sort.experience" id="experience" placeholder="Выберите">
                             <el-option value="" label="-">-
@@ -164,7 +164,7 @@
                             <el-option value="desc">От наименьшего к наибольшему
                             </el-option>
                           </el-select>
-                        </div>
+                        </div> -->
                         <div class="sort-part">
                           <label class="sort-label" for="payment">По оплате</label>
                           <el-select v-model="request.sort.payment" id="payment" placeholder="Выберите">
@@ -375,6 +375,7 @@ export default {
       this.current_page = response.current_page;
       this.total = response.total;
       this.per_page = response.per_page;
+      console.log(this.vacancies);
     }
   },
 

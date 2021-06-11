@@ -74,39 +74,56 @@
               <!-- <img class="user" src="/img/main-cover-new.png" alt="students"> -->
               <img class="plug" src="/img/avatar.svg" alt="">
             </div>
-            <h3 class="profile-name">{{ this.user.first_name + ' ' + this.user.last_name}}</h3>
+            <h3 class="profile-name">{{ this.user.last_name + ' ' + this.user.first_name}}</h3>
+            <h3 class="profile-name" v-if="this.user.middle_name !== null">{{ this.user.middle_name}}</h3>
             <p class="profile-username">@{{ this.user.username }}</p>
-            <p>дата рождения</p>
+            <p v-if="this.user.date_birth !== null">Дата рождения: {{ this.user.date_birth }}</p>
           </div>
           <div class="personal-add-info">
             <!-- <div class="personal-add-info-block">
               <h5>Специализация</h5>
               <p>{{ this.user.speciality }}</p>
             </div> -->
-            <div class="personal-add-info-block">
-              <h5>Навыки</h5>
-              <p>Vue.js, Javascript, Figma</p>
+            <div class="personal-add-info-block"
+              v-if="this.user.phone !== null"
+            >
+              <h4>Телефон</h4>
+              <p>{{ this.user.phone }}</p>
             </div>
-            <div class="personal-add-info-block">
-              <h5>Иностранные языки</h5>
-              <p>Английский: B2</p>
+            <div class="personal-add-info-block"
+              v-if="this.user.email !== null"
+            >
+              <h4>Email</h4>
+              <p>{{ this.user.email }}</p>
+            </div>
+            <div class="personal-add-info-block"
+              v-if="this.user.key_skills !== null"
+            >
+              <h4>Навыки</h4>
+              <p>{{ this.user.key_skills }}</p>
+            </div>
+            <div class="personal-add-info-block"
+              v-if="this.user.language !== null"
+            >
+              <h4>Иностранные языки</h4>
+              <p>{{ this.user.language + ' ' + this.user.language_level }}</p>
             </div>
             <!-- <div class="personal-add-info-block">
               <h5>Подписчики</h5>
               <p>{{ this.user.followers_count }}</p>
             </div> -->
             <div class="personal-add-info-block">
-              <h5>Опубликованные статьи</h5>
+              <h4>Опубликованные статьи</h4>
               <!-- <p>{{ this.user.article_count }}</p> -->
             </div>
             <div class="personal-add-info-block">
-              <h5>Опубликованные вакансии</h5>
+              <h4>Опубликованные вакансии</h4>
               <!-- <p>{{ this.user.vacancy_count }}</p> -->
             </div>
           </div>
         </div>
         <div class="personal-add">
-          <div class="personal-education">
+          <div v-if="this.user.about !== null" class="personal-education">
             <div class="personal-add-info-block">
               <h5>О себе</h5>
             </div>
@@ -114,52 +131,47 @@
               <p>{{this.user.about}}</p>
             </div>
           </div>
-          <h2 class="personal-education-title">Образование</h2>
-          <div v-if="this.userEducation.first_education !== null" class="personal-education">
-            <div class="personal-add-info-block">
-              <h5>{{this.userEducation.first_education.education_type}}</h5>
-              <p class="profile-education-info">Университет: {{this.userEducation.first_education.university}}</p>
-              <p class="profile-education-info">Факультет: {{this.userEducation.first_education.faculty}}</p>
-              <p class="profile-education-info">Направление: {{this.userEducation.first_education.speciality}}</p>
-              <p class="profile-education-info">Курс: {{this.userEducation.first_education.grade}}</p>
-              <p class="profile-education-info">Год окончания: {{this.userEducation.first_education.date_end}}</p>
+          <div v-if="this.userEducation.first_education !== null || this.userEducation.second_education !== null || this.userEducation.courses !== null">
+            <h2 class="personal-education-title">Образование</h2>
+            <div v-if="this.userEducation.first_education !== null" class="personal-education">
+              <div class="personal-add-info-block">
+                <h5 class="pink">{{this.userEducation.first_education.education_type}}</h5>
+                <p class="profile-education-info">Университет: {{this.userEducation.first_education.university}}</p>
+                <p class="profile-education-info">Факультет: {{this.userEducation.first_education.faculty}}</p>
+                <p class="profile-education-info">Направление: {{this.userEducation.first_education.speciality}}</p>
+                <p class="profile-education-info">Курс: {{this.userEducation.first_education.grade}}</p>
+                <p class="profile-education-info">Год окончания: {{this.userEducation.first_education.date_end}}</p>
+              </div>
+              <div class="personal-add-info-block">
+                <h4>Проекты, выполненные в процессе обучения</h4>
+                <p>{{this.userEducation.first_education.projects}}</p>
+              </div>
             </div>
-            <div class="personal-add-info-block">
-              <h5>Проекты, выполненные в процессе обучения</h5>
-               <p>{{this.userEducation.first_education.projects}}</p>
+            <div v-if="this.userEducation.second_education !== null" class="personal-education">
+              <div class="personal-add-info-block">
+                <h5 class="pink">Магистратура</h5>
+                <p class="profile-education-info">Университет: {{this.userEducation.second_education.university}}</p>
+                <p class="profile-education-info">Факультет: {{this.userEducation.second_education.faculty}}</p>
+                <p class="profile-education-info">Направление: {{this.userEducation.second_education.speciality}}</p>
+                <p class="profile-education-info">Курс: {{this.userEducation.second_education.grade}}</p>
+                <p class="profile-education-info">Год окончания: {{this.userEducation.second_education.date_end}}</p>
+              </div>
+              <div class="personal-add-info-block">
+                <h4>Проекты, выполненные в процессе обучения</h4>
+                <p>{{this.userEducation.second_education.projects}}</p>
+              </div>
             </div>
-          </div>
-          <div v-if="this.userEducation.second_education !== null" class="personal-education">
-            <div class="personal-add-info-block">
-              <h5>Магистратура</h5>
-              <p>Информатика и вычислительная техника, веб-технологии, 4 курс</p>
-            </div>
-            <div class="personal-add-info-block">
-              <h5>Проекты, выполненные в процессе обучения</h5>
-              <ul class="personal-list">
-                <li>Politech:One - сайт гоночной команды</li>
-                <li>HelpTense - сервис для изучения неправильных глаголов английского языка</li>
-                <li>Интернет-магазин OneClick</li>
-                <li>TeamPro - сайт для компании</li>
-                <li>Студенческий портал Московского Политеха</li>
-              </ul>
-            </div>
-          </div>
-          <div v-if="this.userEducation.courses !== null" class="personal-education">
-            <div class="personal-add-info-block">
-              <h5>Курсы повышения квалификации</h5>
-              <p>GeekBrains</p>
-              <p>Frontend-разработчик</p>
-            </div>
-            <div class="personal-add-info-block">
-              <h5>Проекты, выполненные в процессе обучения</h5>
-              <ul class="personal-list">
-                <li>Politech:One - сайт гоночной команды</li>
-                <li>HelpTense - сервис для изучения неправильных глаголов английского языка</li>
-                <li>Интернет-магазин OneClick</li>
-                <li>TeamPro - сайт для компании</li>
-                <li>Студенческий портал Московского Политеха</li>
-              </ul>
+            <div v-if="this.userEducation.courses !== null" class="personal-education">
+              <div class="personal-add-info-block">
+                <h5 class="pink">Курсы повышения квалификации</h5>
+                <p class="profile-education-info">Образовательное учреждение: {{this.userEducation.courses.university}}</p>
+                <p class="profile-education-info">Направление: {{this.userEducation.courses.faculty}}</p>
+                <p class="profile-education-info">Год окончания: {{this.userEducation.courses.date_end}}</p>
+              </div>
+              <div class="personal-add-info-block">
+                <h4>Проекты, выполненные в процессе обучения</h4>
+                <p>{{this.userEducation.courses.projects}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -180,6 +192,7 @@ export default {
     loading: true,
     mini_loading: true,
     search: '',
+    languages: {},
     user: {
       username: '',
       avatar: '',
@@ -197,9 +210,10 @@ export default {
       vacancy_count: ''
     },
     userEducation: '',
+    educations: '',
   }),
   methods: {
-     ...mapActions(['getUser', 'getUserEducations']),
+     ...mapActions(['getUser', 'getUserEducations', 'getAllUserEducations', 'getAllUserLanguages']),
      setData(response){
     this.user = response;
     }
@@ -207,6 +221,18 @@ export default {
   async created () {
     const response = await this.getUser();
     this.setData(response);
+
+    //получение пользовательского языка
+    this.languages = await this.getAllUserLanguages();
+    var userLanguage = this.user.language;
+
+    for (var key in this.languages.languages){
+      if (key === userLanguage){
+        userLanguage = this.languages.languages[key];
+      }
+    }
+    this.user.language =  userLanguage;
+    //получение пользовательского языка
 
     // const article_response = await api.getUserArticles(this.$store.getters.getAuthToken)
 
@@ -227,8 +253,21 @@ export default {
     //   alert("Произошла ошибка")
     // }
 
+
+    this.educations = await this.getAllUserEducations();
     this.userEducation = await this.getUserEducations();
-    console.log( this.userEducation);
+
+    // код для получения названия первого образования (бакалавриат/специалитет)
+    var userEducationType = this.userEducation.first_education.education_type;
+
+    for (var key in this.educations.education_types){
+      if (key === userEducationType){
+        userEducationType = this.educations.education_types[key];
+      }
+    }
+
+    this.userEducation.first_education.education_type = userEducationType;
+    // код для получения названия первого образования (бакалавриат/специалитет)
 
     this.loading = false;
   }

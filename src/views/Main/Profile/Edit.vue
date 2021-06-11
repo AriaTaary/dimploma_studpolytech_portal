@@ -20,7 +20,7 @@
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
 
-      <el-form v-else ref="user" :model="user" :rules="rules">
+      <el-form v-else>
         <div class="row-group row-group-profile">
 
          <div class="column-group-profile">
@@ -51,7 +51,6 @@
               id="date_birth"
               type="date"
               placeholder="Когда вы родились?"
-              :picker-options="pickerOptions"
               format="dd.MM.yyyy"
               value-format="yyyy-MM-dd"
               v-model="user.date_birth"
@@ -61,33 +60,26 @@
 
           <el-form-item prop="tel">
             <label class="label" for="tel">Телефон</label>
-            <el-input type="text" id="tel" class="input" placeholder="Введите телефон" v-model="user.about"></el-input>
+            <el-input type="text" id="tel" class="input" placeholder="Введите телефон" v-model="user.phone"></el-input>
           </el-form-item>
 
-          <p class="password-label" for="password-block">Изменить пароль</p>
-          <div class="password-block" id="password-block">
-            <el-form-item prop="password">
-              <label class="password-label-first" for="password">Старый пароль</label>
-              <el-input type="password"  id="password"  class="input" placeholder="Введите старый пароль" v-model="user.about"></el-input>
-            </el-form-item>
+          <el-form-item prop="email">
+            <label class="label" for="email">E-mail</label>
+            <el-input type="text" id="email" class="input" placeholder="Введите телефон" v-model="user.email"></el-input>
+          </el-form-item>
 
-            <el-form-item prop="password">
-              <label class="label" for="password">Новый пароль</label>
-              <el-input type="password"  id="password"  class="input" placeholder="Введите новый пароль" v-model="user.about"></el-input>
-            </el-form-item>
-
-            <el-form-item prop="password">
-              <label class="label" for="password">Повторите новый пароль</label>
-              <el-input type="password"  id="password"  class="input" placeholder="Повторите новый пароль" v-model="user.about"></el-input>
-            </el-form-item>
+          <div class="column-form">
+            <label class="label" for="bac-grade">Пол</label>
+            <el-select id="bac-grade" placeholder="Выберите" v-model="user.gender">
+              <el-option value="male" label="Мужской">Мужской
+              </el-option>
+              <el-option value="female" label="Женский">Женский
+              </el-option>
+            </el-select>
           </div>
 
-         </div>
-
-          <div class="column-group-profile">
-
           <el-form-item prop="image">
-            <label class="required-label label" for="image">Изображение</label>
+            <label class="required-label label" for="image">Аватар</label>
             <el-upload
               class="upload"
               ref="upload"
@@ -98,54 +90,68 @@
             </el-upload>
           </el-form-item>
 
+
+
+         </div>
+
+          <div class="column-group-profile">
+
             <el-form-item prop="about">
             <label class="label" for="about">О себе</label>
-            <el-input type="textarea" :rows="2" id="about"  class="input" placeholder="Расскажите о себе" v-model="user.about"></el-input>
+            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Расскажите о себе" v-model="user.about"></el-input>
           </el-form-item>
 
           <el-form-item prop="skills">
             <label class="label" for="about">Ключевые навыки</label>
-            <el-input type="textarea" :rows="2" id="about"  class="input" placeholder="Напишите свои ключевые навыки" v-model="user.key_skills"></el-input>
+            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Напишите свои ключевые навыки" v-model="user.key_skills"></el-input>
           </el-form-item>
 
           <div class="column-form">
             <label class="label" for="bac-grade">Иностранный язык</label>
-            <el-select id="bac-grade" placeholder="Выберите">
-              <el-option value="" label="Английский">Английский
-              </el-option>
-              <el-option value="" label="Французский">Французский
-              </el-option>
-              <el-option value="" label="Немецкий">Немецкий
+            <el-select id="bac-grade" placeholder="Выберите" v-model="user.language">
+              <el-option
+                v-for="(language, key) in this.languages.languages"
+                :key="key"
+                :label="language"
+                :value="key">
               </el-option>
             </el-select>
           </div>
 
           <div class="column-form">
             <label class="label" for="bac-grade">Уровень языка</label>
-            <el-select id="bac-grade" placeholder="Выберите">
-              <el-option value="" label="A1">A1
-              </el-option>
-              <el-option value="" label="A2">A2
-              </el-option>
-              <el-option value="" label="B1">B1
-              </el-option>
-              <el-option value="" label="B2">B2
-              </el-option>
-              <el-option value="" label="C1">C1
-              </el-option>
-              <el-option value="" label="C2">C2
+            <el-select id="bac-grade" placeholder="Выберите" v-model="user.language_level">
+              <el-option
+                v-for="(level, key) in this.languages.language_levels"
+                :key="key"
+                :label="level"
+                :value="key">
               </el-option>
             </el-select>
           </div>
 
-          <div class="column-form">
-            <label class="label" for="bac-grade">Пол</label>
-            <el-select id="bac-grade" placeholder="Выберите">
-              <el-option value="male" label="Мужской">Мужской
-              </el-option>
-              <el-option value="female" label="Женский">Женский
-              </el-option>
-            </el-select>
+          <p class="password-label" for="password-block">Изменить пароль</p>
+          <div class="password-block" id="password-block">
+            <el-form-item prop="password">
+              <label class="password-label-first" for="password">Старый пароль</label>
+              <el-input type="password"  id="password"  class="input" placeholder="Введите старый пароль" v-model="user.old_password"></el-input>
+            </el-form-item>
+
+            <el-form-item prop="password">
+              <label class="label" for="password">Новый пароль</label>
+              <el-input type="password"  id="password"  class="input" placeholder="Введите новый пароль" v-model="user.new_password"></el-input>
+              <p class="error-message"
+                  v-if="this.errors.hasOwnProperty('password')"
+              >{{this.errors.password}}</p>
+            </el-form-item>
+
+            <el-form-item prop="password">
+              <label class="label" for="password">Повторите новый пароль</label>
+              <el-input type="password"  id="password"  class="input" placeholder="Повторите новый пароль" v-model="user.new_password_confirmation"></el-input>
+              <p class="error-message"
+                  v-if="this.errors.hasOwnProperty('password')"
+              >{{this.errors.password}}</p>
+            </el-form-item>
           </div>
 
 
@@ -153,7 +159,7 @@
           </div>
         </div>
           <el-form-item class="one-button-row-profile">
-            <el-button class="button-save" type="primary">Сохранить</el-button>
+            <el-button class="button-save" type="primary" @click="submit">Сохранить</el-button>
           </el-form-item>
         </el-form>
 
@@ -170,58 +176,67 @@ export default {
   data: () => ({
     loading: true,
     search: '',
+    languages: {},
     user: {},
-    formData: {
-      first_name: '',
-      last_name: '',
-      middle_name: '',
-      username: '',
-      date_birth: '',
-      about: '',
-      key_skills: '',
-      language: '',
-      langiage_level: '',
-      educations: [
-        {
-          education_type: '',
-          university: '',
-          faculty: '',
-          speciality: '',
-          grade: '',
-          projects: '',
-          date_end: '',
-        },
-        {
-          education_type: 'magistratura',
-          university: '',
-          faculty: '',
-          speciality: '',
-          grade: '',
-          projects: '',
-          date_end: '',
-        },
-      ],
-      courses: {
-        university: '',
-        speciality: '',
-        projects: '',
-        date_end: '',
-      }
-    },
+    formData: {},
+    request: {},
+    errors: {},
   }),
 
   methods:{
-    ...mapActions(['getUser']),
-    setData(response){
-      this.user = response;
-      console.log(this.user)
+    ...mapActions(['getUser', 'updateUser', 'getAllUserLanguages']),
+    async submit(){
+      this.loading = true;
+
+      if (this.formData.new_password === this.formData.new_password_confirmation) {
+        const formData = new FormData();
+        formData.append('first_name', this.formData.first_name);
+        formData.append('last_name', this.formData.last_name);
+        formData.append('middle_name', this.formData.middle_name);
+        formData.append('username', this.formData.username);
+        formData.append('date_birth', this.formData.date_birth || '');
+        formData.append('phone', this.formData.phone);
+        formData.append('email', this.formData.email);
+        formData.append('gender', this.formData.gender);
+        if (this.$refs.upload.uploadFiles.length !== 0){
+          formData.append('avatar', this.$refs.upload.uploadFiles[0].raw);
+        }
+        formData.append('about', this.formData.about);
+        formData.append('key_skills', this.formData.key_skills);
+        formData.append('language', this.formData.language || '');
+        formData.append('language_level', this.formData.language_level || '');
+        formData.append('old_password', this.formData.old_password || '');
+        formData.append('new_password', this.formData.new_password);
+        formData.append('new_password_confirmation', this.formData.new_password_confirmation);
+
+        // this.request = formData;
+        console.log('formdata');
+        console.log(this.formData);
+        const response = await this.updateUser(formData);
+        if (response) {
+          alert('Данные успешно сохранены!');
+          this.$router.push({ name: 'Personal', params: { username: this.user.username } });
+        }
+      }
+      else{
+        this.errors.password = 'Пароли не совпадают';
+        this.loading = false;
+      }
+      // this.request.id = this.article.id;
+      // const response = await this.updateArticle(this.request);
+      // if (response) {
+      //   alert('Данные успешно сохранены!');
+      //   this.$router.push({ name: 'ArticleView', params: { id: response.id } });
+      // }
     }
   },
 
   async created () {
     const response = await this.getUser();
-    this.setData(response);
+    this.user = response;
     this.loading = false;
+    this.formData = response;
+    this.languages = await this.getAllUserLanguages();
   }
 }
 

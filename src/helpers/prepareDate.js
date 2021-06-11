@@ -9,28 +9,15 @@ const prepare = {
       last_name: item.last_name,
       first_name: item.first_name,
       middle_name: item.middle_name,
-      faculty: item.faculty,
-      speciality: item.speciality,
       key_skills: item.key_skills,
       about: item.about,
       created_at: moment(item.created_at).format('ll'),
-      date_birth: item.date_birth
-    };
-  },
-  educations(item) {
-    return {
-      id: item.id,
-      username: item.username,
-      avatar: prepare.file(item.avatar),
-      last_name: item.last_name,
-      first_name: item.first_name,
-      middle_name: item.middle_name,
-      faculty: item.faculty,
-      speciality: item.speciality,
-      key_skills: item.key_skills,
-      about: item.about,
-      created_at: moment(item.created_at).format('ll'),
-      date_birth: item.date_birth
+      date_birth: item.date_birth,
+      language: item.language,
+      language_level: item.language_level,
+      phone: item.phone,
+      gender: item.gender,
+      email: item.email,
     };
   },
   article (item) {
@@ -114,6 +101,14 @@ const prepare = {
       }
     )
 
+    const responses = [];
+
+    item.responses.forEach(
+      function (user) {
+        responses.push(prepare.user(user));
+      }
+    )
+
     return {
       id: item.id,
       author: item.author,
@@ -134,7 +129,7 @@ const prepare = {
       categories: categories,
       saved: item.saved,
       saved_users: item.saved_users,
-      responses: item.responses,
+      responses: responses,
       salary: item.salary
     };
   },

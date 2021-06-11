@@ -7,12 +7,27 @@ export default {
       { rootGetters }
     ) {
       let response = await api.getUserData(rootGetters.getAuthToken)
+      console.log(response);
 
       if (response.status === 200) {
 
         const userData = (prepareDate.user(response.data.data));
 
         return userData;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async updateUser(
+      { rootGetters },
+      formData
+    ) {
+      let response = await api.updateUserData(rootGetters.getAuthToken, formData);
+
+      if (response.status === 200) {
+
+        return response;
       }
       else {
         alert("Произошла ошибка")
@@ -49,6 +64,18 @@ export default {
       { rootGetters }
     ) {
       let response = await api.getAllUserEducations(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+        return response.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getAllUserLanguages(
+      { rootGetters }
+    ) {
+      let response = await api.getAllUserLanguages(rootGetters.getAuthToken)
 
       if (response.status === 200) {
         return response.data;
