@@ -40,6 +40,11 @@
             <span id="text" class="form-text">{{ this.article.text }}</span>
           </el-form-item>
 
+          <el-form-item class="row-form" prop="text">
+            <label class="row-label" for="text">Изображение</label>
+            <span id="text" class="form-text">{{ this.article.image.filename }}</span>
+          </el-form-item>
+
           <el-form-item class="row-form last-child" prop="categories">
           <label class="row-label" for="categories">Категории</label>
             <span id="categories" class="form-text">
@@ -74,26 +79,13 @@ export default {
   data: () => ({
     loading: true,
     search: '',
-    article: {
-        id: '',
-        author: '',
-        title: '',
-        cut: '',
-        text: '',
-        created_at: '',
-        categories: [
-          {
-            id: '',
-            name: ''
-          }
-        ],
-        views: ''
-    }
+    article: {},
   }),
 
   async created () {
     const article = await api.getArticle(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.article = article.data
+    this.article = article.data.data
+    console.log(this.article)
 
     this.loading = false
   }

@@ -365,6 +365,18 @@ export default {
     )
   },
 
+  async updateUserEducations(authToken, formData) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userEducations,
+        'put',
+        formData,
+        true,
+        authToken
+      )
+    )
+  },
+
   async getAllUserEducations(authToken) {
     return this.prepareResponse(
       this.execute(

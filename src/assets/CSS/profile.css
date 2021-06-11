@@ -587,3 +587,7 @@
 .password-label-first{
     line-height: 40px;
 }
+
+.profile-education-info:not(:last-child){
+    margin-bottom: 10px;
+}

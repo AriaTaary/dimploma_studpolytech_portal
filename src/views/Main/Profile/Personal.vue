@@ -64,7 +64,10 @@
           <router-link class="button-main" :to="{ name: 'PersonalEdit', params: { username: this.user.username } }">Настройки профиля</router-link>
         </div> -->
       </div>
-      <div class="profile-content">
+      <div v-if="loading" class="loading">
+        <img src="/img/preloader.svg" alt="Загрузка данных">
+      </div>
+      <div v-else class="profile-content">
         <div class="personal-info">
           <div class="personal-main-info">
             <div class="avatar">
@@ -94,11 +97,11 @@
             </div> -->
             <div class="personal-add-info-block">
               <h5>Опубликованные статьи</h5>
-              <p>{{ this.user.article_count }}</p>
+              <!-- <p>{{ this.user.article_count }}</p> -->
             </div>
             <div class="personal-add-info-block">
               <h5>Опубликованные вакансии</h5>
-              <p>{{ this.user.vacancy_count }}</p>
+              <!-- <p>{{ this.user.vacancy_count }}</p> -->
             </div>
           </div>
         </div>
@@ -112,9 +115,23 @@
             </div>
           </div>
           <h2 class="personal-education-title">Образование</h2>
-          <div class="personal-education">
+          <div v-if="this.userEducation.first_education !== null" class="personal-education">
             <div class="personal-add-info-block">
-              <h5>Бакалавриат</h5>
+              <h5>{{this.userEducation.first_education.education_type}}</h5>
+              <p class="profile-education-info">Университет: {{this.userEducation.first_education.university}}</p>
+              <p class="profile-education-info">Факультет: {{this.userEducation.first_education.faculty}}</p>
+              <p class="profile-education-info">Направление: {{this.userEducation.first_education.speciality}}</p>
+              <p class="profile-education-info">Курс: {{this.userEducation.first_education.grade}}</p>
+              <p class="profile-education-info">Год окончания: {{this.userEducation.first_education.date_end}}</p>
+            </div>
+            <div class="personal-add-info-block">
+              <h5>Проекты, выполненные в процессе обучения</h5>
+               <p>{{this.userEducation.first_education.projects}}</p>
+            </div>
+          </div>
+          <div v-if="this.userEducation.second_education !== null" class="personal-education">
+            <div class="personal-add-info-block">
+              <h5>Магистратура</h5>
               <p>Информатика и вычислительная техника, веб-технологии, 4 курс</p>
             </div>
             <div class="personal-add-info-block">
@@ -128,7 +145,7 @@
               </ul>
             </div>
           </div>
-          <div class="personal-education">
+          <div v-if="this.userEducation.courses !== null" class="personal-education">
             <div class="personal-add-info-block">
               <h5>Курсы повышения квалификации</h5>
               <p>GeekBrains</p>
@@ -178,10 +195,11 @@ export default {
       followers_count: '',
       article_count: '',
       vacancy_count: ''
-    }
+    },
+    userEducation: '',
   }),
   methods: {
-     ...mapActions(['getUser']),
+     ...mapActions(['getUser', 'getUserEducations']),
      setData(response){
     this.user = response;
     }
@@ -190,26 +208,29 @@ export default {
     const response = await this.getUser();
     this.setData(response);
 
+    // const article_response = await api.getUserArticles(this.$store.getters.getAuthToken)
+
+    // if (article_response.status === 200){
+    //   this.user.article_count = article_response.data.data.count
+    // }
+    // else {
+    //   alert("Произошла ошибка")
+    // }
+
+    // const vacancy_response = await api.getUserVacancies(this.$store.getters.getAuthToken)
+
+    // if (vacancy_response.status === 200){
+    //   this.user.vacancy_count = vacancy_response.data.data.count
+    //   this.loading = false
+    // }
+    // else {
+    //   alert("Произошла ошибка")
+    // }
+
+    this.userEducation = await this.getUserEducations();
+    console.log( this.userEducation);
+
     this.loading = false;
-
-    const article_response = await api.getUserArticles(this.$store.getters.getAuthToken)
-
-    if (article_response.status === 200){
-      this.user.article_count = article_response.data.data.count
-    }
-    else {
-      alert("Произошла ошибка")
-    }
-
-    const vacancy_response = await api.getUserVacancies(this.$store.getters.getAuthToken)
-
-    if (vacancy_response.status === 200){
-      this.user.vacancy_count = vacancy_response.data.data.count
-      this.loading = false
-    }
-    else {
-      alert("Произошла ошибка")
-    }
   }
 }
 </script>

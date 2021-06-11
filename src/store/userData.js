@@ -25,9 +25,21 @@ export default {
 
       if (response.status === 200) {
 
-        const userEducations = (prepareDate.educations(response.data.data));
+        return response.data.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async updateUserEducations(
+      { rootGetters },
+      formData
+    ) {
+      let response = await api.updateUserEducations(rootGetters.getAuthToken, formData)
 
-        return userEducations;
+      if (response.status === 200) {
+
+        return response;
       }
       else {
         alert("Произошла ошибка")

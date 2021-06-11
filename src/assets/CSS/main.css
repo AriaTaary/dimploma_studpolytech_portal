@@ -43,7 +43,7 @@ input:focus{
 }
 
 .container{
-    max-width: 1366px;
+    /* max-width: 1366px; */
     /* min-width: 100%; */
     /* min-width: 1366px; */
     margin: 0 3vw;
@@ -669,6 +669,7 @@ input:focus{
     display: flex;
     flex-direction: row;  
     box-sizing: border-box !important;
+    justify-content: space-between;
 }
 
 .admin-background{
@@ -683,7 +684,14 @@ input:focus{
     background-color: white;
     border-radius: 10px;
     margin-bottom: 40px;
-    width: 100%;
+    /* width: 100%; */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    min-width: calc(100% - 150px);
+    /* max-width: 100%;
+    min-width: 100%; */
+    /* width: 80vw; */
     /* max-height: 85vh; */
 }
 
@@ -745,9 +753,11 @@ input:focus{
 }
 
 .sidemenu{
-    display: flex;
+    /* display: flex; */
     min-width: 150px;
-    box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.2);
+    /* width: 20vw; */
+    /* box-shadow: 7px 0px 7px 0px rgba(0,0,0,0.2); */
+    box-sizing: border-box;
 }
 
 .sidemenu-list{

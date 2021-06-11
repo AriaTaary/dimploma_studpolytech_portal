@@ -3,7 +3,7 @@
     <div class="header">
       <HeaderAdmin />
     </div>
-    <div class="main-content admin container">
+    <div class="admin container">
       <SidemenuAdmin />
       <router-view />
     </div>

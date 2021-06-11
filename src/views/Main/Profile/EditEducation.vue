@@ -20,7 +20,7 @@
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
 
-      <el-form v-else ref="user" :model="user" :rules="rules">
+      <el-form v-else ref="user" :model="user">
         <div class="row-group row-group-profile">
 
          <div class="column-group-profile">
@@ -34,7 +34,7 @@
                   placeholder="Выберите"
                   v-model="formData.firstEducation.education_type">
                   <el-option
-                    v-for="(educationName, key) in educationTypes"
+                    v-for="(educationName, key) in this.educations.firstType"
                     :key="key"
                     :label="educationName"
                     :value="key">
@@ -60,9 +60,9 @@
               <div class="column-form">
                 <label class="label" for="bac-grade">Курс</label>
                 <el-select id="bac-grade" placeholder="Выберите"
-                  v-model="formData.firstEducation.education_type">
+                  v-model="formData.firstEducation.grade">
                   <el-option
-                    v-for="(gradeName, key) in educationGrades"
+                    v-for="(gradeName, key) in this.educations.grades"
                     :key="key"
                     :label="gradeName"
                     :value="key">
@@ -106,9 +106,9 @@
               <div class="column-form">
                 <label class="label" for="mag-grade">Курс</label>
                 <el-select id="mag-grade" placeholder="Выберите"
-                  v-model="formData.secondEducation.education_type">
+                  v-model="formData.secondEducation.grade">
                   <el-option
-                    v-for="(gradeName, key) in educationGrades"
+                    v-for="(gradeName, key) in this.educations.magGrades"
                     :key="key"
                     :label="gradeName"
                     :value="key">
@@ -153,7 +153,7 @@
           </div>
         </div>
           <el-form-item class="one-button-row-profile">
-            <el-button class="button-save" type="primary">Сохранить</el-button>
+            <el-button class="button-save" type="primary" @click="submit">Сохранить</el-button>
           </el-form-item>
         </el-form>
 
@@ -201,18 +201,172 @@ export default {
     },
   }),
   methods:{
-    ...mapActions(['getUser', 'getUserEducations', 'getAllUserEducations']),
+    ...mapActions(['getUser', 'getUserEducations', 'updateUserEducations', 'getAllUserEducations']),
     setData(response){
       this.user = response;
-      console.log(this.user)
+    },
+    async submit(){
+      this.loading = true;
+      console.log('ghhg');
+      console.log(this.formData);
+      const response = await this.updateUserEducations(this.formData);
+      if (response) {
+        alert('Данные успешно сохранены!');
+        this.$router.push({ name: 'Personal', params: { username: this.user.username } });
+      }
     }
   },
   async created () {
     const response = await this.getUser();
     this.setData(response);
     this.educations = await this.getAllUserEducations();
-    console.log(this.educations);
+    // this.educations.firstType = Arrays.copyOfRange(this.educations.education_type, 0, 1);
+    // this.educations.secondType = Arrays.copyOfRange(this.educations.education_type, 2, 2);
+    // this.educations.firstType = Array.from(this.educations.education_types);
+    // this.educations.firstType[0] = this.educations.education_types[0];
+    // this.educations.firstType[1] = this.educations.education_types[1];
+    // this.educations.secondType = Array.from(this.educations.education_types);
+    // this.educations.secondType = this.educations.education_types;
+    // this.educations.firstType = this.educations.firstType.slice(0, 1);
+    // this.educations.secondType = this.educations.secondType.slice(2);
+
+    // for (key in this.educations.education_types){
+    //   if (key != 'magistratura'){
+    //     this.educations.firstType.push({
+    //       'key': this.educations.education_types[key]
+    //     })
+    //   }
+    //   else{
+    //     this.educations.secondType = this.educations.education_types[key];
+    //   }
+    // }
+
+    // this.educations.secondType = {};
+
+
+    // var keys_to_include = ['bakalavriat', 'specialitet', 'magistratura'];
+
+    // var educationsArray = this.educations.education_types
+    // var firstEducationArray = {};
+    // var secondEducationArray = {};
+
+     // keys_to_include.forEach(function(k){
+    //   if (k !== 'magistratura'){
+    //     firstEducationArray[k] = educationsArray[k];
+    //   }
+    //   else{
+    //     secondEducationArray[k] = educationsArray[k];
+    //   }
+    // });
+
+    // this.educations.firstType = firstEducationArray;
+
+    // this.educations.secondType = secondEducationArray;
+
+
+    // Блок получения видов обучения для бакалавриата и специалитета
+    var firstEducationArray = {};
+    var secondEducationArray = {};
+
+    for (var key in this.educations.education_types){
+      if (key !== 'magistratura'){
+        firstEducationArray[key] = this.educations.education_types[key];
+      }
+      else{
+        secondEducationArray[key] = this.educations.education_types[key];
+      }
+    }
+
+    this.educations.firstType = firstEducationArray;
+    this.educations.secondType = secondEducationArray;
+    // Блок получения видов обучения для бакалавриата и специалитета
+
+    //Блок получения курсов для магистратуры
+    var magGradeArray = {};
+
+    for (var key in this.educations.grades){
+      if (key == '1' || key == '2' || key == 'ended'){
+        magGradeArray[key] = this.educations.grades[key];
+      }
+    }
+
+    this.educations.magGrades = magGradeArray;
+    //Блок получения курсов для магистратуры
+
+
+    const userEducation = await this.getUserEducations();
+    // console.log(userEducation.first_education.education_type);
+    // this.userEducation
+
+    if (userEducation.first_education === null){
+      this.formData.firstEducation = {
+        education_type: '',
+        university: '',
+        faculty: '',
+        speciality: '',
+        grade: '',
+        projects: '',
+        date_end: '',
+      }
+    }
+    else {
+      this.formData.firstEducation = {
+        // education_type: userEducation.first_education.education_type,
+        education_type: 'magistratura',
+        university: userEducation.first_education.university,
+        faculty: userEducation.first_education.faculty,
+        speciality: userEducation.first_education.speciality,
+        grade: userEducation.first_education.grade,
+        projects: userEducation.first_education.projects,
+        date_end: userEducation.first_education.date_end,
+      }
+    }
+
+    if (userEducation.second_education === null){
+      this.formData.secondEducation = {
+        education_type: '',
+        university: '',
+        faculty: '',
+        speciality: '',
+        grade: '',
+        projects: '',
+        date_end: '',
+      }
+    }
+    else {
+      this.formData.secondEducation = {
+        // education_type: userEducation.second_education.education_type,
+        education_type: 'bakalavriat',
+        university: userEducation.second_education.university,
+        faculty: userEducation.second_education.faculty,
+        speciality: userEducation.second_education.speciality,
+        grade: userEducation.second_education.grade,
+        projects: userEducation.second_education.projects,
+        date_end: userEducation.second_education.date_end,
+      }
+    }
+
+    if (userEducation.courses === null){
+      this.formData.courses = {
+        university: '',
+        speciality: '',
+        projects: '',
+        date_end: '',
+      }
+    }
+    else {
+      this.formData.courses = {
+        university: userEducation.courses.university,
+        speciality: userEducation.courses.speciality,
+        projects: userEducation.courses.projects,
+        date_end: userEducation.courses.date_end,
+      }
+    }
+    console.log('gg');
+    console.log(this.formData);
     this.loading = false;
+
+
     // this.education = await this.getUserEducations();
     // const vacanciesData = await this.getVacanciesData();
     // this.employments = vacanciesData.employments;
