@@ -85,7 +85,6 @@ export default {
   async created () {
     const article = await api.getArticle(this.$store.getters.getAuthToken, this.$route.params.id)
     this.article = article.data.data
-    console.log(this.article)
 
     this.loading = false
   }

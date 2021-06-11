@@ -7,7 +7,22 @@ export default {
       { rootGetters }
     ) {
       let response = await api.getUserData(rootGetters.getAuthToken)
-      console.log(response);
+
+      if (response.status === 200) {
+
+        const userData = (prepareDate.user(response.data.data));
+
+        return userData;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getAnotherUser(
+      { rootGetters },
+      username
+    ) {
+      let response = await api.getAnotherUser(rootGetters.getAuthToken, username);
 
       if (response.status === 200) {
 

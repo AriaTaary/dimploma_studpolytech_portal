@@ -597,3 +597,50 @@
 .profile-education-info:not(:last-child){
     margin-bottom: 10px;
 }
+
+.response-button{
+    background-color: #D5444C !important;
+    border: none !important;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px !important;
+    cursor: pointer;
+    outline: none;
+    height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.response-button:hover{
+    background-color: #d5444bc5 !important;
+    color: white;
+    border-radius: 5px;
+}
+
+.responses-links{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+}
+
+.response{
+    color: #D5444C;
+    margin: 10px 0;
+}
+
+.response:hover{
+    color: #d5444bc5;
+}
+
+.response-title{
+    color: rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+.buttons-column{
+    width: auto;
+}

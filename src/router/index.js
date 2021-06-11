@@ -22,7 +22,7 @@ import ArticleCreate from '@/views/Main/Articles/Create'
 import ArticleEdit from '@/views/Main/Articles/Edit'
 
 import Personal from '@/views/Main/Profile/Personal'
-import Test from '@/views/Main/Profile/NewPersonal'
+import ViewForeignProfile from '@/views/Main/ViewForeignProfile'
 import PersonalEdit from '@/views/Main/Profile/Edit'
 import PersonalEditEducation from '@/views/Main/Profile/EditEducation'
 import PersonalVacancies from '@/views/Main/Profile/Vacancies'
@@ -203,18 +203,18 @@ const routes = [
   },
   {
     path: '/users/:username',
-    name: 'Personal',
-    component: Personal,
+    name: 'ViewForeignProfile',
+    component: ViewForeignProfile,
     meta: {
-      title: 'Личный кабинет',
-      layout: 'personal',
-      block: blocks.personal
+      title: 'Просмотр профиля',
+      layout: 'main',
+      block: blocks.common
     }
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: Test,
+    path: '/users/:username',
+    name: 'Personal',
+    component: Personal,
     meta: {
       title: 'Личный кабинет',
       layout: 'personal',

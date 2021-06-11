@@ -31,6 +31,9 @@ export default {
     educations: 'educations',
     languages: 'languages',
     users: 'users',
+    anotherUser(username) {
+      return 'users/' + username
+    },
     vacancies: 'vacancies',
     vacanciesData: 'vacancies/data',
     articles: 'articles',
@@ -346,6 +349,19 @@ export default {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.user,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAnotherUser(authToken, username) {
+
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.anotherUser(username),
         'get',
         {},
         true,
