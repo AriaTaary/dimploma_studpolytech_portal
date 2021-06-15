@@ -40,28 +40,12 @@
                       <details class="filter-part">
                           <summary class="filter-title">Опыт работы</summary>
                           <ul class="filter_list">
-                              <li class="filter_item">
+                              <li class="filter_item"
+                                  v-for="experience in this.vacanciesData.experiences"
+                                  :key='experience.key'>
                                   <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Менее 1 года</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">От 1 года до 3 лет</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">От 3 до 6 лет</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Более 6 лет</label>
+                                      <input v-model='experience.value' type="checkbox" :id='experience.key' :name='experience.name'>
+                                      <label :for='experience.key'>{{ experience.name }}</label>
                                   </div>
                               </li>
                           </ul>
@@ -69,22 +53,12 @@
                       <details class="filter-part">
                           <summary class="filter-title">График работы</summary>
                           <ul class="filter_list">
-                              <li class="filter_item">
+                              <li class="filter_item"
+                                  v-for="schedule in this.vacanciesData.schedules"
+                                  :key='schedule.key'>
                                   <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Полный день</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Удаленная работа</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Гибкий график</label>
+                                      <input v-model='schedule.value' type="checkbox" :id='schedule.key'>
+                                      <label :for='schedule.key'>{{ schedule.name }}</label>
                                   </div>
                               </li>
                           </ul>
@@ -92,34 +66,18 @@
                       <details class="filter-part">
                           <summary class="filter-title">Тип занятости</summary>
                           <ul class="filter_list">
-                              <li class="filter_item">
+                              <li class="filter_item"
+                                  v-for="employment in this.vacanciesData.employments"
+                                  :key='employment.key'>
                                   <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Полная занятость</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Проектная работа</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Частичная занятость</label>
-                                  </div>
-                              </li>
-                              <li class="filter_item">
-                                  <div class="checkbox">
-                                      <input type="checkbox" id="1" name="1">
-                                      <label for="1">Стажировка</label>
+                                      <input v-model='employment.value' type="checkbox" :id='employment.key'>
+                                      <label :for='employment.key'>{{ employment.name }}</label>
                                   </div>
                               </li>
                           </ul>
                       </details>
                       <div class="filter-buttons">
-                        <button type="submit" id="submit-filter">
+                        <button type="submit" id="submit-filter" @click="submitFilter()">
                             <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
                             </svg>
@@ -170,14 +128,14 @@
                           <el-select v-model="request.sort.payment" id="payment" placeholder="Выберите">
                             <el-option value="" label="-">-
                             </el-option>
-                            <el-option value="asc">От наибольшей к наименьшей
+                            <el-option value="desc" label="От наибольшей к наименьшей">От наибольшей к наименьшей
                             </el-option>
-                            <el-option value="desc">От наименьшей к наибольшей
+                            <el-option value="asc" label="От наименьшей к наибольшей">От наименьшей к наибольшей
                             </el-option>
                           </el-select>
                         </div>
                         <div class="filter-buttons">
-                            <button type="submit" id="submit-sort">
+                            <button type="submit" id="submit-sort" @click="submitSort()">
                                 <svg width="30" height="30" viewBox="0 0 330 330" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M226.872 106.664L142.018 191.517L103.128 152.626C97.271 146.769 87.773 146.768 81.915 152.625C76.057 158.483 76.057 167.98 81.915 173.838L131.411 223.336C134.224 226.149 138.039 227.73 142.017 227.73C142.018 227.73 142.017 227.73 142.018 227.73C145.996 227.73 149.811 226.149 152.624 223.337L248.085 127.878C253.943 122.02 253.943 112.523 248.085 106.665C242.227 100.807 232.73 100.806 226.872 106.664Z" fill="#A4A4A5"/>
                                 </svg>
@@ -275,23 +233,25 @@ export default {
     request: {
       sort: {
         date: null,
-        experience: null,
         payment: null,
       },
       filter: {
-        categories: []
+        employments: {},
+        experiences: {},
+        schedules: {},
       },
       searchText: ''
     },
     vacancies: [],
     categories: [],
+    vacanciesData: [],
     current_page: null,
     total: null,
     per_page: null,
   }),
 
   methods: {
-    ...mapActions(['getVacancies']),
+    ...mapActions(['getVacancies', 'getVacanciesData']),
     async search () {
       this.loading = true;
       const response = await this.getVacancies(this.request);
@@ -342,16 +302,32 @@ export default {
       }
     },
     async submitSort() {
-      this.vacancies = await this.getVacancies(this.request);
+      const response = await this.getVacancies(this.request);
+      this.setData(response);
     },
     async submitFilter() {
       this.loading = true;
 
-      const categories = {};
-      this.categories.forEach(function(category){
-        categories[category.id] = category.value;
+      const employments = {};
+      this.vacanciesData.employments.forEach(function(employment){
+        employments[employment.key] = employment.value;
       })
-      this.request.filter.categories = categories;
+      this.request.filter.employments = employments;
+
+      const experiences = {};
+      this.vacanciesData.experiences.forEach(function(experience){
+        experiences[experience.key] = experience.value;
+      })
+      this.request.filter.experiences = experiences;
+
+      const schedules = {};
+      this.vacanciesData.schedules.forEach(function(schedule){
+        schedules[schedule.key] = schedule.value;
+      })
+      this.request.filter.schedules = schedules;
+
+      console.log(this.request);
+
       const response = await this.getVacancies(this.request);
       this.setData(response);
 
@@ -375,14 +351,80 @@ export default {
       this.current_page = response.current_page;
       this.total = response.total;
       this.per_page = response.per_page;
-      console.log(this.vacancies);
     }
   },
 
   async created () {
     const response = await this.getVacancies();
     this.setData(response);
+
+    const vacanciesData = await this.getVacanciesData();
+    // console.log(vacanciesData.employments);
+
+    // vacanciesData.employments.forEach(function(employment , index) {
+    //   employments[index].value = false;
+    // });
+    // vacanciesData.experiences.forEach(function(experience , index) {
+    //   experiences[index].value = false;
+    // });
+    // vacanciesData.schedules.forEach(function(schedule , index) {
+    //   schedules[index].value = false;
+    // });
+
+    let vacanciesDataEmployments = [];
+
+    for (var key in vacanciesData.employments){
+      vacanciesDataEmployments.push({
+        key: key,
+        value: false,
+        name: vacanciesData.employments[key],
+      })
+    };
+
+    let vacanciesDataExperiences = [];
+
+    for (var key in vacanciesData.experiences){
+      vacanciesDataExperiences.push({
+        key: key,
+        value: false,
+        name: vacanciesData.experiences[key],
+      })
+    };
+
+    let vacanciesDataSchedules = [];
+
+    for (var key in vacanciesData.schedules){
+      vacanciesDataSchedules.push({
+        key: key,
+        value: false,
+        name: vacanciesData.schedules[key],
+      })
+    };
+
+    this.vacanciesData.employments = vacanciesDataEmployments;
+    this.vacanciesData.experiences = vacanciesDataExperiences;
+    this.vacanciesData.schedules = vacanciesDataSchedules;
+
+    console.log(this.vacanciesData.experiences);
+
+    // const employments = vacanciesData.employments;
+    // const experiences = vacanciesData.experiences;
+    // const schedules = vacanciesData.schedules;
+
+    // employments.forEach(function(employment , index) {
+    //   employment[index].value = false;
+    // });
+    // experiences.forEach(function(experience , index) {
+    //   experience[index].value = false;
+    // });
+    // schedules.forEach(function(schedule , index) {
+    //   schedule[index].value = false;
+    // });
+
+    // this.vacanciesData = vacanciesData;
+
     this.loading = false;
+
   },
 }
 

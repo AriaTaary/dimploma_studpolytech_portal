@@ -689,6 +689,7 @@ input:focus{
     flex-shrink: 1;
     flex-basis: auto;
     min-width: calc(100% - 150px);
+    min-height: 85vh;
     /* max-width: 100%;
     min-width: 100%; */
     /* width: 80vw; */
@@ -1005,4 +1006,16 @@ input::-webkit-input-placeholder {
 .error-message{
     color: #D5444C;
     font-size: 12px;
+}
+
+.empty-person{
+    color:rgb(0, 0, 0, 0.3);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+.empty-education{
+    color:rgb(0, 0, 0, 0.3);
+    text-align: center;
 }

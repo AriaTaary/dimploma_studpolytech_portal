@@ -93,9 +93,9 @@
                           <el-select v-model="request.sort.views" id="views" placeholder="Выберите">
                             <el-option value="" label="-">-
                             </el-option>
-                            <el-option value="asc" label="От наибольших к наименьшим">От наибольших к наименьшим
+                            <el-option value="desc" label="От наибольших к наименьшим">От наибольших к наименьшим
                             </el-option>
-                            <el-option value="desc" label="От наименьших к наибольшим">От наименьших к наибольшим
+                            <el-option value="asc" label="От наименьших к наибольшим">От наименьших к наибольшим
                             </el-option>
                           </el-select>
                         </div>
@@ -284,7 +284,8 @@ export default {
     async checkEmptySearch () {
       if (this.request.searchText.length === 0) {
         this.loading = true;
-        this.articles = await this.getArticles(this.request);
+        const response = await this.getArticles(this.request);
+        this.setData(response);
         this.loading = false;
       }
     },
@@ -325,7 +326,12 @@ export default {
       }
     },
     async submitSort() {
-      this.articles = await this.getArticles(this.request);
+      this.loading = true;
+
+      const response = await this.getArticles(this.request);
+      this.setData(response);
+
+      this.loading = false;
     },
     async submitFilter() {
       this.loading = true;
@@ -363,7 +369,6 @@ export default {
 
   async created () {
     const response = await this.getArticles();
-    console.log(response);
     this.setData(response);
 
     const categories = await this.getCategories();
@@ -371,6 +376,7 @@ export default {
       categories[index].value = false;
     })
     this.categories = categories;
+    console.log(categories);
 
     this.loading = false;
   },
