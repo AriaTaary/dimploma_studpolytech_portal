@@ -2,6 +2,9 @@
   <div class="admin-content">
     <div class="admin-content-top">
       <h2>Все категории публикаций (статьи, вакансии)</h2>
+      <router-link class="button-main admin-button-main"
+        :to="{ name: 'CreateCategory'}
+        ">Создать</router-link>
     </div>
     <div class="admin-content-main">
       <div v-if="loading" class="loading">

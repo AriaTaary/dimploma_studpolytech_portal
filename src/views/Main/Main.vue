@@ -15,7 +15,7 @@
             <p class="sort sort_block">Сортировать</p> -->
              <details class="filter-main" @click="openCloseFilterSort()">
                 <summary>
-                    <div class="filter_block">
+                    <div class="main-filter_block">
                         <p>Фильтровать</p>
                     </div>
                 </summary>
@@ -27,7 +27,7 @@
                             v-for="category in this.categories"
                             :key='category.id'>
                             <div class="checkbox">
-                                <input :value='category.id' type="checkbox" :id='category.id' :name='category.name'>
+                                <input v-model='category.value' :value='category.id' type="checkbox" :id='category.id' :name='category.name'>
                                 <label :for='category.id'>{{ category.name }}</label>
                             </div>
                         </li>
@@ -50,7 +50,7 @@
             </details>
             <details class="sort-main" @click="openCloseFilterSort()">
                 <summary>
-                    <div class="sort_block">
+                    <div class="main-sort_block">
                         <p>Сортировать</p>
                     </div>
                 </summary>
@@ -199,7 +199,12 @@ export default {
       }
     },
     async submitSort() {
-      this.news = await this.getNews(this.request);
+      this.loading = true;
+
+      const response = await this.getNews(this.request);
+      this.setData(response);
+
+      this.loading = false;
     },
     async submitFilter() {
       this.loading = true;

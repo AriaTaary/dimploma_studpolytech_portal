@@ -1,7 +1,7 @@
 <template>
   <div class="admin-content admin-content-edit">
     <div class="admin-content-top">
-      <h2>Изменение данных категории новостей</h2>
+      <h2>Создание категории публикаций</h2>
     </div>
     <div class="admin-content-main">
       <div v-if="loading" class="loading">
@@ -9,20 +9,20 @@
       </div>
 
       <div v-else>
-        <el-form ref="newsCategory" :model="newsCategory">
+        <el-form ref="category" :model="category">
 
           <el-form-item prop="name">
             <label class="label" for="name">Название</label>
-            <el-input id="name" type="text" class="input" placeholder="Введите название" v-model="newsCategory.name"></el-input>
+            <el-input id="name" type="text" class="input" placeholder="Введите название" v-model="category.name"></el-input>
           </el-form-item>
 
           <el-form-item prop="slug">
             <label class="label" for="slug">Slug</label>
-            <el-input id="slug" type="text" class="input" placeholder="Введите превью" v-model="newsCategory.slug"></el-input>
+            <el-input id="slug" type="text" class="input" placeholder="Введите превью" v-model="category.slug"></el-input>
           </el-form-item>
 
           <el-form-item class="one-button-row">
-            <el-button class="button-save" type="primary" @click="submitForm('newsCategory')">Сохранить</el-button>
+            <el-button class="button-save" type="primary" @click="submitForm('category')">Сохранить</el-button>
           </el-form-item>
 
         </el-form>
@@ -40,11 +40,11 @@ export default {
   data: () => ({
     loading: true,
     search: '',
-    newsCategory: {
-      id: '',
-      name: '',
-      slug: ''
-    },
+    category: {
+        id: '',
+        name: '',
+        slug: ''
+      },
     rules: {
       name: [
         { required: true, message: 'Это поле обязательно к заполнению', triggered: 'blur' }
@@ -54,33 +54,28 @@ export default {
       ]
     }
   }),
-
-  async created () {
-    const newsCategory = await api.getNewsCategory(this.$store.getters.getAuthToken, this.$route.params.id);
-    this.newsCategory = newsCategory.data.data;
-
-    this.loading = false;
-  },
-
   methods: {
     async submitForm (formName) {
       this.loading = true;
-      let validation = false;
+      let validation = false
 
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          validation = true;
+          validation = true
         }
       })
 
       if (validation) {
-        await api.updateAdminNewsCategory (this.$store.getters.getAuthToken, this.newsCategory);
+        await api.createAdminCategory (this.$store.getters.getAuthToken, this.category)
 
-        alert('Данные успешно сохранены!');
+        alert('Данные успешно сохранены!')
 
-        this.$router.push({ name: 'NewsCategories' });
+        this.$router.push({ name: 'Categories' })
       }
     }
-  }
+  },
+  async created () {
+    this.loading = false
+  },
 }
 </script>

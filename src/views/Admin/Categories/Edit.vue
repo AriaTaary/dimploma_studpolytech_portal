@@ -64,6 +64,7 @@ export default {
 
   methods: {
     async submitForm (formName) {
+      this.loading = true;
       let validation = false
 
       this.$refs[formName].validate((valid) => {

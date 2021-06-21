@@ -269,6 +269,34 @@ export default {
     this.userEducation.first_education.education_type = userEducationType;
     // код для получения названия первого образования (бакалавриат/специалитет)
 
+    //Блок получения курсов 1 образования
+    var userFirstGrade = this.userEducation.first_education.grade;
+    console.log(userFirstGrade);
+
+    for (var key in this.educations.grades){
+        if(userFirstGrade === key){
+          userFirstGrade = this.educations.grades[key];
+          console.log(userFirstGrade);
+        }
+    }
+
+    this.userEducation.first_education.grade = userFirstGrade;
+    //Блок получения курсов 1 образования
+
+    //Блок получения курсов 2 образования
+    if (this.userEducation.second_education !== null){
+      var userSecondGrade = this.userEducation.second_education.grade;
+
+      for (var key in this.educations.grades){
+        if(userSecondGrade === key){
+          userSecondGrade = this.educations.grades[key];
+        }
+      }
+
+    this.userEducation.second_education.grade = userSecondGrade;
+    }
+    //Блок получения курсов 2 образования
+
     this.loading = false;
   }
 }

@@ -2,6 +2,9 @@
   <div class="admin-content">
     <div class="admin-content-top">
       <h2>Все вакансии</h2>
+      <router-link class="button-main admin-button-main"
+        :to="{ name: 'CreateVacancy'}
+        ">Создать</router-link>
     </div>
     <div class="admin-content-main">
       <div v-if="loading" class="loading">
@@ -28,7 +31,7 @@
         <el-table-column
           prop="title"
           label="Название"
-          min-width="200"
+          min-width="170"
           sortable>
           <template slot-scope="scope">
           <router-link :to="{ name: 'ViewVacancy', params: { id: scope.row.id } }" class="link-admin">{{ scope.row.title }}</router-link>
@@ -40,7 +43,7 @@
           min-width="150"
           sortable>
             <template slot-scope="scope">
-              {{ scope.row.author.last_name + ' ' +  scope.row.author.first_name }}
+              @{{ scope.row.author.username}}
             </template>
         </el-table-column>
         <el-table-column
@@ -49,7 +52,7 @@
           min-width="150"
           sortable>
           <template slot-scope="scope">
-            {{ scope.row.company.name }}
+            {{ scope.row.company_name }}
           </template>
         </el-table-column>
          <el-table-column
@@ -154,10 +157,12 @@ export default {
   },
 
   async created () {
-    const vacancies = await api.getVacancies(this.$store.getters.getAuthToken)
+    const vacancies = await api.getVacancies(this.$store.getters.getAuthToken);
+    console.log(vacancies);
 
-    this.vacancies = vacancies.data.data
-    this.loading = false
+    this.vacancies = vacancies.data.data;
+    console.log(this.vacancies);
+    this.loading = false;
   }
 }
 </script>

@@ -224,7 +224,7 @@ export default {
     educations: '',
   }),
   methods: {
-     ...mapActions(['getAnotherUser', 'getUserEducations', 'getAllUserEducations', 'getAllUserLanguages']),
+     ...mapActions(['getAnotherUser', 'getAnotherUserEducations', 'getAllUserEducations', 'getAllUserLanguages']),
      setData(response){
     this.user = response;
     }
@@ -232,6 +232,7 @@ export default {
   async created () {
 
     let userUsername = this.$route.params.username;
+    console.log(userUsername);
     const response = await this.getAnotherUser(userUsername);
     this.setData(response);
 
@@ -268,19 +269,52 @@ export default {
 
 
     this.educations = await this.getAllUserEducations();
-    // this.userEducation = await this.getUserEducations();
+    this.userEducation = await this.getAnotherUserEducations(userUsername);
 
     // код для получения названия первого образования (бакалавриат/специалитет)
-    // var userEducationType = this.userEducation.first_education.education_type;
+    if (this.userEducation.first_education !== null){
+    var userEducationType = this.userEducation.first_education.education_type;
 
-    // for (var key in this.educations.education_types){
-    //   if (key === userEducationType){
-    //     userEducationType = this.educations.education_types[key];
-    //   }
-    // }
+    for (var key in this.educations.education_types){
+      if (key === userEducationType){
+        userEducationType = this.educations.education_types[key];
+      }
+    }
 
-    // this.userEducation.first_education.education_type = userEducationType;
+    this.userEducation.first_education.education_type = userEducationType;
+    }
     // код для получения названия первого образования (бакалавриат/специалитет)
+
+    //Блок получения курсов 1 образования
+    if (this.userEducation.first_education !== null){
+    var userFirstGrade = this.userEducation.first_education.grade;
+
+
+    for (var key in this.educations.grades){
+        if(userFirstGrade === key){
+          userFirstGrade = this.educations.grades[key];
+          console.log(userFirstGrade);
+        }
+    }
+
+    this.userEducation.first_education.grade = userFirstGrade;
+    }
+    //Блок получения курсов 1 образования
+
+    //Блок получения курсов 2 образования
+    if (this.userEducation.second_education !== null){
+      var userSecondGrade = this.userEducation.second_education.grade;
+
+      for (var key in this.educations.grades){
+        if(userSecondGrade === key){
+          userSecondGrade = this.educations.grades[key];
+        }
+      }
+
+    this.userEducation.second_education.grade = userSecondGrade;
+    }
+    //Блок получения курсов 2 образования
+
 
     this.loading = false;
   }

@@ -17,7 +17,11 @@
 
           <el-form-item class="row-form" prop="author">
             <label class="row-label" for="author">Автор</label>
-            <span id="title" class="form-text">{{ this.article.author.last_name + ' ' + this.article.author.first_name }}</span>
+            <router-link
+              class="form-text form-link"
+              :to="{ name: 'ViewForeignProfile',
+              params: { username: this.article.author.username} }
+              ">@{{ this.article.author.username }}</router-link>
           </el-form-item>
 
           <el-form-item class="row-form" prop="created_at">

@@ -61,6 +61,20 @@ export default {
         alert("Произошла ошибка")
       }
     },
+    async getAnotherUserEducations(
+      { rootGetters },
+      username
+    ) {
+      let response = await api.getAnotherUserEducations(rootGetters.getAuthToken, username)
+
+      if (response.status === 200) {
+
+        return response.data.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
     async updateUserEducations(
       { rootGetters },
       formData

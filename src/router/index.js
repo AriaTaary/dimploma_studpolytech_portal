@@ -27,7 +27,6 @@ import PersonalEdit from '@/views/Main/Profile/Edit'
 import PersonalEditEducation from '@/views/Main/Profile/EditEducation'
 import PersonalVacancies from '@/views/Main/Profile/Vacancies'
 import PersonalArticles from '@/views/Main/Profile/Articles'
-import PersonalSubscriptions from '@/views/Main/Profile/Subscriptions'
 
 import PersonalFavouriteArticles from '@/views/Main/Profile/Favourite/Articles'
 import PersonalFavouriteVacancies from '@/views/Main/Profile/Favourite/Vacancies'
@@ -47,20 +46,25 @@ import PermissionsAdmin from '@/views/Admin/RolesAndPermissions/Permissions'
 import NewsAdmin from '@/views/Admin/News/News'
 import EditNews from '@/views/Admin/News/Edit'
 import ViewNews from '@/views/Admin/News/View'
+import CreateNews from '@/views/Admin/News/Create'
 
 import NewsCategories from '@/views/Admin/NewsCategories/NewsCategories'
 import EditNewsCategory from '@/views/Admin/NewsCategories/Edit'
+import CreateNewsCategory from '@/views/Admin/NewsCategories/Create'
 
 import ArticlesAdmin from '@/views/Admin/Articles/Articles'
 import ViewArticle from '@/views/Admin/Articles/View'
 import EditArticle from '@/views/Admin/Articles/Edit'
+import CreateArticle from '@/views/Admin/Articles/Create'
 
 import VacanciesAdmin from '@/views/Admin/Vacancies/Vacancies'
 import ViewVacancy from '@/views/Admin/Vacancies/View'
 import EditVacancy from '@/views/Admin/Vacancies/Edit'
+import CreateVacancy from '@/views/Admin/Vacancies/Create'
 
 import Categories from '@/views/Admin/Categories/Categories'
-import CategoryEdit from '@/views/Admin/Categories/Edit'
+import EditCategory from '@/views/Admin/Categories/Edit'
+import CreateCategory from '@/views/Admin/Categories/Create'
 
 Vue.use(VueRouter)
 
@@ -262,16 +266,6 @@ const routes = [
     }
   },
   {
-    path: '/users/:username/subscriptions',
-    name: 'PersonalSubscriptions',
-    component: PersonalSubscriptions,
-    meta: {
-      title: 'Подписки',
-      layout: 'personal',
-      block: blocks.personal
-    }
-  },
-  {
     path: '/users/:username/favourite/articles',
     name: 'PersonalFavouriteArticles',
     component: PersonalFavouriteArticles,
@@ -412,6 +406,16 @@ const routes = [
     }
   },
   {
+    path: '/admin/news/create',
+    name: 'CreateNews',
+    component: CreateNews,
+    meta: {
+      title: 'Создание новости',
+      layout: 'admin',
+      block: blocks.admin
+    }
+  },
+  {
     path: '/admin/news/categories',
     name: 'NewsCategories',
     component: NewsCategories,
@@ -427,6 +431,16 @@ const routes = [
     component: EditNewsCategory,
     meta: {
       title: 'Изменение категории новостей',
+      layout: 'admin',
+      block: blocks.admin
+    }
+  },
+  {
+    path: '/admin/news/categories/create',
+    name: 'CreateNewsCategory',
+    component: CreateNewsCategory,
+    meta: {
+      title: 'Создание категории новостей',
       layout: 'admin',
       block: blocks.admin
     }
@@ -462,6 +476,16 @@ const routes = [
     }
   },
   {
+    path: '/admin/articles/create',
+    name: 'CreateArticle',
+    component: CreateArticle,
+    meta: {
+      title: 'Создание статьи',
+      layout: 'admin',
+      block: blocks.admin
+    }
+  },
+  {
     path: '/admin/vacancies',
     name: 'VacanciesAdmin',
     component: VacanciesAdmin,
@@ -492,6 +516,16 @@ const routes = [
     }
   },
   {
+    path: '/admin/vacancies/create',
+    name: 'CreateVacancy',
+    component: CreateVacancy,
+    meta: {
+      title: 'Создание вакансии',
+      layout: 'admin',
+      block: blocks.admin
+    }
+  },
+  {
     path: '/admin/categories',
     name: 'Categories',
     component: Categories,
@@ -504,9 +538,19 @@ const routes = [
   {
     path: '/admin/categories/:id/edit',
     name: 'EditCategory',
-    component: CategoryEdit,
+    component: EditCategory,
     meta: {
       title: 'Изменение категории',
+      layout: 'admin',
+      block: blocks.admin
+    }
+  },
+  {
+    path: '/admin/categories/create',
+    name: 'CreateCategory',
+    component: CreateCategory,
+    meta: {
+      title: 'Создание категории',
       layout: 'admin',
       block: blocks.admin
     }

@@ -50,7 +50,8 @@
                         <p class="response-button">Список откликнувшихся</p>
                 </summary>
                 <div class="responses-links">
-                  <p class="response-title">Oткликнулось: {{ this.vacancy.responses.length }}</p>                  <router-link
+                  <p class="response-title">Oткликнулось: {{ this.vacancy.responses.length }}</p>
+                  <router-link
                     v-for="item in this.vacancy.responses"
                     :key="item.username"
                     class="response"

@@ -27,29 +27,70 @@ export default {
     },
     userFavourites: 'user/favourites',
     userLiked: 'user/liked',
-    userSubscriptions: 'user/subscriptions',
     educations: 'educations',
     languages: 'languages',
     users: 'users',
+    userRoles(user_id){
+      return 'users/' + user_id + '/roles'
+    },
     anotherUser(username) {
       return 'users/' + username
     },
+    anotherUserEducations(username) {
+      return 'users/' + username + '/educations'
+    },
     vacancies: 'vacancies',
     vacanciesData: 'vacancies/data',
+    vacancyData(vacancy_id) {
+      return 'vacancies/' + vacancy_id
+    },
+    vacancyFavourite(vacancy_id){
+      return 'vacancies/' + vacancy_id + '/favourite'
+    },
     articles: 'articles',
+    articleRating(article_id){
+      return 'articles/' + article_id + '/rating'
+    },
+    articleFavourite(article_id) {
+      return 'articles/' + article_id + '/favourite'
+    },
     categories: 'categories',
     news: 'news',
+    newsData(news_id){
+      return 'news/' + news_id
+    },
     newsCategories: 'news-categories',
   },
   adminRoutes: {
     user: 'users',
+    userData(user_id){
+      return 'users/' + user_id
+    },
     rolesAndPermissions: 'permissions',
     role: 'permissions/role',
+    roleData(id){
+      return 'permissions/role/' + id
+    },
     news: 'news',
+    newsData(news_id){
+      return 'news/' + news_id
+    },
     newsCategories: 'news-categories',
+    newsCategoriesData(id){
+      return 'news-categories/' + id
+    },
     articles: 'articles',
+    articleData(article_id){
+      return 'articles/' + article_id
+    },
     vacancies: 'vacancies',
-    categories: 'categories'
+    vacancyData(vacancy_id) {
+      return 'vacancies/' + vacancy_id
+    },
+    categories: 'categories',
+    categoryData(category_id) {
+      return 'categories/' + category_id
+    },
   },
   lastModified: '',
 
@@ -159,10 +200,10 @@ export default {
     )
   },
 
-  async getMainNews(authToken, id) {
+  async getMainNews(authToken, news_id) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.news + '/' + id,
+        this.apiRoutes.newsData(news_id),
         'get',
         {},
         true,
@@ -202,10 +243,10 @@ export default {
     )
   },
 
-  async getMainVacancy(authToken, id) {
+  async getMainVacancy(authToken, vacancy_id) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.vacancies + '/' + id,
+        this.apiRoutes.vacancyData(vacancy_id),
         'get',
         {},
         true,
@@ -226,10 +267,10 @@ export default {
     )
   },
 
-  async saveVacancy(authToken, id) {
+  async saveVacancy(authToken, vacancy_id) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.vacancies + '/' + id + '/favourite',
+        this.apiRoutes.vacancyFavourite(vacancy_id),
         'post',
         true,
         {},
@@ -317,10 +358,10 @@ export default {
     )
   },
 
-  async ratingArticle(authToken, id, rating) {
+  async ratingArticle(authToken, article_id, rating) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.articles + '/' + id + '/rating',
+        this.apiRoutes.articleRating(article_id),
         'post',
         {
           rating: rating
@@ -331,10 +372,10 @@ export default {
     )
   },
 
-  async saveArticle(authToken, id) {
+  async saveArticle(authToken, article_id) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.articles + '/' + id + '/favourite',
+        this.apiRoutes.articleFavourite(article_id),
         'post',
         true,
         {},
@@ -362,6 +403,19 @@ export default {
     return this.prepareResponse(
       this.execute(
         this.apiRoutes.anotherUser(username),
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAnotherUserEducations(authToken, username) {
+
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.anotherUserEducations(username),
         'get',
         {},
         true,
@@ -503,22 +557,22 @@ export default {
     )
   },
 
-  async getUserSubscriptions(authToken) {
-    return this.prepareResponse(
-      this.execute(
-        this.apiRoutes.userSubscriptions,
-        'get',
-        {},
-        true,
-        authToken
-      )
-    )
-  },
+  // async getUserSubscriptions(authToken) {
+  //   return this.prepareResponse(
+  //     this.execute(
+  //       this.apiRoutes.userSubscriptions,
+  //       'get',
+  //       {},
+  //       true,
+  //       authToken
+  //     )
+  //   )
+  // },
 
-  async getUserRoles (authToken, userId) {
+  async getUserRoles (authToken, user_id) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.users + '/' + userId + '/roles',
+        this.apiRoutes.userRoles(user_id),
         'get',
         {},
         true,
@@ -539,10 +593,10 @@ export default {
     )
   },
 
-  async getUserDataForEdit (authToken, id) {
+  async getUserDataForEdit (authToken, user_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.user + '/' + id,
+        this.adminPrefix + this.adminRoutes.userData(user_id),
         'get',
         {},
         true,
@@ -551,10 +605,10 @@ export default {
     )
   },
 
-  async updateUserDataFromAdmin (authToken, id, params) {
+  async updateUserDataFromAdmin (authToken, user_id, params) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.user + '/' + id,
+        this.adminPrefix + this.adminRoutes.userData(user_id),
         'put',
         params,
         true,
@@ -563,10 +617,10 @@ export default {
     )
   },
 
-  async deleteUserDataFromAdmin (authToken, id, params) {
+  async deleteUserDataFromAdmin (authToken, user_id, params) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.user + '/' + id,
+        this.adminPrefix + this.adminRoutes.userData(user_id),
         'delete',
         params,
         true,
@@ -590,7 +644,7 @@ export default {
   async getRole (authToken, id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.role + '/' + id,
+        this.adminPrefix + this.adminRoutes.roleData(id),
         'get',
         {},
         true,
@@ -611,10 +665,22 @@ export default {
     )
   },
 
-  async getNewsData (authToken, id) {
+  async createAdminNews(authToken, formData) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.news + '/' + id,
+        this.adminPrefix + this.adminRoutes.news,
+        'post',
+        formData,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getNewsData (authToken, news_id) {
+    return this.prepareResponse(
+      this.execute(
+        this.adminPrefix + this.adminRoutes.newsData(news_id),
         'get',
         {},
         true,
@@ -623,22 +689,22 @@ export default {
     )
   },
 
-  async updateAdminNews (authToken, news) {
+  async updateAdminNews (authToken, formData, news_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.news + '/' + news.id,
-        'put',
-        news,
+        this.adminPrefix + this.adminRoutes.newsData(news_id),
+        'post',
+        formData,
         true,
         authToken
       )
     )
   },
 
-  async deleteAdminNews (authToken, id) {
+  async deleteAdminNews(authToken, news_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.news + '/' + id,
+        this.adminPrefix + this.adminRoutes.newsData(news_id),
         'delete',
         {},
         true,
@@ -662,7 +728,7 @@ export default {
   async getNewsCategory (authToken, id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.newsCategories + '/' + id,
+        this.adminPrefix + this.adminRoutes.newsCategoriesData(id),
         'get',
         {},
         true,
@@ -671,10 +737,22 @@ export default {
     )
   },
 
-  async updateAdminNewsCategory (authToken, newsCategories) {
+  async createAdminNewsCategory(authToken, newsCategory) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.newsCategories + '/' + newsCategories.id,
+        this.adminPrefix + this.adminRoutes.newsCategories,
+        'post',
+        newsCategory,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async updateAdminNewsCategory (authToken, id) {
+    return this.prepareResponse(
+      this.execute(
+        this.adminPrefix + this.adminRoutes.newsCategoriesData(id),
         'put',
         newsCategories,
         true,
@@ -686,7 +764,7 @@ export default {
   async deleteNewsCategory (authToken, id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.newsCategories + '/' + id,
+        this.adminPrefix + this.adminRoutes.newsCategoriesData(id),
         'delete',
         {},
         true,
@@ -707,12 +785,24 @@ export default {
     )
   },
 
-  async getArticle (authToken, id) {
+  async getArticle (authToken, article_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.articles + '/' + id,
+        this.adminPrefix + this.adminRoutes.articleData(article_id),
         'get',
         {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async createAdminArticle(authToken, formData) {
+    return this.prepareResponse(
+      this.execute(
+        this.adminPrefix + this.adminRoutes.articles,
+        'post',
+        formData,
         true,
         authToken
       )
@@ -722,7 +812,7 @@ export default {
   async updateAdminArticle (authToken, article) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.articles + '/' + article.id,
+        this.adminPrefix + this.adminRoutes.articleData(article_id),
         'put',
         article,
         true,
@@ -731,10 +821,10 @@ export default {
     )
   },
 
-  async deleteAdminArticle (authToken, id) {
+  async deleteAdminArticle (authToken, article_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.articles + '/' + id,
+        this.adminPrefix + this.adminRoutes.articleData(article_id),
         'delete',
         {},
         true,
@@ -755,10 +845,10 @@ export default {
     )
   },
 
-  async getVacancy (authToken, id) {
+  async getVacancy (authToken, vacancy_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.vacancies + '/' + id,
+        this.adminPrefix + this.adminRoutes.vacancyData(vacancy_id),
         'get',
         {},
         true,
@@ -767,12 +857,24 @@ export default {
     )
   },
 
-  async updateAdminVacancy (authToken, vacancy) {
+  async createAdminVacancy(authToken, formData) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.vacancies + '/' + vacancy.id,
+        this.adminPrefix + this.adminRoutes.vacancies,
+        'post',
+        formData,
+        true,
+        authToken
+      )
+    )
+  },
+
+  async updateAdminVacancy (authToken, request) {
+    return this.prepareResponse(
+      this.execute(
+        this.adminPrefix + this.adminRoutes.vacancyData(request.id),
         'put',
-        vacancy,
+        request.formData,
         true,
         authToken
       )
@@ -782,7 +884,7 @@ export default {
   async deleteAdminVacancy (authToken, id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.vacancies + '/' + id,
+        this.adminPrefix + this.adminRoutes.vacancyData(vacancy_id),
         'delete',
         {},
         true,
@@ -803,12 +905,24 @@ export default {
     )
   },
 
-  async getCategory (authToken, id) {
+  async getCategory (authToken, category_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.categories + '/' + id,
+        this.adminPrefix + this.adminRoutes.categoryData(category_id),
         'get',
         {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async createAdminCategory(authToken, category) {
+    return this.prepareResponse(
+      this.execute(
+        this.adminPrefix + this.adminRoutes.categories,
+        'post',
+        category,
         true,
         authToken
       )
@@ -818,7 +932,7 @@ export default {
   async updateAdminCategory (authToken, categories) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.categories + '/' + categories.id,
+        this.adminPrefix + this.adminRoutes.categoryData(categories.id),
         'put',
         categories,
         true,
@@ -827,10 +941,10 @@ export default {
     )
   },
 
-  async deleteCategory (authToken, id) {
+  async deleteCategory (authToken, category_id) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.categories + '/' + id,
+        this.adminPrefix + this.adminRoutes.categoryData(category_id),
         'delete',
         {},
         true,
