@@ -219,11 +219,6 @@ export default {
 
       this.loading = false;
     },
-    updateArticle(article, index){
-      this.loading = true;
-      this.news[index] = article;
-      this.loading = false;
-    },
     async changePage(page){
       this.loading = true;
       const response = await this.getNews({

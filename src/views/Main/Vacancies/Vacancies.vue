@@ -302,8 +302,10 @@ export default {
       }
     },
     async submitSort() {
+      this.loading = true;
       const response = await this.getVacancies(this.request);
       this.setData(response);
+      this.loading = false;
     },
     async submitFilter() {
       this.loading = true;

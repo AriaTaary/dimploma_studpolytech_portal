@@ -25,7 +25,7 @@
       <div class="card-main-info">
         <div class="card-main-info-title">
           <h1>{{ this.vacancy.title }}</h1>
-          <p>{{ this.vacancy.salary }}</p>
+          <p v-if="this.vacancy.salary !== null">{{ this.vacancy.salary }} ₽</p>
         </div>
         <p class="card-description not-main">Город: {{ this.vacancy.city }}</p>
         <div class="row-group">

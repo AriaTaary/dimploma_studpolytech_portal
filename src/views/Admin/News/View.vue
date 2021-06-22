@@ -47,7 +47,7 @@
 
           <el-form-item class="row-form" prop="image">
             <label class="row-label" for="image">Изображение</label>
-            <span id="image" class="form-text">{{ this.news.image }}</span>
+            <span id="image" class="form-text">{{ this.news.image.filename }}</span>
           </el-form-item>
 
           <el-form-item class="row-form last-child" prop="categories">
@@ -90,6 +90,7 @@ export default {
   async created () {
     const news = await api.getNewsData(this.$store.getters.getAuthToken, this.$route.params.id)
     this.news = news.data.data
+    console.log(this.news);
 
     this.loading = false
   }

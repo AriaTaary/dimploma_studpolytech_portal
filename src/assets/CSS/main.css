@@ -1199,3 +1199,7 @@ input::-webkit-input-placeholder {
 .el-input__inner:focus {
     border-color: rgb(0, 0, 0, 0.3) !important;
 }
+
+.one-column{
+    width: 45vw;
+}

@@ -11,7 +11,7 @@
             </div>
             <el-form v-else>
               <div class="row-group row-group-profile">
-                <div>
+                <div class="one-column">
                   <el-form-item prop="name">
                     <label class="required-label label" for="name">Название вакансии</label>
                     <el-input id="name" type="text" class="input" placeholder="Введите название вакансии" v-model="formData.title"></el-input>
@@ -136,13 +136,22 @@
                   </el-form-item>
                 </div>
 
-                <div>
+                <div class="one-column">
+
+                <el-form-item prop="salary">
+            <label class="label" for="salary">Оплата (в рублях)</label>
+            <el-input id="salary" type="text" class="input" placeholder="Введите стоимость" v-model="formData.salary"></el-input>
+            <p class="error-message"
+            v-if="this.errors.hasOwnProperty('salary')"
+            >{{this.errors.salary[0]}}</p>
+          </el-form-item>
+
                   <el-form-item prop="description">
                   <label class="required-label label" for="description">Описание</label>
                   <el-input
                     id="description"
                     type="textarea"
-                    :rows="11"
+                    :rows="10"
                     placeholder="Введите описание"
                     v-model="formData.common_description"
                     >
@@ -157,7 +166,7 @@
                   <el-input
                     id="postulata"
                     type="textarea"
-                    :rows="11"
+                    :rows="10"
                     placeholder="Введите требования"
                     v-model="formData.requirements_description"
                     >
@@ -172,7 +181,7 @@
                   <el-input
                     id="circumstances"
                     type="textarea"
-                    :rows="11"
+                    :rows="10"
                     placeholder="Введите условия"
                     v-model="formData.condition_description"
                     >

@@ -21,7 +21,7 @@
         <div class="card-main-info">
           <div class="card-main-info-title">
             <h2>{{ this.vacancy.title }}</h2>
-            <p>{{ this.vacancy.salary }}</p>
+            <p v-if="this.vacancy.salary !== null">{{ this.vacancy.salary }} ₽</p>
           </div>
           <p class="card-description">{{ this.vacancy.description }}</p>
         </div>
