@@ -112,23 +112,24 @@
               <h5>Подписчики</h5>
               <p>{{ this.user.followers_count }}</p>
             </div> -->
-            <div class="personal-add-info-block">
+            <!-- <div class="personal-add-info-block">
               <h4>Опубликованные статьи</h4>
-              <!-- <p>{{ this.user.article_count }}</p> -->
+              <p>{{ this.user.article_count }}</p>
             </div>
             <div class="personal-add-info-block">
               <h4>Опубликованные вакансии</h4>
-              <!-- <p>{{ this.user.vacancy_count }}</p> -->
-            </div>
+              <p>{{ this.user.vacancy_count }}</p>
+            </div> -->
           </div>
         </div>
         <div class="personal-add">
-          <div v-if="this.user.about !== null" class="personal-education">
+          <div class="personal-education">
             <div class="personal-add-info-block">
               <h5>О себе</h5>
             </div>
             <div class="personal-add-info-block">
-              <p>{{this.user.about}}</p>
+              <p v-if="this.user.about !== null">{{this.user.about}}</p>
+              <p v-else class="empty-person">Пользователь ещё не добавил информацию о себе</p>
             </div>
           </div>
           <div v-if="this.userEducation.first_education !== null || this.userEducation.second_education !== null || this.userEducation.courses !== null">
@@ -174,6 +175,12 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h2 class="personal-education-title">Образование</h2>
+            <div class="personal-education">
+              <p class="empty-education">Пользователь ещё не добавил информацию об образовании</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -209,17 +216,24 @@ export default {
       article_count: '',
       vacancy_count: ''
     },
-    userEducation: '',
+    userEducation: {
+      first_education: null,
+      second_education: null,
+      courses: null,
+    },
     educations: '',
   }),
   methods: {
-     ...mapActions(['getUser', 'getUserEducations', 'getAllUserEducations', 'getAllUserLanguages']),
+     ...mapActions(['getAnotherUser', 'getAnotherUserEducations', 'getAllUserEducations', 'getAllUserLanguages']),
      setData(response){
     this.user = response;
     }
   },
   async created () {
-    const response = await this.getUser();
+
+    let userUsername = this.$route.params.username;
+    console.log(userUsername);
+    const response = await this.getAnotherUser(userUsername);
     this.setData(response);
 
     //получение пользовательского языка
@@ -255,9 +269,10 @@ export default {
 
 
     this.educations = await this.getAllUserEducations();
-    this.userEducation = await this.getUserEducations();
+    this.userEducation = await this.getAnotherUserEducations(userUsername);
 
     // код для получения названия первого образования (бакалавриат/специалитет)
+    if (this.userEducation.first_education !== null){
     var userEducationType = this.userEducation.first_education.education_type;
 
     for (var key in this.educations.education_types){
@@ -267,11 +282,13 @@ export default {
     }
 
     this.userEducation.first_education.education_type = userEducationType;
+    }
     // код для получения названия первого образования (бакалавриат/специалитет)
 
     //Блок получения курсов 1 образования
+    if (this.userEducation.first_education !== null){
     var userFirstGrade = this.userEducation.first_education.grade;
-    console.log(userFirstGrade);
+
 
     for (var key in this.educations.grades){
         if(userFirstGrade === key){
@@ -281,6 +298,7 @@ export default {
     }
 
     this.userEducation.first_education.grade = userFirstGrade;
+    }
     //Блок получения курсов 1 образования
 
     //Блок получения курсов 2 образования
@@ -296,6 +314,7 @@ export default {
     this.userEducation.second_education.grade = userSecondGrade;
     }
     //Блок получения курсов 2 образования
+
 
     this.loading = false;
   }

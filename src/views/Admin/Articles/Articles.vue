@@ -2,6 +2,9 @@
   <div class="admin-content">
     <div class="admin-content-top">
       <h2>Все статьи</h2>
+      <router-link class="button-main admin-button-main"
+        :to="{ name: 'CreateArticle'}
+        ">Создать</router-link>
     </div>
     <div class="admin-content-main">
       <div v-if="loading" class="loading">
@@ -30,7 +33,7 @@
           min-width="100"
           sortable>
           <template slot-scope="scope">
-            {{ scope.row.author.last_name + ' ' +  scope.row.author.first_name }}
+            @{{ scope.row.author.username }}
           </template>
         </el-table-column>
         <el-table-column
@@ -142,10 +145,11 @@ export default {
   },
 
   async created () {
-    const articles = await api.getArticles(this.$store.getters.getAuthToken)
+    const articles = await api.getArticles(this.$store.getters.getAuthToken);
 
-    this.articles = articles.data.data
-    this.loading = false
+    this.articles = articles.data.data;
+    console.log(articles);
+    this.loading = false;
   }
 }
 </script>

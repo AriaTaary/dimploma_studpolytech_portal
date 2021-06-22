@@ -2,8 +2,17 @@
   <div class="container">
     <div class="content content-profile">
       <div class="content-nav">
-        <div class="content-title">
-          <h1>Настройки профиля</h1>
+        <div class="profile-content-title">
+          <h1>Настройки</h1>
+          <router-link class="link-profile-active"
+              :to="{ name: 'PersonalEdit',
+              params: { username: this.user.username }}
+          ">профиля</router-link>
+          <router-link class="link-profile"
+              :to="{ name: 'PersonalEditEducation',
+              params: { username: this.user.username }}
+          ">образования</router-link>
+
         </div>
       </div>
 
@@ -11,9 +20,11 @@
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
 
-      <el-form v-else ref="user" :model="user" :rules="rules">
-         <div class="row-group row-group-profile">
-           <div>
+      <el-form v-else>
+        <div class="row-group row-group-profile">
+
+         <div class="column-group-profile">
+
           <el-form-item prop="last_name">
             <label class="required-label label" for="last_name">Фамилия</label>
             <el-input id="last_name" type="text" class="input" placeholder="Введите фамилию" v-model="user.last_name"></el-input>
@@ -28,64 +39,128 @@
             <label class="label" for="middle_name">Отчество</label>
             <el-input id="middle_name" type="text" class="input" placeholder="Введите отчество" v-model="user.middle_name"></el-input>
           </el-form-item>
-          </div>
-          <div class="row-group settings-profile">
-            <div class="settings-img-profile">
-              <p>Формат: jpeg, png</p>
-              <p>Размер: до 1 Мб</p>
-              <button class="button-main">Загрузить</button>
-            </div>
-            <img :src="this.user.avatar" alt="" class="profile-photo">
-          </div>
-         </div>
 
-          <div class="row-group row-group-profile">
-            <el-form-item prop="username">
+          <el-form-item prop="username">
             <label class="required-label label" for="email">Username</label>
             <el-input id="username" type="text" class="input" placeholder="Введите имя пользователя" v-model="user.username"></el-input>
-            </el-form-item>
+          </el-form-item>
 
-            <el-form-item prop="date_birth">
+          <el-form-item prop="date_birth">
             <label class="label" for="date_birth">Дата рождения</label>
             <el-date-picker
               id="date_birth"
               type="date"
               placeholder="Когда вы родились?"
-              :picker-options="pickerOptions"
               format="dd.MM.yyyy"
               value-format="yyyy-MM-dd"
               v-model="user.date_birth"
               style="width: 100%;"
             ></el-date-picker>
           </el-form-item>
+
+          <el-form-item prop="tel">
+            <label class="label" for="tel">Телефон</label>
+            <el-input type="text" id="tel" class="input" placeholder="Введите телефон" v-model="user.phone"></el-input>
+          </el-form-item>
+
+          <el-form-item prop="email">
+            <label class="label" for="email">E-mail</label>
+            <el-input type="text" id="email" class="input" placeholder="Введите телефон" v-model="user.email"></el-input>
+          </el-form-item>
+
+          <div class="column-form">
+            <label class="label" for="bac-grade">Пол</label>
+            <el-select id="bac-grade" placeholder="Выберите" v-model="user.gender">
+              <el-option value="male" label="Мужской">Мужской
+              </el-option>
+              <el-option value="female" label="Женский">Женский
+              </el-option>
+            </el-select>
           </div>
 
-          <div class="row-group row-group-profile">
-            <el-form-item prop="faculty">
-            <label class="label" for="faculty">Факультет</label>
-            <el-input id="faculty" type="text" class="input" placeholder="Введите факультет" v-model="user.faculty"></el-input>
-            </el-form-item>
+          <el-form-item prop="image">
+            <label class="required-label label" for="image">Аватар</label>
+            <el-upload
+              class="upload"
+              ref="upload"
+              action="https://jsonplaceholder.typicode.com/posts/"
+              :auto-upload="false">
+              <el-button slot="trigger" size="small" type="primary"><p class="button-text">Выберите файл</p></el-button>
+              <div class="el-upload__tip" slot="tip">Поддерживаемые форматы: jpg/jpeg/png/gif</div>
+            </el-upload>
+          </el-form-item>
 
-             <el-form-item prop="specialization">
-            <label class="label" for="specialization">Специализация</label>
-            <el-input id="specialization" type="text" class="input" placeholder="Введите специализацию" v-model="user.speciality"></el-input>
-            </el-form-item>
-          </div>
+
+
+         </div>
+
+          <div class="column-group-profile">
 
             <el-form-item prop="about">
             <label class="label" for="about">О себе</label>
-            <el-input type="textarea" :rows="2" id="about"  class="input" placeholder="Расскажите о себе" v-model="user.about"></el-input>
-            </el-form-item>
-
-            <el-form-item prop="skills">
-            <label class="label" for="about">Ключевые навыки</label>
-            <el-input type="textarea" :rows="2" id="about"  class="input" placeholder="Напишите свои ключевые навыки" v-model="user.key_skills"></el-input>
-            </el-form-item>
-
-          <el-form-item class="one-button-row-profile">
-            <el-button class="button-save" type="primary">Сохранить</el-button>
+            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Расскажите о себе" v-model="user.about"></el-input>
           </el-form-item>
 
+          <el-form-item prop="skills">
+            <label class="label" for="about">Ключевые навыки</label>
+            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Напишите свои ключевые навыки" v-model="user.key_skills"></el-input>
+          </el-form-item>
+
+          <div class="column-form">
+            <label class="label" for="bac-grade">Иностранный язык</label>
+            <el-select id="bac-grade" placeholder="Выберите" v-model="user.language">
+              <el-option
+                v-for="(language, key) in this.languages.languages"
+                :key="key"
+                :label="language"
+                :value="key">
+              </el-option>
+            </el-select>
+          </div>
+
+          <div class="column-form">
+            <label class="label" for="bac-grade">Уровень языка</label>
+            <el-select id="bac-grade" placeholder="Выберите" v-model="user.language_level">
+              <el-option
+                v-for="(level, key) in this.languages.language_levels"
+                :key="key"
+                :label="level"
+                :value="key">
+              </el-option>
+            </el-select>
+          </div>
+
+          <p class="password-label" for="password-block">Изменить пароль</p>
+          <div class="password-block" id="password-block">
+            <el-form-item prop="password">
+              <label class="password-label-first" for="password">Старый пароль</label>
+              <el-input type="password"  id="password"  class="input" placeholder="Введите старый пароль" v-model="user.old_password"></el-input>
+            </el-form-item>
+
+            <el-form-item prop="password">
+              <label class="label" for="password">Новый пароль</label>
+              <el-input type="password"  id="password"  class="input" placeholder="Введите новый пароль" v-model="user.new_password"></el-input>
+              <p class="error-message"
+                  v-if="this.errors.hasOwnProperty('password')"
+              >{{this.errors.password}}</p>
+            </el-form-item>
+
+            <el-form-item prop="password">
+              <label class="label" for="password">Повторите новый пароль</label>
+              <el-input type="password"  id="password"  class="input" placeholder="Повторите новый пароль" v-model="user.new_password_confirmation"></el-input>
+              <p class="error-message"
+                  v-if="this.errors.hasOwnProperty('password')"
+              >{{this.errors.password}}</p>
+            </el-form-item>
+          </div>
+
+
+
+          </div>
+        </div>
+          <el-form-item class="one-button-row-profile">
+            <el-button class="button-save" type="primary" @click="submit">Сохранить</el-button>
+          </el-form-item>
         </el-form>
 
     </div>
@@ -94,57 +169,74 @@
 
 <script>
 import moment from 'moment'
-import api from '@/network/api'
+import {mapActions} from 'vuex'
 moment.locale('ru')
 
 export default {
   data: () => ({
     loading: true,
     search: '',
-    user: {
-      username: '',
-      avatar: '',
-      last_name: '',
-      first_name: '',
-      middle_name: '',
-      faculty: '',
-      speciality: '',
-      key_skills: '',
-      about: '',
-      age: '',
-      email_verified_at: '',
-      followers_count: '',
-      article_count: '',
-      vacancy_count: '',
-      date_birth: ''
-    }
+    languages: {},
+    user: {},
+    formData: {},
+    request: {},
+    errors: {},
   }),
 
+  methods:{
+    ...mapActions(['getUser', 'updateUser', 'getAllUserLanguages']),
+    async submit(){
+      this.loading = true;
+
+      if (this.formData.new_password === this.formData.new_password_confirmation) {
+        const formData = new FormData();
+        formData.append('first_name', this.formData.first_name);
+        formData.append('last_name', this.formData.last_name);
+        formData.append('middle_name', this.formData.middle_name);
+        formData.append('username', this.formData.username);
+        formData.append('date_birth', this.formData.date_birth || '');
+        formData.append('phone', this.formData.phone);
+        formData.append('email', this.formData.email);
+        formData.append('gender', this.formData.gender);
+        if (this.$refs.upload.uploadFiles.length !== 0){
+          formData.append('avatar', this.$refs.upload.uploadFiles[0].raw);
+        }
+        formData.append('about', this.formData.about);
+        formData.append('key_skills', this.formData.key_skills);
+        formData.append('language', this.formData.language || '');
+        formData.append('language_level', this.formData.language_level || '');
+        formData.append('old_password', this.formData.old_password || '');
+        formData.append('new_password', this.formData.new_password);
+        formData.append('new_password_confirmation', this.formData.new_password_confirmation);
+
+        // this.request = formData;
+        console.log('formdata');
+        console.log(this.formData);
+        const response = await this.updateUser(formData);
+        if (response) {
+          alert('Данные успешно сохранены!');
+          this.$router.push({ name: 'Personal', params: { username: this.user.username } });
+        }
+      }
+      else{
+        this.errors.password = 'Пароли не совпадают';
+        this.loading = false;
+      }
+      // this.request.id = this.article.id;
+      // const response = await this.updateArticle(this.request);
+      // if (response) {
+      //   alert('Данные успешно сохранены!');
+      //   this.$router.push({ name: 'ArticleView', params: { id: response.id } });
+      // }
+    }
+  },
+
   async created () {
-
-    const response = await api.getUserData(this.$store.getters.getAuthToken, '')
-
-    if (response.status === 200) {
-      const responseUser = response.data
-
-      this.user.username = responseUser.username
-      this.user.avatar = responseUser.avatar
-      this.user.last_name = responseUser.last_name
-      this.user.first_name = responseUser.first_name
-      this.user.middle_name = responseUser.middle_name
-      this.user.faculty = responseUser.faculty
-      this.user.speciality = responseUser.speciality
-      this.user.key_skills = responseUser.key_skills
-      this.user.about = responseUser.about
-      this.user.email_verified_at = moment(responseUser.email_verified_at).format('ll')
-      this.user.date_birth = responseUser.date_birth
-      this.user.age = moment().diff(responseUser.date_birth, 'years')
-      this.user.followers_count = responseUser.followers.length
-      this.loading = false
-    }
-    else {
-      alert("Произошла ошибка")
-    }
+    const response = await this.getUser();
+    this.user = response;
+    this.loading = false;
+    this.formData = response;
+    this.languages = await this.getAllUserLanguages();
   }
 }
 

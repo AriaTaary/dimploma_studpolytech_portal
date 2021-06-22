@@ -155,7 +155,6 @@ export default {
       if (this.$refs.upload.uploadFiles.length !== 0){
         formData.append('image', this.$refs.upload.uploadFiles[0].raw);
       }
-      // console.log(formData);
       this.request.formData = formData;
       this.request.id = this.article.id;
       const response = await this.updateArticle(this.request);
@@ -180,7 +179,6 @@ export default {
       this.formData.text = this.article.text;
       this.formData.cut = this.article.cut;
       this.formData.source = this.article.source;
-      console.log(this.formData);
     }
     else {
       alert("Произошла ошибка");

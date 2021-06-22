@@ -97,6 +97,17 @@ export default {
           alert("Произошла ошибка")
         }
       },
+      async createAdminVacancy({ rootGetters }, formData) {
+        let response = await api.createAdminVacancy(rootGetters.getAuthToken, formData);
+        console.log(response);
+        if (response.status === 201) {
+          return response;
+        }
+        else {
+          alert("Произошла ошибка");
+          return response;
+        }
+      },
 
   }
 }

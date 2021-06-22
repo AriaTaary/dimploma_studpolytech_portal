@@ -17,7 +17,11 @@
 
           <el-form-item class="row-form" prop="author">
             <label class="row-label" for="author">Автор</label>
-            <span id="title" class="form-text">{{ this.article.author.last_name + ' ' + this.article.author.first_name }}</span>
+            <router-link
+              class="form-text form-link"
+              :to="{ name: 'ViewForeignProfile',
+              params: { username: this.article.author.username} }
+              ">@{{ this.article.author.username }}</router-link>
           </el-form-item>
 
           <el-form-item class="row-form" prop="created_at">
@@ -38,6 +42,11 @@
            <el-form-item class="row-form" prop="text">
             <label class="row-label" for="text">Текст</label>
             <span id="text" class="form-text">{{ this.article.text }}</span>
+          </el-form-item>
+
+          <el-form-item class="row-form" prop="text">
+            <label class="row-label" for="text">Изображение</label>
+            <span id="text" class="form-text">{{ this.article.image.filename }}</span>
           </el-form-item>
 
           <el-form-item class="row-form last-child" prop="categories">
@@ -74,26 +83,12 @@ export default {
   data: () => ({
     loading: true,
     search: '',
-    article: {
-        id: '',
-        author: '',
-        title: '',
-        cut: '',
-        text: '',
-        created_at: '',
-        categories: [
-          {
-            id: '',
-            name: ''
-          }
-        ],
-        views: ''
-    }
+    article: {},
   }),
 
   async created () {
     const article = await api.getArticle(this.$store.getters.getAuthToken, this.$route.params.id)
-    this.article = article.data
+    this.article = article.data.data
 
     this.loading = false
   }

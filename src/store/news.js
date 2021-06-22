@@ -65,6 +65,27 @@ export default {
       else {
         alert("Произошла ошибка")
       }
-    }
+    },
+
+    async createAdminNews({ rootGetters }, formData) {
+      let response = await api.createAdminNews(rootGetters.getAuthToken, formData);
+      if (response.status === 201) {
+        return response;
+      }
+      else {
+        alert("Произошла ошибка");
+        return response;
+      }
+    },
+
+    async updateAdminNews({ rootGetters }, request) {
+      let response = await api.updateAdminNews(rootGetters.getAuthToken, request.formData, request.id);
+      if (response.status === 200) {
+        return prepareDate.news(response.data.data)
+      }
+      else {
+        alert("Произошла ошибка");
+      }
+    },
   }
 }

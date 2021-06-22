@@ -5,8 +5,93 @@
     }
 }
 
+
+@media (max-width: 950px){
+    .advisory{
+        display: none;
+    }
+
+}
+
+@media (max-width: 900px){
+    .profile-content{
+        flex-direction: column;
+    }
+
+    .personal-info{
+        box-sizing: border-box;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    
+    .personal-education{
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
+
 @media (max-width: 850px){
     .admin-main-page{
         background-image: none;
+    }
+
+     .menu-mobile{
+        display: block;
+    }
+
+    .menu{
+        display: none;
+    }
+
+    .menu-add{
+        display: none;
+    }
+
+    .menu-mobile-profile{
+        display: block;
+        margin-bottom: 50px;
+    }
+
+    .banner h1{
+        font-size: 6vw;
+    }
+
+    /* .menu-add{
+        display: none;
+    } */
+}
+
+@media (max-width: 650px){
+    .main-filter_block p{
+        display: none;
+    }
+
+    .main-sort_block p{
+        display: none;
+    }
+
+    .footer-menu{
+        display: none;
+    }
+
+    .footer-contacts-title{
+        display: none;
+    }
+
+    .footer-info{
+        margin-bottom: 25px;
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 550px){
+    .daily-news{
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 350px){
+    .daily-news{
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 }

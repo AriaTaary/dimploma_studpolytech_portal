@@ -27,17 +27,49 @@
         </div>
         </router-link>
         <div class="row-group">
-          <button
+          <!-- <p
+          v-for="item in this.vacancy.responses"
+          :key="item.username">
+          {{ item.username }}</p> -->
+          <!-- <div class="responses-links">
+            <router-link
+            v-for="item in this.vacancy.responses"
+            :key="item.username"
+            class="pink"
+            :to="{ name: 'ViewForeignProfile',
+            params: { username: item.username} }
+            ">@{{ item.username }}</router-link>
+          </div> -->
+          <router-link class="button-main"
+            :to="{ name: 'VacancyEdit',
+            params: { id: this.vacancy.id } }
+            ">Редактировать</router-link>
+
+          <details v-if="this.vacancy.responses.length !== 0" class="responses">
+                <summary>
+                        <p class="response-button">Список откликнувшихся</p>
+                </summary>
+                <div class="responses-links">
+                  <p class="response-title">Oткликнулось: {{ this.vacancy.responses.length }}</p>
+                  <router-link
+                    v-for="item in this.vacancy.responses"
+                    :key="item.username"
+                    class="response"
+                    :to="{ name: 'ViewForeignProfile',
+                    params: { username: item.username} }
+                    ">@{{ item.username }}</router-link>
+                </div>
+            </details>
+          <!-- <button
             v-if="vacancy.responses.filter(user => user.id === this.$store.getters.getUser.id).length !== 0"
             class="button-main button-main-active" disabled
           >Отклик отправлен</button>
           <button
             v-else
             class="button-main" @click="responseVacancy()"
-          >Откликнуться</button>
-          <!-- <button class="button-favourite" @click="editAction ()">Добавить в избранное</button> -->
+          >Откликнуться</button> -->
 
-          <button v-if="vacancy.saved_users.filter(user => user.id === this.$store.getters.getUser.id).length !== 0" class="post-button post-button-active" @click="saveVacancy()">
+          <!-- <button v-if="vacancy.saved_users.filter(user => user.id === this.$store.getters.getUser.id).length !== 0" class="post-button post-button-active" @click="saveVacancy()">
             <div class="bookmarks">
               <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.42788 0.269325C7.50928 0.104406 7.67723 7.30754e-09 7.86116 7.30754e-09C8.04509 -3.18919e-05 8.21307 0.104374 8.29448 0.269293L10.1792 4.08753C10.3564 4.44655 10.6989 4.69546 11.0952 4.75301L15.3091 5.36557C15.4911 5.39204 15.6423 5.51951 15.6992 5.69445C15.756 5.86935 15.7086 6.06138 15.5769 6.18978L12.5279 9.16218C12.2412 9.44171 12.1104 9.84437 12.178 10.239L12.8975 14.4352C12.9285 14.6165 12.854 14.7997 12.7052 14.9077C12.5564 15.0159 12.3592 15.0301 12.1964 14.9445L8.42731 12.9633C8.07291 12.7771 7.64951 12.7771 7.29505 12.9634L3.52632 14.9444C3.36351 15.03 3.16624 15.0157 3.01746 14.9076C2.86865 14.7995 2.79417 14.6163 2.82524 14.4351L3.54498 10.2392C3.6127 9.84444 3.48185 9.44171 3.19508 9.16211L0.145932 6.18981C0.0142525 6.06142 -0.0331816 5.86938 0.0236627 5.69448C0.080507 5.51958 0.231709 5.39211 0.413726 5.3656L4.62748 4.75307C5.02373 4.69546 5.3663 4.44659 5.54353 4.0875L7.42788 0.269325Z" fill="#D5444C"/>
@@ -52,7 +84,7 @@
               </svg>
               <span>Добавить в избранное</span>
             </div>
-          </button>
+          </button> -->
 
         </div>
         <!-- TODO: блок сохранений и просмотров на вакансии

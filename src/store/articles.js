@@ -112,5 +112,15 @@ export default {
         alert("Произошла ошибка")
       }
     },
+    async createAdminArticle({ rootGetters }, formData) {
+      let response = await api.createAdminArticle(rootGetters.getAuthToken, formData);
+      if (response.status === 201) {
+        return response;
+      }
+      else {
+        alert("Произошла ошибка");
+        return response;
+      }
+    },
   }
 }

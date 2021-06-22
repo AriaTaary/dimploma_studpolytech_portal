@@ -3,6 +3,116 @@ import prepareDate from "@/helpers/prepareDate";
 
 export default {
   actions: {
+    async getUser(
+      { rootGetters }
+    ) {
+      let response = await api.getUserData(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+
+        const userData = (prepareDate.user(response.data.data));
+
+        return userData;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getAnotherUser(
+      { rootGetters },
+      username
+    ) {
+      let response = await api.getAnotherUser(rootGetters.getAuthToken, username);
+
+      if (response.status === 200) {
+
+        const userData = (prepareDate.user(response.data.data));
+
+        return userData;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async updateUser(
+      { rootGetters },
+      formData
+    ) {
+      let response = await api.updateUserData(rootGetters.getAuthToken, formData);
+
+      if (response.status === 200) {
+
+        return response;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getUserEducations(
+      { rootGetters }
+    ) {
+      let response = await api.getUserEducations(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+
+        return response.data.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getAnotherUserEducations(
+      { rootGetters },
+      username
+    ) {
+      let response = await api.getAnotherUserEducations(rootGetters.getAuthToken, username)
+
+      if (response.status === 200) {
+
+        return response.data.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async updateUserEducations(
+      { rootGetters },
+      formData
+    ) {
+      let response = await api.updateUserEducations(rootGetters.getAuthToken, formData)
+
+      if (response.status === 200) {
+
+        return response;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getAllUserEducations(
+      { rootGetters }
+    ) {
+      let response = await api.getAllUserEducations(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+        return response.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
+    async getAllUserLanguages(
+      { rootGetters }
+    ) {
+      let response = await api.getAllUserLanguages(rootGetters.getAuthToken)
+
+      if (response.status === 200) {
+        return response.data;
+      }
+      else {
+        alert("Произошла ошибка")
+      }
+    },
     async getUserArticles(
       { rootGetters }
     ) {

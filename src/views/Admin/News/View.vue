@@ -22,7 +22,12 @@
 
           <el-form-item class="row-form" prop="author">
             <label class="row-label" for="author">Автор</label>
-            <span id="author" class="form-text">{{ this.news.author.last_name }} {{ this.news.author.first_name }} {{ this.news.author.middle_name }}</span>
+            <!-- <span id="author" class="form-text">@{{ this.news.author.username }}</span> -->
+            <router-link
+              class="form-text form-link"
+              :to="{ name: 'ViewForeignProfile',
+              params: { username: this.news.author.username} }
+              ">@{{ this.news.author.username }}</router-link>
           </el-form-item>
 
           <el-form-item class="row-form" prop="created_at">
@@ -38,6 +43,11 @@
           <el-form-item class="row-form" prop="text">
             <label class="row-label" for="text">Текст</label>
             <span id="text" class="form-text">{{ this.news.text }}</span>
+          </el-form-item>
+
+          <el-form-item class="row-form" prop="image">
+            <label class="row-label" for="image">Изображение</label>
+            <span id="image" class="form-text">{{ this.news.image.filename }}</span>
           </el-form-item>
 
           <el-form-item class="row-form last-child" prop="categories">
@@ -74,27 +84,13 @@ export default {
   data: () => ({
     loading: true,
     search: '',
-    news: [
-      {
-        id: '',
-        title: '',
-        author: '',
-        cut: '',
-        text: '',
-        created_at: '',
-        categories: [
-          {
-            id: '',
-            name: ''
-          }
-        ]
-      }
-    ]
+    news: {}
   }),
 
   async created () {
     const news = await api.getNewsData(this.$store.getters.getAuthToken, this.$route.params.id)
     this.news = news.data.data
+    console.log(this.news);
 
     this.loading = false
   }

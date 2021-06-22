@@ -4,6 +4,9 @@
       <div class="content-nav">
         <div class="content-title">
           <h1>Мои вакансии</h1>
+          <router-link class="button-main"
+              :to="{ name: 'VacancyCreate'}
+          ">Создать</router-link>
         </div>
       </div>
       <div class="empty" v-if="this.count === 0">
@@ -13,7 +16,7 @@
         <div v-if="loading" class="loading">
           <img src="/img/preloader.svg" alt="Загрузка данных">
         </div>
-        <VacancyBase
+        <VacancyProfile
           v-for="(vacancy,index) in this.vacancies"
           :key='index'
           v-bind:vacancy="vacancy"
@@ -27,14 +30,14 @@
 
 <script>
 import moment from 'moment'
-import VacancyBase from '@/components/VacancyBase'
+import VacancyProfile from '@/components/VacancyProfile'
 import {mapActions} from 'vuex'
 
 moment.locale('ru')
 
 export default {
   components: {
-    VacancyBase
+    VacancyProfile
   },
   data: () => ({
     loading: true,

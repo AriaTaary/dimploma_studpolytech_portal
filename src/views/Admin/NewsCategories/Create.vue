@@ -1,7 +1,7 @@
 <template>
   <div class="admin-content admin-content-edit">
     <div class="admin-content-top">
-      <h2>Изменение данных категории новостей</h2>
+      <h2>Создание категории новостей</h2>
     </div>
     <div class="admin-content-main">
       <div v-if="loading" class="loading">
@@ -40,11 +40,7 @@ export default {
   data: () => ({
     loading: true,
     search: '',
-    newsCategory: {
-      id: '',
-      name: '',
-      slug: ''
-    },
+    newsCategory: {},
     rules: {
       name: [
         { required: true, message: 'Это поле обязательно к заполнению', triggered: 'blur' }
@@ -54,14 +50,6 @@ export default {
       ]
     }
   }),
-
-  async created () {
-    const newsCategory = await api.getNewsCategory(this.$store.getters.getAuthToken, this.$route.params.id);
-    this.newsCategory = newsCategory.data.data;
-
-    this.loading = false;
-  },
-
   methods: {
     async submitForm (formName) {
       this.loading = true;
@@ -74,13 +62,17 @@ export default {
       })
 
       if (validation) {
-        await api.updateAdminNewsCategory (this.$store.getters.getAuthToken, this.newsCategory);
+        await api.createAdminNewsCategory(this.$store.getters.getAuthToken, this.newsCategory);
 
         alert('Данные успешно сохранены!');
 
         this.$router.push({ name: 'NewsCategories' });
       }
     }
-  }
+  },
+
+  async created () {
+    this.loading = false;
+  },
 }
 </script>

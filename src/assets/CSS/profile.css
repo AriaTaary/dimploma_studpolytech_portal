@@ -126,7 +126,7 @@
     margin-bottom: 0;
 }
 
-.row-group-profile .el-form-item{
+.column-group-profile .el-form-item{
     width: 45vw;
 }
 
@@ -218,6 +218,11 @@
     justify-content: space-between;
     margin-bottom: 20px;
     align-items: center;
+    color: black;
+}
+
+.card-main-info-title p{
+    margin-right: 20px;
 }
 
 .card-description{
@@ -233,6 +238,12 @@
     color: black;
 }
 
+
+.card-main-info-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .ratings{
     display: flex;
@@ -414,4 +425,227 @@
 
 .suggestion-categories .mini-hover{
     padding-right: 20px;
+}
+
+
+
+/* ТЕСТ */
+
+.profile-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.profile-content p{
+    line-height: 25px;
+}
+
+.personal-add{
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-info{
+    background-color: rgb(0, 0, 0, 0.05);
+    border-radius: 5px;
+    width: 30vw;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+
+.avatar{
+    display: flex;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.avatar .user{
+    /* width: 100%; */
+    height: 200px;
+}
+
+.avatar .plug{
+    width: 130px;
+    height: 130px;
+}
+
+.profile-name{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.personal-main-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.personal-add-info-block:not(:last-child){
+    margin-bottom: 30px;
+}
+
+.personal-add-info-block h5{
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.personal-add-info-block h4{
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.personal-education{
+    background-color: rgb(0, 0, 0, 0.05);
+    border-radius: 5px;
+    width: 55vw;
+    padding: 30px;
+}
+
+.personal-education:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.personal-education-title{
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+
+.personal-list{
+    padding-left: 18px;
+    line-height: 25px;
+}
+
+.profile-username{
+    color: #D5444C;
+    margin-bottom: 10px;
+}
+
+.profile-settings-block{
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.profile-settings-block:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.profile-settings-block-title{
+    text-align: center;
+    padding: 10px 0;
+}
+
+.column-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.label-title{
+    margin-bottom: 20px;
+}
+
+.link-profile{
+    color: rgb(0, 0, 0, 0.3) !important;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.link-profile-active{
+    color: black;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.profile-content-title{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.password-block{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 15px 30px 30px 30px;
+    box-sizing: border-box;
+    width: 45vw;
+    border-radius: 7px;
+}
+
+.column-group-profile .password-block .el-form-item {
+    width: 100%;
+}
+
+.password-label{
+    margin-top: 10px;
+    line-height: 40px;
+}
+
+.password-label-first{
+    line-height: 40px;
+}
+
+.profile-education-info:not(:last-child){
+    margin-bottom: 10px;
+}
+
+.response-button{
+    background-color: #D5444C !important;
+    border: none !important;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px !important;
+    cursor: pointer;
+    outline: none;
+    height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.response-button:hover{
+    background-color: #d5444bc5 !important;
+    color: white;
+    border-radius: 5px;
+}
+
+.responses-links{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+}
+
+.response{
+    color: #D5444C;
+    margin: 10px 0;
+}
+
+.response:hover{
+    color: #d5444bc5;
+}
+
+.response-title{
+    color: rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+.buttons-column{
+    width: auto;
 }
