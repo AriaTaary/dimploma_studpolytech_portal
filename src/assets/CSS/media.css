@@ -43,6 +43,15 @@
         display: none;
     }
 
+    .menu-add{
+        display: none;
+    }
+
+    .menu-mobile-profile{
+        display: block;
+        margin-bottom: 50px;
+    }
+
     .banner h1{
         font-size: 6vw;
     }

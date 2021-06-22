@@ -398,6 +398,11 @@ input:focus{
     cursor: pointer;
 }
 
+.main-filter_block, .main-sort_block{
+    display: flex;
+    flex-direction: row;
+}
+
 .main-filter_block::before{
     background-size: contain;
     background-repeat: no-repeat;
@@ -1074,6 +1079,54 @@ input::-webkit-input-placeholder {
     display: none;
 }
 
+.menu-mobile-profile{
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    align-items: flex-end;
+    align-content: flex-end;
+    display: none;
+}
+
+.menu-mobile-profile .bm-burger-bars {
+      background-color: black !important;
+      /* width: 30px; */
+    }
+
+    .menu-mobile-profile .bm-burger-button {
+      position: relative;
+      width: 30px;
+      height: 25px;
+      right: 0px !important;
+      top: 40px;
+      cursor: pointer;
+    }
+
+    .menu-mobile-list-profile-mobile{
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+    }
+
+    .menu-item-add-mobile{
+        margin: 0 0 15px 0;
+    }
+.menu-item-add-mobile .menu-link-add{
+    color: white;
+}
+
+.menu-item-add-active-mobile .menu-link-add{
+    color: rgb(255, 255, 255, 0.5);
+}
+
+.menu-item-add-active-mobile .menu-link-add:hover{
+    color: rgb(255, 255, 255, 0.5) !important;
+}
+
+.menu-item-add-mobile .menu-link-add:hover{
+    color: rgb(255, 255, 255, 0.5) !important;
+}
+
 .bm-burger-button {
       position: fixed;
       width: 30px;
@@ -1095,7 +1148,7 @@ input::-webkit-input-placeholder {
     .cross-style {
       position: absolute;
       top: 12px;
-      right: 2px;
+      right: 12px;
       cursor: pointer;
     }
     .bm-cross {
