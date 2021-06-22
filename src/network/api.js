@@ -398,6 +398,30 @@ export default {
     )
   },
 
+  async getUserEducations(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.userEducations,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
+  async getAllUserEducations(authToken) {
+    return this.prepareResponse(
+      this.execute(
+        this.apiRoutes.educations,
+        'get',
+        {},
+        true,
+        authToken
+      )
+    )
+  },
+
   async getAnotherUser(authToken, username) {
 
     return this.prepareResponse(
