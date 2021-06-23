@@ -30,7 +30,7 @@
 
           <el-form-item prop="text">
             <label class="label" for="text">Текст</label>
-            <el-input id="text" type="text" class="input" placeholder="Введите текст" v-model="formData.text"></el-input>
+            <el-input id="text" type="textarea" :rows="10" class="input" placeholder="Введите текст" v-model="formData.text"></el-input>
             <p class="error-message"
                     v-if="this.errors.hasOwnProperty('text')"
                   >{{this.errors.text[0]}}</p>

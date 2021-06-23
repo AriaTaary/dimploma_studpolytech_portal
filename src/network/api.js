@@ -30,9 +30,7 @@ export default {
     educations: 'educations',
     languages: 'languages',
     users: 'users',
-    userRoles(user_id){
-      return 'users/' + user_id + '/roles'
-    },
+    userRoles: 'user/roles',
     anotherUser(username) {
       return 'users/' + username
     },
@@ -60,6 +58,7 @@ export default {
       return 'news/' + news_id
     },
     newsCategories: 'news-categories',
+
   },
   adminRoutes: {
     user: 'users',
@@ -593,10 +592,10 @@ export default {
   //   )
   // },
 
-  async getUserRoles (authToken, user_id) {
+  async getUserRoles (authToken) {
     return this.prepareResponse(
       this.execute(
-        this.apiRoutes.userRoles(user_id),
+        this.apiRoutes.userRoles,
         'get',
         {},
         true,
@@ -773,12 +772,12 @@ export default {
     )
   },
 
-  async updateAdminNewsCategory (authToken, id) {
+  async updateAdminNewsCategory (authToken, newsCategory) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.newsCategoriesData(id),
+        this.adminPrefix + this.adminRoutes.newsCategoriesData(newsCategory.id),
         'put',
-        newsCategories,
+        newsCategory,
         true,
         authToken
       )

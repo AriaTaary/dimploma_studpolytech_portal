@@ -112,14 +112,14 @@
               <h5>Подписчики</h5>
               <p>{{ this.user.followers_count }}</p>
             </div> -->
-            <div class="personal-add-info-block">
+            <!-- <div class="personal-add-info-block">
               <h4>Опубликованные статьи</h4>
-              <!-- <p>{{ this.user.article_count }}</p> -->
+              <p>{{ this.user.article_count }}</p>
             </div>
             <div class="personal-add-info-block">
               <h4>Опубликованные вакансии</h4>
-              <!-- <p>{{ this.user.vacancy_count }}</p> -->
-            </div>
+              <p>{{ this.user.vacancy_count }}</p>
+            </div> -->
           </div>
         </div>
         <div class="personal-add">

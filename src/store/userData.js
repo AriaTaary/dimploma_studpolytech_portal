@@ -120,10 +120,10 @@ export default {
 
       if (response.status === 200) {
 
-        if (response.data.data.articles.length !== 0) {
+        if (response.data.articles.length !== 0) {
           const parsedArticles = []
 
-          response.data.data.articles.forEach(function (article) {
+          response.data.articles.forEach(function (article) {
             parsedArticles.push(prepareDate.article(article))
           })
 
@@ -144,10 +144,10 @@ export default {
 
       if (response.status === 200) {
 
-        if (response.data.data.vacancies.length !== 0) {
+        if (response.data.vacancies.length !== 0) {
           const parsedVacancies = []
 
-          response.data.data.vacancies.forEach(function (vacancy) {
+          response.data.vacancies.forEach(function (vacancy) {
             parsedVacancies.push(prepareDate.vacancy(vacancy))
           })
 
@@ -168,10 +168,10 @@ export default {
 
       if (response.status === 200) {
 
-        if (response.data.data.articles.length !== 0) {
+        if (response.data.articles.length !== 0) {
           const parsedArticles = []
 
-          response.data.data.articles.forEach(function (article) {
+          response.data.articles.forEach(function (article) {
             parsedArticles.push(prepareDate.article(article))
           })
 
@@ -192,10 +192,10 @@ export default {
 
       if (response.status === 200) {
 
-        if (response.data.data.vacancies.length !== 0) {
+        if (response.data.vacancies.length !== 0) {
           const parsedVacancies = []
 
-          response.data.data.vacancies.forEach(function (vacancy) {
+          response.data.vacancies.forEach(function (vacancy) {
             parsedVacancies.push(prepareDate.vacancy(vacancy))
           })
 
@@ -216,10 +216,10 @@ export default {
 
       if (response.status === 200) {
 
-        if (response.data.data.articles.length !== 0) {
+        if (response.data.articles.length !== 0) {
           const parsedArticles = []
 
-          response.data.data.articles.forEach(function (article) {
+          response.data.articles.forEach(function (article) {
             parsedArticles.push(prepareDate.article(article))
           })
 

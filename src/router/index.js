@@ -302,7 +302,8 @@ const routes = [
     meta: {
       title: 'Админ-панель',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -312,7 +313,8 @@ const routes = [
     meta: {
       title: 'Пользователи',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -322,7 +324,8 @@ const routes = [
     meta: {
       title: 'Просмотр пользователя',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -332,7 +335,8 @@ const routes = [
     meta: {
       title: 'Изменение пользователя',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -342,7 +346,8 @@ const routes = [
     meta: {
       title: 'Роли',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -352,7 +357,8 @@ const routes = [
     meta: {
       title: 'Просмотр ролей',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -362,7 +368,8 @@ const routes = [
     meta: {
       title: 'Изменение ролей',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -372,7 +379,8 @@ const routes = [
     meta: {
       title: 'Разрешения',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -382,7 +390,8 @@ const routes = [
     meta: {
       title: 'Новости',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -392,7 +401,8 @@ const routes = [
     meta: {
       title: 'Просмотр новости',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -402,7 +412,8 @@ const routes = [
     meta: {
       title: 'Изменение новости',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -412,7 +423,8 @@ const routes = [
     meta: {
       title: 'Создание новости',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -422,7 +434,8 @@ const routes = [
     meta: {
       title: 'Категории новостей',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -432,7 +445,8 @@ const routes = [
     meta: {
       title: 'Изменение категории новостей',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -442,7 +456,8 @@ const routes = [
     meta: {
       title: 'Создание категории новостей',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -452,7 +467,8 @@ const routes = [
     meta: {
       title: 'Статьи',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -462,7 +478,8 @@ const routes = [
     meta: {
       title: 'Просмотр статьи',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -472,7 +489,8 @@ const routes = [
     meta: {
       title: 'Изменение статьи',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -482,7 +500,8 @@ const routes = [
     meta: {
       title: 'Создание статьи',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -492,7 +511,8 @@ const routes = [
     meta: {
       title: 'Вакансии',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -502,7 +522,8 @@ const routes = [
     meta: {
       title: 'Просмотр вакансии',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -512,7 +533,8 @@ const routes = [
     meta: {
       title: 'Изменение вакансии',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -522,7 +544,8 @@ const routes = [
     meta: {
       title: 'Создание вакансии',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -532,7 +555,8 @@ const routes = [
     meta: {
       title: 'Категории',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -542,7 +566,8 @@ const routes = [
     meta: {
       title: 'Изменение категории',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -552,7 +577,8 @@ const routes = [
     meta: {
       title: 'Создание категории',
       layout: 'admin',
-      block: blocks.admin
+      block: blocks.admin,
+      type: 'admin',
     }
   },
   {
@@ -576,6 +602,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const auth = to.meta.block.auth
   const authToken = store.getters.getAuthToken
+  store.commit('setAccessFail', false)
 
   if (!auth) {
     return next()
@@ -583,6 +610,17 @@ router.beforeEach((to, from, next) => {
 
   if (auth && !authToken) {
     next({ name: 'Login' })
+  } else if (to.meta.type === 'admin') {
+    let roles = store.getters.getRoles;
+    store.dispatch('getUserPermissions');
+    roles = store.getters.getRoles;
+
+    if (roles.includes('admin')){
+      next()
+    } else{
+      store.commit('setAccessFail')
+      next()
+    }
   } else {
     next()
   }

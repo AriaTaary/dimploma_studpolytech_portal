@@ -12,11 +12,17 @@ import userData from './userData'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
+  state: {
+    accessFail: false,
+  },
   mutations: {
     resetState () {
       this.commit('setAuthToken', '')
       this.commit('setUser', {})
       this.commit('setRoles', {})
+    },
+    setAccessFail (state, fail = true) {
+      state.accessFail = fail;
     }
   },
   modules: {

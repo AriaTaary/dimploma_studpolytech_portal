@@ -29,21 +29,21 @@
         <el-table-column
           prop="title"
           label="Название"
-          min-width="150"
+          min-width="250"
           sortable>
           <template slot-scope="scope">
           <router-link :to="{ name: 'ViewNews', params: { id: scope.row.id } }" class="link-admin">{{ scope.row.title }}</router-link>
           </template>
         </el-table-column>
-        <el-table-column
+        <!-- <el-table-column
           prop="cut"
           label="Превью"
-          min-width="300">
-        </el-table-column>
+          min-width="250">
+        </el-table-column> -->
         <el-table-column
           prop="created_at"
           label="Дата создания"
-          min-width="110"
+          min-width="100"
           sortable
           :formatter="formatDateTime">
         </el-table-column>

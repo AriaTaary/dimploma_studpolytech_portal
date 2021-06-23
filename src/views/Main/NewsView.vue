@@ -7,7 +7,10 @@
       <div v-else class="news-main">
         <p class="news-main-date">{{ this.news.created_at }}</p>
         <h2 class="news-main-title">{{ this.news.title }}</h2>
-        <img src="/img/news.jpeg" alt="">
+        <img
+            v-bind:src="'data:image/' + this.news.image.content_type + ';base64,' + this.news.image.base64"
+            alt="news-photo"
+          >
         <p class="news-main-text">{{ this.news.text }}</p>
         <div class="news_ratings">
           <div class="views">

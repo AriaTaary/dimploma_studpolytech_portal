@@ -100,7 +100,8 @@ const prepare = {
       text: item.text,
       created_at: moment(item.created_at).format('ll'),
       categories: categories,
-      views: item.views
+      views: item.views,
+      image: prepare.file(item.image),
     };
   },
   vacancy(item) {

@@ -473,7 +473,7 @@ input:focus{
     position: relative;
     border-radius: 7px;
     overflow: hidden;
-    height: 350px;
+    height: 300px;
 }
 
 .news-block img{
@@ -1250,4 +1250,16 @@ input::-webkit-input-placeholder {
 
 .one-column{
     width: 45vw;
+}
+
+.admin-error, .error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 50vh;
+}
+
+.admin-error p{
+    color: white;
 }

@@ -3,7 +3,10 @@
     <div class="header">
       <HeaderAdmin />
     </div>
-    <div class="admin container">
+    <div v-if="ACCESS_FAIL">
+      <AdminError />
+    </div>
+    <div v-else class="admin container">
       <SidemenuAdmin />
       <router-view />
     </div>
@@ -13,10 +16,17 @@
 <script>
 import HeaderAdmin from '@/components/Header-admin'
 import SidemenuAdmin from '@/components/Sidemenu-admin'
+import AdminError from '@/components/AdminError'
+import {mapState} from "vuex";
 
 export default {
   components: {
-    HeaderAdmin, SidemenuAdmin
-  }
+    HeaderAdmin, SidemenuAdmin, AdminError
+  },
+  computed: {
+    ...mapState({
+      ACCESS_FAIL: (state) => state.accessFail,
+    }),
+  },
 }
 </script>

@@ -39,10 +39,8 @@ export default {
       created_at: '',
       updated_at: ''
     },
-    roles: {
-      user: false,
-      admin: false
-    }
+    roles: JSON.parse(localStorage.getItem('roles')) || null,
+    permissions: JSON.parse(localStorage.getItem('permissions')) || null,
   },
   getters: {
     getUser (state) {
@@ -75,14 +73,36 @@ export default {
         const user = helper.getUserObjectFromResponse(response)
         state.commit('setUser', user)
       }
-    }
+    },
+    async getUserPermissions({ rootGetters, commit}) {
+      const response = await api.getUserRoles(rootGetters.getAuthToken);
+      if (response.status === 200) {
+        let roles = [];
+        let permissions = [];
+
+        response.data.data.roles.forEach(function (role) {
+          roles.push(role.name);
+        });
+        response.data.data.permissions.forEach(function (permission) {
+          permissions.push(permission.name);
+        });
+
+        commit("setRoles", roles);
+        commit("setPermissions", permissions);
+      }
+    },
   },
   mutations: {
     setUser (state, user) {
       state.user = user
     },
     setRoles (state, roles) {
-      state.roles = roles
+      state.roles = roles;
+      localStorage.setItem("roles", JSON.stringify(roles))
+    },
+    setPermissions(state, permissions) {
+      state.permissions = permissions;
+      localStorage.setItem("permissions", JSON.stringify(permissions))
     }
   }
 }
