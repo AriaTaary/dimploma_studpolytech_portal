@@ -376,7 +376,6 @@ export default {
       categories[index].value = false;
     })
     this.categories = categories;
-    console.log(categories);
 
     this.loading = false;
   },

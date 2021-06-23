@@ -258,6 +258,7 @@ export default {
     this.userEducation = await this.getUserEducations();
 
     // код для получения названия первого образования (бакалавриат/специалитет)
+    if (this.userEducation.first_education !== null){
     var userEducationType = this.userEducation.first_education.education_type;
 
     for (var key in this.educations.education_types){
@@ -267,20 +268,22 @@ export default {
     }
 
     this.userEducation.first_education.education_type = userEducationType;
+    }
     // код для получения названия первого образования (бакалавриат/специалитет)
 
     //Блок получения курсов 1 образования
+    if (this.userEducation.first_education !== null){
     var userFirstGrade = this.userEducation.first_education.grade;
-    console.log(userFirstGrade);
+
 
     for (var key in this.educations.grades){
         if(userFirstGrade === key){
           userFirstGrade = this.educations.grades[key];
-          console.log(userFirstGrade);
         }
     }
 
     this.userEducation.first_education.grade = userFirstGrade;
+    }
     //Блок получения курсов 1 образования
 
     //Блок получения курсов 2 образования

@@ -158,10 +158,8 @@ export default {
 
   async created () {
     const vacancies = await api.getVacancies(this.$store.getters.getAuthToken);
-    console.log(vacancies);
 
     this.vacancies = vacancies.data.data;
-    console.log(this.vacancies);
     this.loading = false;
   }
 }

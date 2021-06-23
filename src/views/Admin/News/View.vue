@@ -90,7 +90,6 @@ export default {
   async created () {
     const news = await api.getNewsData(this.$store.getters.getAuthToken, this.$route.params.id)
     this.news = news.data.data
-    console.log(this.news);
 
     this.loading = false
   }

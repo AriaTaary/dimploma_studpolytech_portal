@@ -149,7 +149,6 @@ export default {
       }
 
       const response = await this.createArticle(formData);
-      console.log(response);
       if (response.status === 400){
         this.errors = response.data.error.errors;
         this.loading = false;

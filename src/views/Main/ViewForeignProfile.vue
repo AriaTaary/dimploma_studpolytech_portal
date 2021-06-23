@@ -232,7 +232,6 @@ export default {
   async created () {
 
     let userUsername = this.$route.params.username;
-    console.log(userUsername);
     const response = await this.getAnotherUser(userUsername);
     this.setData(response);
 
@@ -293,7 +292,6 @@ export default {
     for (var key in this.educations.grades){
         if(userFirstGrade === key){
           userFirstGrade = this.educations.grades[key];
-          console.log(userFirstGrade);
         }
     }
 

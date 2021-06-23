@@ -148,7 +148,6 @@ export default {
     const articles = await api.getArticles(this.$store.getters.getAuthToken);
 
     this.articles = articles.data.data;
-    console.log(articles);
     this.loading = false;
   }
 }

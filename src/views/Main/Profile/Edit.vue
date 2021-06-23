@@ -210,8 +210,6 @@ export default {
         formData.append('new_password_confirmation', this.formData.new_password_confirmation);
 
         // this.request = formData;
-        console.log('formdata');
-        console.log(this.formData);
         const response = await this.updateUser(formData);
         if (response) {
           alert('Данные успешно сохранены!');

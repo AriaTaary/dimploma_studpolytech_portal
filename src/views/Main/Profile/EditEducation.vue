@@ -208,8 +208,6 @@ export default {
     },
     async submit(){
       this.loading = true;
-      console.log('ghhg');
-      console.log(this.formData);
       const response = await this.updateUserEducations(this.formData);
       if (response) {
         alert('Данные успешно сохранены!');
@@ -296,9 +294,6 @@ export default {
 
 
     const userEducation = await this.getUserEducations();
-    console.log()
-    // console.log(userEducation.first_education.education_type);
-    // this.userEducation
 
     if (userEducation.first_education === null){
       this.formData.firstEducation = {
@@ -364,8 +359,6 @@ export default {
         date_end: userEducation.courses.date_end,
       }
     }
-    console.log('gg');
-    console.log(this.formData);
     this.loading = false;
 
 

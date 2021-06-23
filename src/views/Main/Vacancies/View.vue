@@ -97,7 +97,6 @@ export default {
 
   async created () {
     let response = await api.getMainVacancy(this.$store.getters.getAuthToken, this.$route.params.id)
-    console.log(response);
 
     if (response.status === 200){
       this.vacancy = prepareDate.vacancy(response.data.data, this.$store.getters.getUser.id);

@@ -232,8 +232,6 @@ export default {
     const vacancy = await api.getVacancy(this.$store.getters.getAuthToken, this.$route.params.id);
     this.vacancy = vacancy.data.data;
 
-    console.log(vacancy);
-
     this.formData.title = this.vacancy.title;
     this.formData.company_name = this.vacancy.company_name;
     this.formData.city = this.vacancy.city;
@@ -255,7 +253,6 @@ export default {
     // this.vacancy.author_name = vacancy.data.author.first_name + ' ' + vacancy.data.author.last_name
 
     let defaultCategories = await this.getCategories();
-    console.log(defaultCategories);
     this.categories = []
     for (const category of defaultCategories) {
       this.categories.push({

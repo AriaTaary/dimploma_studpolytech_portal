@@ -90,9 +90,9 @@ export default {
     viewAction (index, row) {
       this.$router.push({ name: 'ViewRole', params: { id: row.id } })
     },
-    deleteAction (index, row) {
-      console.log(index, row)
-    },
+    // deleteAction (index, row) {
+    //   console.log(index, row)
+    // },
     formatDateTime (row, column) {
       return moment(column).format('LL')
     }

@@ -328,7 +328,6 @@ export default {
       })
       this.request.filter.schedules = schedules;
 
-      console.log(this.request);
 
       const response = await this.getVacancies(this.request);
       this.setData(response);
@@ -361,17 +360,6 @@ export default {
     this.setData(response);
 
     const vacanciesData = await this.getVacanciesData();
-    // console.log(vacanciesData.employments);
-
-    // vacanciesData.employments.forEach(function(employment , index) {
-    //   employments[index].value = false;
-    // });
-    // vacanciesData.experiences.forEach(function(experience , index) {
-    //   experiences[index].value = false;
-    // });
-    // vacanciesData.schedules.forEach(function(schedule , index) {
-    //   schedules[index].value = false;
-    // });
 
     let vacanciesDataEmployments = [];
 
@@ -406,24 +394,6 @@ export default {
     this.vacanciesData.employments = vacanciesDataEmployments;
     this.vacanciesData.experiences = vacanciesDataExperiences;
     this.vacanciesData.schedules = vacanciesDataSchedules;
-
-    console.log(this.vacanciesData.experiences);
-
-    // const employments = vacanciesData.employments;
-    // const experiences = vacanciesData.experiences;
-    // const schedules = vacanciesData.schedules;
-
-    // employments.forEach(function(employment , index) {
-    //   employment[index].value = false;
-    // });
-    // experiences.forEach(function(experience , index) {
-    //   experience[index].value = false;
-    // });
-    // schedules.forEach(function(schedule , index) {
-    //   schedule[index].value = false;
-    // });
-
-    // this.vacanciesData = vacanciesData;
 
     this.loading = false;
 

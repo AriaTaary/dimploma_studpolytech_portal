@@ -169,7 +169,6 @@ export default {
     this.categories = await this.getCategories();
 
     let response = await api.getMainArticle(this.$store.getters.getAuthToken, this.$route.params.id);
-    console.log(response);
 
     if (response.status === 200){
       this.article = prepareDate.article(response.data.data, this.$store.getters.getUser.id);

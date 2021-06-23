@@ -65,7 +65,6 @@ export default {
       },
       async createVacancy({ rootGetters }, formData) {
         let response = await api.createVacancy(rootGetters.getAuthToken, formData);
-        console.log(response);
         if (response.status === 201) {
           return response;
         }
@@ -99,7 +98,6 @@ export default {
       },
       async createAdminVacancy({ rootGetters }, formData) {
         let response = await api.createAdminVacancy(rootGetters.getAuthToken, formData);
-        console.log(response);
         if (response.status === 201) {
           return response;
         }
