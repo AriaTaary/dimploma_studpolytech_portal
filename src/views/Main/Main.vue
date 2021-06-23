@@ -97,7 +97,7 @@
             </details>
         </div>
       </div>
-      <div v-if="loading" class="loading">
+      <div v-if="loading" class="loading-main">
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
       <div v-else>

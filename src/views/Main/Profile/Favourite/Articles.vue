@@ -4,8 +4,8 @@
       <div class="content-nav">
         <div class="content-title fav-title">
           <h1>Избранное:</h1>
-          <router-link :to="{ name: 'PersonalFavouriteArticles', params: { username: this.$store.getters.getUser.username } }">Статьи</router-link>
-          <router-link class="not-active-title" :to="{ name: 'PersonalFavouriteVacancies', params: { username: this.$store.getters.getUser.username } }">Вакансии</router-link>
+          <router-link class="profile-settings-title" :to="{ name: 'PersonalFavouriteArticles', params: { username: this.$store.getters.getUser.username } }">Статьи</router-link>
+          <router-link class="profile-settings-title not-active-title" :to="{ name: 'PersonalFavouriteVacancies', params: { username: this.$store.getters.getUser.username } }">Вакансии</router-link>
         </div>
       </div>
       <div class="empty" v-if="this.count === 0">

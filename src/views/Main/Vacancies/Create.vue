@@ -6,7 +6,7 @@
           <div class="vacancy-feed">
             <div class="vacancy-block edit-block">
             <h1 class="vacancy-title">Создание вакансии</h1>
-            <div v-if="loading" class="loading">
+            <div v-if="loading" class="loading-main">
               <img src="/img/preloader.svg" alt="Загрузка данных">
             </div>
             <el-form v-else>

@@ -367,6 +367,8 @@
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    min-height: 150px;
+    margin-top: 40px;
 }
 
 .empty p{
@@ -648,4 +650,13 @@
 
 .buttons-column{
     width: auto;
+}
+
+.profile-settings-title{
+    color: black;
+    font-size: 30px;
+}
+
+.fav-title{
+    justify-content: flex-start !important;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="content">
-      <div v-if="loading" class="loading">
+      <div v-if="loading" class="loading-main">
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
       <div v-else class="feed-body">

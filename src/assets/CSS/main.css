@@ -924,6 +924,16 @@ table{
     width: 100%;
     min-height: 100%;
     justify-content: center;
+    /* margin-top: 15vh; */
+    /* margin-bottom: 100px; */
+}
+
+
+.loading-main{
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    justify-content: center;
     margin-top: 15vh;
     margin-bottom: 100px;
 }
@@ -933,6 +943,10 @@ table{
     width: 100%;
     min-height: 100%;
     justify-content: center;
+}
+
+.articles-feed{
+    min-height: 400px;
 }
 
 .welcome-title{
@@ -1262,4 +1276,12 @@ input::-webkit-input-placeholder {
 
 .admin-error p{
     color: white;
+}
+
+.search-field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }

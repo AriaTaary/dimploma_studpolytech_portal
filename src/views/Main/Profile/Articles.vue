@@ -13,7 +13,7 @@
         <p>Вы пока не добавляли статьи</p>
       </div>
       <div v-else>
-        <div v-if="loading" class="loading">
+        <div v-if="loading" class="loading-main">
           <img src="/img/preloader.svg" alt="Загрузка данных">
         </div>
         <ArticleMini

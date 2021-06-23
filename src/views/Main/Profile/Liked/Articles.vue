@@ -10,7 +10,7 @@
         <p>Вы пока не добавляли ничего в понравившееся</p>
       </div>
       <div v-else>
-        <div v-if="loading" class="loading">
+        <div v-if="loading" class="loading-main">
           <img src="/img/preloader.svg" alt="Загрузка данных">
         </div>
          <ArticleBase
@@ -52,6 +52,7 @@ export default {
   },
   async created () {
     this.articles = await this.getUserLikedArticles();
+    this.count = this.articles.length;
     this.loading = false;
   }
 }

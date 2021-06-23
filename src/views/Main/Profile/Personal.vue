@@ -64,7 +64,7 @@
           <router-link class="button-main" :to="{ name: 'PersonalEdit', params: { username: this.user.username } }">Настройки профиля</router-link>
         </div> -->
       </div>
-      <div v-if="loading" class="loading">
+      <div v-if="loading" class="loading-main">
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
       <div v-else class="profile-content">
@@ -123,12 +123,13 @@
           </div>
         </div>
         <div class="personal-add">
-          <div v-if="this.user.about !== null" class="personal-education">
+          <div class="personal-education">
             <div class="personal-add-info-block">
               <h5>О себе</h5>
             </div>
             <div class="personal-add-info-block">
-              <p>{{this.user.about}}</p>
+              <p v-if="this.user.about !== null">{{this.user.about}}</p>
+              <p v-else class="empty-person">Вы ещё не добавили информацию о себе</p>
             </div>
           </div>
           <div v-if="this.userEducation.first_education !== null || this.userEducation.second_education !== null || this.userEducation.courses !== null">
@@ -172,6 +173,12 @@
                 <h4>Проекты, выполненные в процессе обучения</h4>
                 <p>{{this.userEducation.courses.projects}}</p>
               </div>
+            </div>
+          </div>
+          <div v-else>
+            <h2 class="personal-education-title">Образование</h2>
+            <div class="personal-education">
+              <p class="empty-education">Вы ещё не добавили информацию об образовании</p>
             </div>
           </div>
         </div>
