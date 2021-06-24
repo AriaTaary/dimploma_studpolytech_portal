@@ -1109,12 +1109,12 @@ input::-webkit-input-placeholder {
     }
 
     .menu-mobile-profile .bm-burger-button {
-      position: relative;
-      width: 30px;
-      height: 25px;
+      position: relative !important;
+      width: 30px !important;
+      height: 25px !important;
       right: 0px !important;
-      top: 40px;
-      cursor: pointer;
+      top: 40px !important;
+      cursor: pointer !important;
     }
 
     .menu-mobile-list-profile-mobile{
