@@ -7,7 +7,7 @@
 
     <el-form ref="user" :model="user" :rules="rules">
 
-      <div class="row-group">
+      <div class="row-group register-row">
         <div class="column-group">
           <el-form-item prop="last_name">
             <label class="required-label" for="last_name">Фамилия</label>
@@ -64,7 +64,7 @@
       </el-form-item>
 
       <div class="row-group reg-buttons">
-        <el-form-item>
+        <el-form-item class="main-auth-button">
           <el-button class="button-auth" type="primary" @click="submitForm('user')">Зарегистрироваться</el-button>
         </el-form-item>
         <p>Уже есть учетная запись? <a class="link" href="/login">Войти</a></p>

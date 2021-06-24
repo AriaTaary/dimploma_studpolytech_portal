@@ -21,10 +21,10 @@
       </el-form-item>
 
       <div class="row-group auth-buttons">
-        <el-form-item>
+        <el-form-item class="main-auth-button">
           <el-button class="button-auth" type="primary" @click="submitForm('user')">Войти</el-button>
         </el-form-item>
-        <p><a href="/register" class="link">Создать учетную запись</a></p>
+        <p><a href="/register" class="link reg-link">Создать учетную запись</a></p>
       </div>
 
     </el-form>

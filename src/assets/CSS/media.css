@@ -82,6 +82,10 @@
     .one-column {
         width: 100%;
     }
+
+    .authorization{
+        width: 70vw;
+    }
 }
 
 @media (max-width: 650px){
@@ -134,6 +138,32 @@
 @media (max-width: 600px){
     .feed-title{
         flex-direction: column;
+    }
+
+    .auth-buttons, .reg-buttons{
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .button-auth{
+        margin-bottom: 20px;
+    }
+
+    .authorization{
+        width: 80vw;
+    }
+
+    .main-auth-button{
+        margin-bottom: 25px !important;
+        box-sizing: border-box;
+    }
+
+    .register-row{
+        flex-direction: column !important;
+    }
+
+    .register-row .column-group{
+        width: 100%;
     }
 }
 
