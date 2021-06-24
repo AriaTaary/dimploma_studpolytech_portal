@@ -61,7 +61,7 @@
                 </div>
               </li>
               <li v-else class="menu-mobile-item">
-                <a href="/login" class="menu-mobile-link menu-link-auth mobile-enter">Вход</a>
+                <a href="/login" class="menu-mobile-link menu-link-auth mobile-exit mobile-enter">Вход</a>
               </li>
             </ul>
             </Slide>
