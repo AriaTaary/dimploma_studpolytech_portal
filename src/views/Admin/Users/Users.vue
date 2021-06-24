@@ -4,7 +4,7 @@
       <h2>Все пользователи</h2>
     </div>
     <div class="admin-content-main">
-      <div v-if="loading" class="loading">
+      <div v-if="loading" class="loading-main">
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
 
@@ -32,12 +32,12 @@
           </template>
         </el-table-column>
 
-        <el-table-column
+        <!-- <el-table-column
           prop="phone"
           label="Телефон"
           min-width="150"
           sortable>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column
           prop="last_name"
           label="Фамилия"

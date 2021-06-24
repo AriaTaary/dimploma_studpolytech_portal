@@ -229,6 +229,7 @@ export default {
       filter: request.filter,
       sort: request.sort,
       page: request.page,
+      paginate: request.paginate,
     } : {};
 
     return this.prepareResponse(
@@ -320,6 +321,7 @@ export default {
       filter: request.filter,
       sort: request.sort,
       page: request.page,
+      paginate: request.paginate,
     } : {};
 
     return this.prepareResponse(
@@ -832,12 +834,12 @@ export default {
     )
   },
 
-  async updateAdminArticle (authToken, article) {
+  async updateAdminArticle (authToken, request) {
     return this.prepareResponse(
       this.execute(
-        this.adminPrefix + this.adminRoutes.articleData(article_id),
-        'put',
-        article,
+        this.adminPrefix + this.adminRoutes.articleData(request.id),
+        'post',
+        request.formData,
         true,
         authToken
       )
@@ -904,7 +906,7 @@ export default {
     )
   },
 
-  async deleteAdminVacancy (authToken, id) {
+  async deleteAdminVacancy(authToken, vacancy_id) {
     return this.prepareResponse(
       this.execute(
         this.adminPrefix + this.adminRoutes.vacancyData(vacancy_id),

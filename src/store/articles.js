@@ -104,6 +104,7 @@ export default {
       data = null
     ) {
       const response = await api.ratingArticle(rootGetters.getAuthToken, data.article_id, data.rating);
+      console.log(response);
 
       if (response.status === 200) {
         return prepareDate.article(response.data.data)

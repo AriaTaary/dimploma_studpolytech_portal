@@ -62,6 +62,7 @@ input:focus{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .menu{
@@ -1142,11 +1143,11 @@ input::-webkit-input-placeholder {
 }
 
 .bm-burger-button {
-      position: fixed;
+      position: absolute;
       width: 30px;
       height: 25px;
       right: 3vw !important;
-      top: 14px;
+      top: 10px;
       cursor: pointer;
     }
     .bm-burger-bars {

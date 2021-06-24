@@ -157,6 +157,7 @@ export default {
       }
       this.request.formData = formData;
       this.request.id = this.article.id;
+      console.log(this.formData.categories)
       const response = await this.updateArticle(this.request);
       if (response) {
         alert('Данные успешно сохранены!');
@@ -166,18 +167,28 @@ export default {
   },
 
   async created () {
-    this.categories = await this.getCategories();
-
     let response = await api.getMainArticle(this.$store.getters.getAuthToken, this.$route.params.id);
 
     if (response.status === 200){
       this.article = prepareDate.article(response.data.data, this.$store.getters.getUser.id);
       this.loading = false;
-      this.formData.categories = this.article.categories;
       this.formData.title = this.article.title;
       this.formData.text = this.article.text;
       this.formData.cut = this.article.cut;
       this.formData.source = this.article.source;
+
+      let defaultCategories = await this.getCategories();
+      this.categories = []
+      for (const category of defaultCategories) {
+        this.categories.push({
+          id: category.id,
+          name: category.name
+        })
+      }
+
+      for (const category of this.article.categories) {
+        this.formData.categories.push(category.id)
+      }
     }
     else {
       alert("Произошла ошибка");

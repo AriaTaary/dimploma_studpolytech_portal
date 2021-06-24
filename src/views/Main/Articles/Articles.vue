@@ -9,6 +9,7 @@
             </div>
             <div class="feed-title-actions">
               <router-link class="button-main"
+              v-if="this.$store.getters.getAuthToken"
               :to="{ name: 'ArticleCreate'}
               ">Создать</router-link>
                <div class="search-field">
@@ -266,7 +267,8 @@ export default {
       filter: {
         categories: {},
       },
-      searchText: ''
+      searchText: '',
+      paginate: Number(3),
     },
     articles: [],
     categories: [],
@@ -333,6 +335,9 @@ export default {
       const response = await this.getArticles(this.request);
       this.setData(response);
 
+      this.request.sort.date = null;
+      this.request.sort.views = null;
+
       this.loading = false;
     },
     async submitFilter() {
@@ -346,6 +351,8 @@ export default {
       const response = await this.getArticles(this.request);
       this.setData(response);
 
+      this.request.filter.categories = {};
+
       this.loading = false;
     },
     updateArticle(article, index){
@@ -357,6 +364,7 @@ export default {
       this.loading = true;
       const response = await this.getArticles({
         page: page,
+        paginate: this.request.paginate,
       });
       this.setData(response);
       this.loading = false;
@@ -365,12 +373,12 @@ export default {
       this.articles = response.data;
       this.current_page = response.current_page;
       this.total = response.total;
-      this.per_page = response.per_page;
+      this.per_page = Number(response.per_page);
     }
   },
 
   async created () {
-    const response = await this.getArticles();
+    const response = await this.getArticles(this.request);
     this.setData(response);
 
     const categories = await this.getCategories();
@@ -378,6 +386,10 @@ export default {
       categories[index].value = false;
     })
     this.categories = categories;
+
+    this.request.sort.date = null;
+    this.request.sort.views = null;
+    this.request.filter.categories = {};
 
     this.loading = false;
   },

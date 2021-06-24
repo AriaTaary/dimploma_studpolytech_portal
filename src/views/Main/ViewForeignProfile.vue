@@ -85,7 +85,7 @@
               <p>{{ this.user.speciality }}</p>
             </div> -->
             <div class="personal-add-info-block"
-              v-if="this.user.phone !== null"
+              v-if="this.user.phone !== 'null' && this.user.phone !== null"
             >
               <h4>Телефон</h4>
               <p>{{ this.user.phone }}</p>
@@ -227,6 +227,7 @@ export default {
      ...mapActions(['getAnotherUser', 'getAnotherUserEducations', 'getAllUserEducations', 'getAllUserLanguages']),
      setData(response){
     this.user = response;
+    console.log(this.user.phone)
     }
   },
   async created () {

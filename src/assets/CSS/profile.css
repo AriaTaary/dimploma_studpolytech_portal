@@ -193,6 +193,11 @@
 .card-categories{
     display: flex;
     flex-direction: row;
+    padding-top: 20px;
+}
+
+.card-categories-main{
+    margin-top: 15px !important;
 }
 
 .card-about-info .author{

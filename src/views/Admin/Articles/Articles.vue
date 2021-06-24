@@ -7,7 +7,7 @@
         ">Создать</router-link>
     </div>
     <div class="admin-content-main">
-      <div v-if="loading" class="loading">
+      <div v-if="loading" class="loading-main">
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
 

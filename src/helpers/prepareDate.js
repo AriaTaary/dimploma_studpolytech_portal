@@ -43,6 +43,7 @@ const prepare = {
       function (category) {
         categories.push(
           {
+            id: category.id,
             slug: category.slug,
             name: category.name
           }
@@ -85,6 +86,7 @@ const prepare = {
       function (category) {
         categories.push(
           {
+            id: category.id,
             slug: category.slug,
             name: category.name
           }
@@ -111,6 +113,7 @@ const prepare = {
       function (category) {
         categories.push(
           {
+            id: category.id,
             slug: category.slug,
             name: category.name
           }
@@ -130,7 +133,7 @@ const prepare = {
       id: item.id,
       author: item.author,
       title: item.title,
-      description: item.common_description,
+      common_description: item.common_description,
       requirements_description: item.requirements_description,
       condition_description: item.condition_description,
       employment_type: item.employment_type,

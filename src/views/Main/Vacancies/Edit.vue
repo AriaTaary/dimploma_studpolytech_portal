@@ -11,7 +11,7 @@
             </div>
             <el-form v-else>
               <div class="row-group row-group-profile">
-                <div>
+                <div class="column-group-profile">
                   <el-form-item prop="name">
                     <label class="required-label label" for="name">Название вакансии</label>
                     <el-input id="name" type="text" class="input" :placeholder="this.vacancy.title" v-model="formData.title"></el-input>
@@ -136,7 +136,7 @@
                   </el-form-item>
                 </div>
 
-                <div>
+                <div class="column-group-profile">
                   <el-form-item prop="description">
                   <label class="required-label label" for="description">Описание</label>
                   <el-input
@@ -148,7 +148,7 @@
                     >
                   </el-input>
                   <p class="error-message"
-                  v-if="this.errors.hasOwnProperty('comcommon_descriptionpany_site')"
+                  v-if="this.errors.hasOwnProperty('description')"
                   >{{this.errors.common_description[0]}}</p>
                 </el-form-item>
 
@@ -213,6 +213,7 @@ export default {
     experiences: {},
     schedules: {},
     vacancy: {},
+    categories: [],
     formData: {
       title: '',
       company_name: '',
@@ -264,7 +265,6 @@ export default {
       this.formData.needed_work_experience = this.vacancy.needed_work_experience;
       this.formData.employment_type = this.vacancy.employment_type;
       this.formData.work_schedule = this.vacancy.work_schedule;
-      this.formData.categories = this.vacancy.categories;
       this.formData.company_address = this.vacancy.company_address;
       this.formData.common_description = this.vacancy.common_description;
       this.formData.requirements_description = this.vacancy.requirements_description;
@@ -272,6 +272,21 @@ export default {
       this.formData.company_phone = this.vacancy.company_phone;
       this.formData.company_email = this.vacancy.company_email;
       this.formData.company_site = this.vacancy.company_site;
+
+      let defaultCategories = await this.getCategories();
+      this.categories = []
+      for (const category of defaultCategories) {
+        this.categories.push({
+          id: category.id,
+          name: category.name
+        })
+      }
+
+      for (const category of this.vacancy.categories) {
+        this.formData.categories.push(category.id)
+      }
+
+      console.log(this.vacancy.categories);
     }
     else {
       alert("Произошла ошибка");

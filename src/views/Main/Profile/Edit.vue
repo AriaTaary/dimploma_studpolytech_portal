@@ -27,22 +27,22 @@
 
           <el-form-item prop="last_name">
             <label class="required-label label" for="last_name">Фамилия</label>
-            <el-input id="last_name" type="text" class="input" placeholder="Введите фамилию" v-model="user.last_name"></el-input>
+            <el-input id="last_name" type="text" class="input" placeholder="Введите фамилию" v-model="formData.last_name"></el-input>
           </el-form-item>
 
           <el-form-item prop="first_name">
             <label class="required-label label" for="first_name">Имя</label>
-            <el-input id="first_name" type="text" class="input" placeholder="Введите имя" v-model="user.first_name"></el-input>
+            <el-input id="first_name" type="text" class="input" placeholder="Введите имя" v-model="formData.first_name"></el-input>
           </el-form-item>
 
           <el-form-item prop="middle_name">
             <label class="label" for="middle_name">Отчество</label>
-            <el-input id="middle_name" type="text" class="input" placeholder="Введите отчество" v-model="user.middle_name"></el-input>
+            <el-input id="middle_name" type="text" class="input" placeholder="Введите отчество" v-model="formData.middle_name"></el-input>
           </el-form-item>
 
           <el-form-item prop="username">
             <label class="required-label label" for="email">Username</label>
-            <el-input id="username" type="text" class="input" placeholder="Введите имя пользователя" v-model="user.username"></el-input>
+            <el-input id="username" type="text" class="input" placeholder="Введите имя пользователя" v-model="formData.username"></el-input>
           </el-form-item>
 
           <el-form-item prop="date_birth">
@@ -53,24 +53,24 @@
               placeholder="Когда вы родились?"
               format="dd.MM.yyyy"
               value-format="yyyy-MM-dd"
-              v-model="user.date_birth"
+              v-model="formData.date_birth"
               style="width: 100%;"
             ></el-date-picker>
           </el-form-item>
 
           <el-form-item prop="tel">
             <label class="label" for="tel">Телефон</label>
-            <el-input type="text" id="tel" class="input" placeholder="Введите телефон" v-model="user.phone"></el-input>
+            <el-input type="text" id="tel" class="input" placeholder="Введите телефон" v-model="formData.phone"></el-input>
           </el-form-item>
 
           <el-form-item prop="email">
             <label class="label" for="email">E-mail</label>
-            <el-input type="text" id="email" class="input" placeholder="Введите телефон" v-model="user.email"></el-input>
+            <el-input type="text" id="email" class="input" placeholder="Введите телефон" v-model="formData.email"></el-input>
           </el-form-item>
 
           <div class="column-form">
             <label class="label" for="bac-grade">Пол</label>
-            <el-select id="bac-grade" placeholder="Выберите" v-model="user.gender">
+            <el-select id="bac-grade" placeholder="Выберите" v-model="formData.gender">
               <el-option value="male" label="Мужской">Мужской
               </el-option>
               <el-option value="female" label="Женский">Женский
@@ -98,17 +98,17 @@
 
             <el-form-item prop="about">
             <label class="label" for="about">О себе</label>
-            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Расскажите о себе" v-model="user.about"></el-input>
+            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Расскажите о себе" v-model="formData.about"></el-input>
           </el-form-item>
 
           <el-form-item prop="skills">
             <label class="label" for="about">Ключевые навыки</label>
-            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Напишите свои ключевые навыки" v-model="user.key_skills"></el-input>
+            <el-input type="textarea" :rows="4" id="about"  class="input" placeholder="Напишите свои ключевые навыки" v-model="formData.key_skills"></el-input>
           </el-form-item>
 
           <div class="column-form">
             <label class="label" for="bac-grade">Иностранный язык</label>
-            <el-select id="bac-grade" placeholder="Выберите" v-model="user.language">
+            <el-select id="bac-grade" placeholder="Выберите" v-model="formData.language">
               <el-option
                 v-for="(language, key) in this.languages.languages"
                 :key="key"
@@ -120,12 +120,12 @@
 
           <div class="column-form">
             <label class="label" for="bac-grade">Уровень языка</label>
-            <el-select id="bac-grade" placeholder="Выберите" v-model="user.language_level">
+            <el-select id="bac-grade" placeholder="Выберите" v-model="formData.language_level">
               <el-option
                 v-for="(level, key) in this.languages.language_levels"
                 :key="key"
                 :label="level"
-                :value="key">
+                :value="level">
               </el-option>
             </el-select>
           </div>
@@ -134,12 +134,12 @@
           <div class="password-block" id="password-block">
             <el-form-item prop="password">
               <label class="password-label-first" for="password">Старый пароль</label>
-              <el-input type="password"  id="password"  class="input" placeholder="Введите старый пароль" v-model="user.old_password"></el-input>
+              <el-input type="password"  id="password"  class="input" placeholder="Введите старый пароль" v-model="formData.old_password"></el-input>
             </el-form-item>
 
             <el-form-item prop="password">
               <label class="label" for="password">Новый пароль</label>
-              <el-input type="password"  id="password"  class="input" placeholder="Введите новый пароль" v-model="user.new_password"></el-input>
+              <el-input type="password"  id="password"  class="input" placeholder="Введите новый пароль" v-model="formData.new_password"></el-input>
               <p class="error-message"
                   v-if="this.errors.hasOwnProperty('password')"
               >{{this.errors.password}}</p>
@@ -147,7 +147,7 @@
 
             <el-form-item prop="password">
               <label class="label" for="password">Повторите новый пароль</label>
-              <el-input type="password"  id="password"  class="input" placeholder="Повторите новый пароль" v-model="user.new_password_confirmation"></el-input>
+              <el-input type="password"  id="password"  class="input" placeholder="Повторите новый пароль" v-model="formData.new_password_confirmation"></el-input>
               <p class="error-message"
                   v-if="this.errors.hasOwnProperty('password')"
               >{{this.errors.password}}</p>
@@ -235,6 +235,7 @@ export default {
     this.loading = false;
     this.formData = response;
     this.languages = await this.getAllUserLanguages();
+    console.log(this.languages)
   }
 }
 

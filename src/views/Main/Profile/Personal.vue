@@ -85,7 +85,7 @@
               <p>{{ this.user.speciality }}</p>
             </div> -->
             <div class="personal-add-info-block"
-              v-if="this.user.phone !== null"
+              v-if="this.user.phone !== 'null' && this.user.phone !== null"
             >
               <h4>Телефон</h4>
               <p>{{ this.user.phone }}</p>
@@ -166,7 +166,7 @@
               <div class="personal-add-info-block">
                 <h5 class="pink">Курсы повышения квалификации</h5>
                 <p class="profile-education-info">Образовательное учреждение: {{this.userEducation.courses.university}}</p>
-                <p class="profile-education-info">Направление: {{this.userEducation.courses.faculty}}</p>
+                <p class="profile-education-info">Направление: {{this.userEducation.courses.speciality}}</p>
                 <p class="profile-education-info">Год окончания: {{this.userEducation.courses.date_end}}</p>
               </div>
               <div class="personal-add-info-block">
@@ -263,6 +263,7 @@ export default {
 
     this.educations = await this.getAllUserEducations();
     this.userEducation = await this.getUserEducations();
+    console.log(this.userEducation);
 
     // код для получения названия первого образования (бакалавриат/специалитет)
     if (this.userEducation.first_education !== null){

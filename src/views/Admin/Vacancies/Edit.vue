@@ -4,7 +4,7 @@
       <h2>Изменение данных вакансии</h2>
     </div>
     <div class="admin-content-main">
-      <div v-if="loading" class="loading">
+      <div v-if="loading" class="loading-main">
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
 
@@ -245,6 +245,7 @@ export default {
     this.formData.company_phone = this.vacancy.company_phone;
     this.formData.company_email = this.vacancy.company_email;
     this.formData.company_site = this.vacancy.company_site;
+    this.formData.salary = this.vacancy.salary;
 
     const vacanciesData = await this.getVacanciesData();
     this.employments = vacanciesData.employments;

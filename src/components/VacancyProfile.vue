@@ -23,7 +23,7 @@
             <h2>{{ this.vacancy.title }}</h2>
             <p v-if="this.vacancy.salary !== null">{{ this.vacancy.salary }} ₽</p>
           </div>
-          <p class="card-description">{{ this.vacancy.description }}</p>
+          <p class="card-description">{{ this.vacancy.common_description }}</p>
         </div>
         </router-link>
         <div class="row-group">

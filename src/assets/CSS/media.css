@@ -141,6 +141,31 @@
     .daily-news{
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
+
+    .content-profile .content-nav .content-title{
+        flex-direction: column;
+    }
+
+    .fav-title a{
+        margin-left: 0;
+    }
+
+    .profile-content-title{
+        flex-direction: column !important;
+    }
+
+    .link-profile-active{
+        margin-left: 0;
+    }
+
+    .link-profile{
+        margin-left: 0;
+    }
+
+    .content-title .button-main{
+        margin-top: 30px;
+        width: 87px;
+    }
 }
 
 @media (max-width: 350px){

@@ -9,6 +9,7 @@
             </div>
             <div class="feed-title-actions">
               <router-link class="button-main"
+              v-if="this.$store.getters.getAuthToken"
               :to="{ name: 'VacancyCreate'}
               ">Создать</router-link>
               <div class="search-field">
@@ -242,7 +243,8 @@ export default {
         experiences: {},
         schedules: {},
       },
-      searchText: ''
+      searchText: '',
+      paginate: Number(3),
     },
     vacancies: [],
     categories: [],
@@ -345,6 +347,7 @@ export default {
       this.loading = true;
       const response = await this.getVacancies({
         page: page,
+        paginate: this.request.paginate,
       });
       this.setData(response);
       this.loading = false;
@@ -353,12 +356,13 @@ export default {
       this.vacancies = response.data;
       this.current_page = response.current_page;
       this.total = response.total;
-      this.per_page = response.per_page;
+      this.per_page = Number(response.per_page);
     }
   },
 
   async created () {
-    const response = await this.getVacancies();
+    const response = await this.getVacancies(this.request);
+    console.log(response);
     this.setData(response);
 
     const vacanciesData = await this.getVacanciesData();

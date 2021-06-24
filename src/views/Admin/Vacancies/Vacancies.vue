@@ -7,7 +7,7 @@
         ">Создать</router-link>
     </div>
     <div class="admin-content-main">
-      <div v-if="loading" class="loading">
+      <div v-if="loading" class="loading-main">
         <img src="/img/preloader.svg" alt="Загрузка данных">
       </div>
 
@@ -139,6 +139,7 @@ export default {
       this.$router.push({ name: 'ViewVacancy', params: { id: row.id } })
     },
     async deleteAction (index, row) {
+      console.log(row.id)
       const result = await api.deleteAdminVacancy(this.$store.getters.getAuthToken, row.id)
 
       if (result.status === 204) {

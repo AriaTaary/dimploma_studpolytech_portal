@@ -23,10 +23,10 @@
             <h2>{{ this.vacancy.title }}</h2>
             <p v-if="this.vacancy.salary !== null">{{ this.vacancy.salary }} ₽</p>
           </div>
-          <p class="card-description">{{ this.vacancy.description }}</p>
+          <p class="card-description">{{ this.vacancy.common_description }}</p>
         </div>
         </router-link>
-        <div class="row-group">
+        <div class="row-group" v-if="this.$store.getters.getAuthToken">
           <button
             v-if="vacancy.responses.filter(user => user.id === this.$store.getters.getUser.id).length !== 0"
             class="button-main button-main-active" disabled

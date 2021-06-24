@@ -13,7 +13,7 @@
             ">Редактировать</router-link>
         </div>
       </div>
-      <div class="card-categories">
+      <div class="card-categories card-categories-main">
         <p
         v-for="category in this.vacancy.categories"
         :key='category.id'
@@ -28,7 +28,7 @@
           <p v-if="this.vacancy.salary !== null">{{ this.vacancy.salary }} ₽</p>
         </div>
         <p class="card-description not-main">Город: {{ this.vacancy.city }}</p>
-        <div class="row-group">
+        <div class="row-group" v-if="this.$store.getters.getAuthToken">
           <button
             v-if="vacancy.responses.filter(user => user.id === this.$store.getters.getUser.id).length !== 0"
             class="button-main button-main-active" disabled
@@ -62,7 +62,7 @@
           </div>
           <div class="vacancy-info-block">
             <h5>Описание:</h5>
-            <p>{{ this.vacancy.description }}</p>
+            <p>{{ this.vacancy.common_description }}</p>
           </div>
           <div class="vacancy-info-block">
             <h5>Требования:</h5>
@@ -80,13 +80,22 @@
           class="vacancy-info-block">
             <h5>Контакты:</h5>
             <ul class="vacancy-info-list">
-              <li v-if="this.vacancy.company_phone !== null">Телефон: {{ this.vacancy.company_phone }}</li>
-              <li v-if="this.vacancy.company_email !== null">Email: {{ this.vacancy.company_email }}</li>
-              <li v-if="this.vacancy.company_site !== null">Сайт: {{ this.vacancy.company_site}}</li>
+              <li v-if="this.vacancy.company_phone !== null">
+                <p>Телефон: </p>
+                <p>{{ this.vacancy.company_phone }}</p>
+              </li>
+              <li v-if="this.vacancy.company_email !== null">
+                <p>Email: </p>
+                <a v-bind:href="'mailto:' + this.vacancy.company_email">{{ this.vacancy.company_email }}</a>
+              </li>
+              <li v-if="this.vacancy.company_site !== null">
+                <p>Сайт: </p>
+                <a v-bind:href="this.vacancy.company_site" target="_blank">{{ this.vacancy.company_site}}</a>
+              </li>
             </ul>
           </div>
         </div>
-          <div class="row-group">
+          <div class="row-group" v-if="this.$store.getters.getAuthToken">
           <button
             v-if="vacancy.responses.filter(user => user.id === this.$store.getters.getUser.id).length !== 0"
             class="button-main button-main-active" disabled

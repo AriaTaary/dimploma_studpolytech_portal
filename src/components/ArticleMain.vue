@@ -23,8 +23,14 @@
     </div>
     <div class="card-main-info">
       <h2>{{ this.article.title }}</h2>
-      <img class="article-photo" src="/img/article-photo.png" alt="article-photo">
+      <img
+        class="article-photo"
+        v-bind:src="'data:image/' + this.article.image.content_type + ';base64,' + this.article.image.base64"
+        alt="article-photo"
+      >
       <p class="card-description">{{ this.article.text }}</p>
+      <p v-if="this.article.source !== null" class="card-description">Источник:
+      <a v-if="this.article.source !== null" class="source-link mini-hover" v-bind:href="this.article.source" target="_blank">{{ this.article.source }}</a></p>
       <div class="ratings">
         <div class="views">
           <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +52,7 @@
           </div>
         </button>
         <button v-else class="post-button" @click="likeArticle()">
-          <div class="likes">
+          <div class="likes" v-if="this.$store.getters.getAuthToken">
             <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14.8222 1.41007C13.9873 0.512622 12.8173 0.00198696 11.5915 9.39718e-05C10.3647 0.00151372 9.19355 0.511878 8.35732 1.40949L8.07233 1.71065L7.78733 1.40949C6.12802 -0.376375 3.33511 -0.478935 1.54928 1.18037C1.47014 1.25393 1.39372 1.33033 1.32016 1.40949C-0.440053 3.3081 -0.440053 6.2423 1.32016 8.14091L7.6535 14.8198C7.87262 15.0511 8.23776 15.061 8.46908 14.8419C8.47665 14.8348 8.48402 14.8274 8.49118 14.8198L14.8222 8.14091C16.5823 6.24251 16.5823 3.30847 14.8222 1.41007ZM13.9874 7.34649H13.9868L8.07233 13.5846L2.15727 7.34649C0.812567 5.89578 0.812567 3.65404 2.15727 2.20333C3.37842 0.879795 5.44134 0.796807 6.76488 2.01796C6.82914 2.07725 6.89096 2.13907 6.95026 2.20333L7.6535 2.94525C7.88526 3.17552 8.25943 3.17552 8.49118 2.94525L9.19443 2.20391C10.4156 0.880369 12.4785 0.797382 13.802 2.01853C13.8663 2.07782 13.9281 2.13965 13.9874 2.20391C15.3438 3.65692 15.3538 5.90275 13.9874 7.34649Z" fill="black" fill-opacity="0.3"/>
             </svg>
@@ -62,7 +68,7 @@
           </div>
         </button>
         <button v-else class="post-button" @click="saveArticle()">
-          <div class="bookmarks">
+          <div class="bookmarks" v-if="this.$store.getters.getAuthToken">
             <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.87912 0H0.94459C0.42375 0 0 0.42375 0 0.94459V14.4333C0 14.6388 0.111269 14.8281 0.290742 14.9282C0.376699 14.9762 0.471738 15 0.566748 15C0.670283 15 0.773438 14.9718 0.864668 14.9156L4.91297 12.4162L8.96071 14.8974C9.13564 15.0049 9.35499 15.0093 9.53388 14.9088C9.71279 14.8086 9.82368 14.6196 9.82368 14.4144V0.94459C9.82368 0.42375 9.39996 0 8.87912 0ZM8.69019 13.4019L5.20825 11.2674C5.02576 11.1555 4.79604 11.1561 4.61411 11.2683L1.1335 13.4172V1.1335H8.69019V13.4019Z" fill="black" fill-opacity="0.3"/>
             </svg>
