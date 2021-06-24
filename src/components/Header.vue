@@ -60,8 +60,8 @@
                   </el-form>
                 </div>
               </li>
-              <li v-else class="menu-item">
-                <a href="/login" class="menu-link menu-link-auth">Вход</a>
+              <li v-else class="menu-mobile-item">
+                <a href="/login" class="menu-mobile-link menu-link-auth mobile-enter">Вход</a>
               </li>
             </ul>
             </Slide>
