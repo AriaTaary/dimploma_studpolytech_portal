@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.e0393aa8259b3500765f409d7a04e5f2.js"
+  "/precache-manifest.a8bbe33b4ca7e8b0dcb22c7194fba077.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "portal-client"});
